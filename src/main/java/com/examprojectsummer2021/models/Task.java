@@ -8,7 +8,7 @@ public class Task {
 
     private String title;
     private String description;
-    private int taskID; // for SQL
+    private int taskID; // unique ID for SQL
 
     public Task(String title, String description, int taskID) {
         this.title = title;

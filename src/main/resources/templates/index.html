@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='Index')"></head>
+<head th:replace="fragments/head.html(customCSS='/stylesheets/main.css')"></head>
+<header th:replace="fragments/header.html"></header>
 <body>
+<main>
 
+    <p>this is our index</p>
+
+</main>
+<footer th:replace="fragments/footer.html"></footer>
 </body>
 </html>

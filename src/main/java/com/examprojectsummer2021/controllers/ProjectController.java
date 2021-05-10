@@ -26,5 +26,11 @@ public class ProjectController {
         return "updateProject.html";
     }
 
+    @GetMapping("/dashboard")
+    public String renderDashboard(){
+
+        return "dashboard.html";
+    }
+
 
 }

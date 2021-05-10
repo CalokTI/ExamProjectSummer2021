@@ -22,14 +22,13 @@ public class ProjectRepository {
     }
 
 
-    public void createNewProject(int projectID, String projectTitle, String projectDescription,String owner) {
-        String sql = "INSERT INTO project (projectID, projectTitle, projectDescription, owner) VALUES(?,?,?,?)";
+    public void createNewProject(String projectTitle, String projectDescription,String owner) {
+        String sql = "INSERT INTO project (projectTitle, projectDescription, owner) VALUES(?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, projectID);
-            preparedStatement.setString(2, projectTitle);
-            preparedStatement.setString(3, projectDescription);
-            preparedStatement.setString(4, owner);
+            preparedStatement.setString(1, projectTitle);
+            preparedStatement.setString(2, projectDescription);
+            preparedStatement.setString(3, owner);
             preparedStatement.executeUpdate();
 
         } catch (SQLException throwables) {

@@ -22,15 +22,14 @@ public class TaskRepository {
     }
 
 
-    public void createNewTask(int taskID, String taskTitle, String taskDescription, String owner, int projectID) {
-        String sql = "INSERT INTO task (taskID, taskTitle, taskDescription, owner, projectID) VALUES(?,?,?,?,?)";
+    public void createNewTask(String taskTitle, String taskDescription, String owner, int projectID) {
+        String sql = "INSERT INTO task (taskTitle, taskDescription, owner, projectID) VALUES(?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, taskID);
-            preparedStatement.setString(2, taskTitle);
-            preparedStatement.setString(3, taskDescription);
-            preparedStatement.setString(4, owner);
-            preparedStatement.setInt(5, projectID);
+            preparedStatement.setString(1, taskTitle);
+            preparedStatement.setString(2, taskDescription);
+            preparedStatement.setString(3, owner);
+            preparedStatement.setInt(4, projectID);
             preparedStatement.executeUpdate();
 
         } catch (SQLException throwables) {

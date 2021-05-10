@@ -23,6 +23,8 @@ public class UserRepository {
         conn = dbConnect.getConn();
     }
 
+    //NOTE. WE HAVE PREDEFINED USERS -> WE DONT CREATE NEW USERS ATM, MAYBE WITH A ADMIN SITE IN THE FUTURE..
+
     //---- Returns a specific user from database, based on username ---- \\
    //todo test om det fungere optimalt
     private String getUserFromDatabase(String username) {

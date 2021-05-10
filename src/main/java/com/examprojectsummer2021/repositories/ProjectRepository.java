@@ -21,6 +21,22 @@ public class ProjectRepository {
         conn = dbConnect.getConn();
     }
 
+
+    public void createNewProject(int projectID, String projectTitle, String projectDescription,String owner) {
+        String sql = "INSERT INTO project (projectID, projectTitle, projectDescription, owner) VALUES(?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, projectID);
+            preparedStatement.setString(2, projectTitle);
+            preparedStatement.setString(3, projectDescription);
+            preparedStatement.setString(4, owner);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     private int getSpecificProjectFromDatabase(int projectID) {
         try {
             String sql = "SELECT project FROM project WHERE id = ?";
@@ -36,7 +52,6 @@ public class ProjectRepository {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return -1;
     }
 }

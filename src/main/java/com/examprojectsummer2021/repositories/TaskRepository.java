@@ -16,10 +16,28 @@ public class TaskRepository {
 
     private Connection conn;
 
-    public TaskRepository(){
+    public TaskRepository() {
         DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
         conn = dbConnect.getConn();
     }
+
+
+    public void createNewTask(int taskID, String taskTitle, String taskDescription, String owner, int projectID) {
+        String sql = "INSERT INTO task (taskID, taskTitle, taskDescription, owner, projectID) VALUES(?,?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, taskID);
+            preparedStatement.setString(2, taskTitle);
+            preparedStatement.setString(3, taskDescription);
+            preparedStatement.setString(4, owner);
+            preparedStatement.setInt(5, projectID);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 
     private int getSpecificTaskFromDatabase(int taskID) {
         try {
@@ -29,7 +47,7 @@ public class TaskRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet != null){
+            if (resultSet != null) {
                 return resultSet.getInt(taskID);
             }
 

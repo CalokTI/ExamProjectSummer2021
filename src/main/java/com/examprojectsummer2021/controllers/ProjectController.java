@@ -20,16 +20,16 @@ public class ProjectController {
 
     ProjectService projectService = new ProjectService();
 
-    @GetMapping("/newproject")
+    @GetMapping("/createproject")
     public String renderNewProject(){
 
-        return "newProject.html";
+        return "createproject.html";
     }
 
     @GetMapping("/updateproject/list.getID")
     public String renderUpdateProject(@PathVariable("list.getID") int projectID){
 
-        return "updateProject.html";
+        return "updateproject.html";
     }
 
     @GetMapping("/dashboard")

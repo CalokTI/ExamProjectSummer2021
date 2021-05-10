@@ -8,7 +8,7 @@ public class Project {
 
     private String title;
     private String description;
-    private int projectID;
+    private int projectID; // unique ID for SQL
 
     public Project(String title, String description, int projectID) {
         this.title = title;

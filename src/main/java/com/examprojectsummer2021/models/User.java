@@ -10,7 +10,7 @@ public class User {
 
     private String firstname;
     private String lastname;
-    private String username; // this acts as the unique ID for SQL
+    private String username; // unique ID for SQL
     private String role;
 
     public User(String firstname, String lastname, String username, String role) {

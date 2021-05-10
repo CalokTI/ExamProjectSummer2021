@@ -1,6 +1,5 @@
 package com.examprojectsummer2021.repositories;
 
-import com.examprojectsummer2021.models.User;
 import com.examprojectsummer2021.utilities.DatabaseConnectionUtility;
 
 import java.sql.Connection;
@@ -19,9 +18,9 @@ public class UserRepository {
 
     private Connection conn;
 
-
-    public UserRepository() {
-        conn = DatabaseConnectionUtility.getConn(); //static call, ingen instance af class
+    public UserRepository(){
+        DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
+        conn = dbConnect.getConn();
     }
 
     //---- Returns a specific user from database, based on username ---- \\
@@ -57,7 +56,7 @@ public class UserRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet != null) {
+            if (resultSet.next()){
                 return resultSet.getString(1);
             }
 

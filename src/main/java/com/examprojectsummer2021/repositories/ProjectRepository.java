@@ -17,7 +17,8 @@ public class ProjectRepository {
     private Connection conn;
 
     public ProjectRepository(){
-        conn = DatabaseConnectionUtility.getConn();
+        DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
+        conn = dbConnect.getConn();
     }
 
     private int getSpecificProjectFromDatabase(int projectID) {

@@ -25,9 +25,16 @@ public class LoginController {
     public String renderLogin(HttpServletRequest request, Model model){
 
         HttpSession session = request.getSession();
-        boolean loginFailed = (boolean) session.getAttribute("fail"); //måske fejler den her
+
+
+        //<editor-fold desc="Error message for login screen">
+        boolean loginFailed = false;
+            if (session.getAttribute("loginFail") != null){
+                loginFailed = (boolean) session.getAttribute("loginFail");
+            }
 
         model.addAttribute("loginFailed", loginFailed);
+        //</editor-fold>
 
         return "login.html";
     }
@@ -43,11 +50,11 @@ public class LoginController {
 
         if (validLogin){
             session.setAttribute("username", username);
-            session.setAttribute("fail", false);
+            session.setAttribute("loginFail", false);
             return "redirect:/home";
         }
 
-        session.setAttribute("fail", true);
+        session.setAttribute("loginFail", true);
         return "redirect:/login";
     }
 

@@ -2,9 +2,7 @@ package com.examprojectsummer2021.utilities;
 
 import org.springframework.core.io.ClassPathResource;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,6 +13,7 @@ import java.util.Properties;
  * Time: 12.36
  * Date: 06/05/2021
  */
+
 public class DatabaseConnectionUtility {
 
     private static String url;
@@ -40,9 +39,17 @@ public class DatabaseConnectionUtility {
         }
     }
 
-    public static Connection getConn() {
+    public Connection getConn() {
         if (conn != null){
             return conn;
+        }
+
+        setLogin();
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
         try {

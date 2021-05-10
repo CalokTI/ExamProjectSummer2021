@@ -17,7 +17,8 @@ public class TaskRepository {
     private Connection conn;
 
     public TaskRepository(){
-        conn = DatabaseConnectionUtility.getConn();
+        DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
+        conn = dbConnect.getConn();
     }
 
     private int getSpecificTaskFromDatabase(int taskID) {

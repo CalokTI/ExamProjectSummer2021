@@ -51,7 +51,7 @@ public class LoginController {
         if (validLogin){
             session.setAttribute("username", username);
             session.setAttribute("loginFail", false);
-            return "redirect:/home";
+            return "redirect:/dashboard";
         }
 
         session.setAttribute("loginFail", true);

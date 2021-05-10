@@ -1,8 +1,12 @@
 package com.examprojectsummer2021.controllers;
 
+import com.examprojectsummer2021.services.ProjectService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 
 /**
@@ -13,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ProjectController {
+
+    ProjectService projectService = new ProjectService();
 
     @GetMapping("/newproject")
     public String renderNewProject(){
@@ -27,8 +33,10 @@ public class ProjectController {
     }
 
     @GetMapping("/dashboard")
-    public String renderDashboard(){
+    public String renderDashboard(Model model){
+        List projectList = projectService.getAllProjects();
 
+        model.addAttribute("list", projectList);
         return "dashboard.html";
     }
 

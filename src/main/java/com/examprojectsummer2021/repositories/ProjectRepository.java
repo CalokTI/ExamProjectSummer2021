@@ -36,6 +36,20 @@ public class ProjectRepository {
         }
     }
 
+    public ResultSet getAllProjects(){
+        String sql = "SELECT * FROM project";
+        ResultSet resultSet = null;
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+             resultSet = statement.executeQuery();
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("ProjectRepository - getAllProjects");
+        }
+        return resultSet;
+    }
+
     private int getSpecificProjectFromDatabase(int projectID) {
         try {
             String sql = "SELECT project FROM project WHERE id = ?";

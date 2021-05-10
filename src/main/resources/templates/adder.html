@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='adder')"></head> <!-- custom title !-->
+<head th:replace="fragments/head.html(customCSS='/stylesheets/filterSearch.css')"></head> <!-- custom CSS !-->
+<header th:replace="fragments/header.html"></header>
+<body>
+<main>
+
+
+  <script th:src="@{static/scripts/filterSearch.js}"></script>
+
+  <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search for names..">
+
+  <ul id="myUL">
+    <li><a href="#">Adele</a></li>
+    <li><a href="#">Agnes</a></li>
+
+    <li><a href="#">Billy</a></li>
+    <li><a href="#">Bob</a></li>
+
+    <li><a href="#">Calvin</a></li>
+    <li><a href="#">Christina</a></li>
+    <li><a href="#">Cindy</a></li>
+  </ul>
+
+
+
+</main>
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>

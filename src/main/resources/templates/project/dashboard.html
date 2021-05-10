@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='dashboard')"></head> <!-- custom title !-->
+<head th:replace="fragments/head.html(customCSS='/stylesheets/dashboard.css')"></head> <!-- custom CSS !-->
+<header th:replace="fragments/header.html"></header>
+<body>
+<main>
+
+
+    <section class="create-project">
+        <a href="/newproject"><button>create a project</button></a>
+    </section>
+
+
+    <section class="projects">
+        <ul th:each="list : ${list}">
+            <a th:href="@{/wishlist/{getId}(getId=${list.getId})}">
+                <article class="project-card">
+                    <li th:text="${list.getTitle}"></li>
+                    <li th:text="${list.getDescription}"></li>
+                    <li th:text="${list.getOwner}"></li>
+                </article>
+            </a>
+        </ul>
+    </section>
+
+</main>
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>

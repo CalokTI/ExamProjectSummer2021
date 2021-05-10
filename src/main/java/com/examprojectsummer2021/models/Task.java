@@ -1,14 +1,23 @@
 package com.examprojectsummer2021.models;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * @author Anton
  */
 
 public class Task {
 
+    private int taskID; // unique ID for SQL
     private String title;
     private String description;
-    private int taskID; // unique ID for SQL
+
+    private Date inceptionDate;
+    private Date deadline;
+
+    //private ArrayList
+
 
     public Task(String title, String description, int taskID) {
         this.title = title;

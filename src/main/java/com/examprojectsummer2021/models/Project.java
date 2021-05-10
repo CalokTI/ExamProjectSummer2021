@@ -1,14 +1,20 @@
 package com.examprojectsummer2021.models;
 
+import java.util.Date;
+
 /**
  * @author Anton
  */
 
 public class Project {
 
+    private int projectID; // unique ID for SQL
     private String title;
     private String description;
-    private int projectID; // unique ID for SQL
+
+    private Date inceptionDate;
+    private Date deadline;
+
 
     public Project(String title, String description, int projectID) {
         this.title = title;

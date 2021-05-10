@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class TaskController {
 
-    @GetMapping("/newtask")
+    @GetMapping("/task")
     public String renderNewTask(){
 
-        return "newTask.html";
+        return "createtask.html";
     }
 
     @PostMapping("/createtask")
@@ -31,6 +31,6 @@ public class TaskController {
     @GetMapping("/updatetask")
     public String renderUpdateTask(){
 
-        return "updateProject.html";
+        return "updateproject.html";
     }
 }

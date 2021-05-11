@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-
 /**
  * @author Carsten & Julius
  * Time: 12.37
@@ -18,7 +17,7 @@ public class UserRepository {
 
     private Connection conn;
 
-    public UserRepository(){
+    public UserRepository() {
         DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
         conn = dbConnect.getConn();
     }
@@ -26,18 +25,15 @@ public class UserRepository {
     //NOTE. WE HAVE PREDEFINED USERS -> WE DONT CREATE NEW USERS ATM, MAYBE WITH A ADMIN SITE IN THE FUTURE..
 
     //---- Returns a specific user from database, based on username ---- \\
-   //todo test om det fungere optimalt
-    private String getUserFromDatabase(String username) {
+    //todo test om det fungere optimalt
+    public ResultSet getUserFromDatabase(String username) {
+        String sql = "SELECT username,first_name,last_name,role FROM user WHERE username = ?";
         try {
-            String sql = "SELECT username FROM user WHERE username = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, username);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet != null) {
-                return resultSet.getString(username);
-            }
+            return resultSet;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -58,7 +54,7 @@ public class UserRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getString(1);
             }
 

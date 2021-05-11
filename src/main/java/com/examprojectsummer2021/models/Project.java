@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * @author Anton
  */
-
+//todo add owner
 public class Project {
 
     private int projectID; // unique ID for SQL

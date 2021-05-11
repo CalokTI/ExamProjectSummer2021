@@ -51,7 +51,7 @@ public class ProjectRepository {
 
 
     public ResultSet getSpecificProjectFromDatabase(int projectID) {
-        String sql = "SELECT project FROM project WHERE id = ?";
+        String sql = "SELECT * FROM project WHERE id = ?";
         ResultSet resultSet = null;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);

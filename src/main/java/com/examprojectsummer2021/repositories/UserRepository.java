@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-
 /**
  * @author Carsten & Julius
  * Time: 12.37
@@ -18,7 +17,7 @@ public class UserRepository {
 
     private Connection conn;
 
-    public UserRepository(){
+    public UserRepository() {
         DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
         conn = dbConnect.getConn();
     }
@@ -26,10 +25,11 @@ public class UserRepository {
     //NOTE. WE HAVE PREDEFINED USERS -> WE DONT CREATE NEW USERS ATM, MAYBE WITH A ADMIN SITE IN THE FUTURE..
 
     //---- Returns a specific user from database, based on username ---- \\
-   //todo test om det fungere optimalt
+    //todo test om det fungere optimalt
     private String getUserFromDatabase(String username) {
         try {
             String sql = "SELECT username FROM user WHERE username = ?";
+
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, username);
 
@@ -46,6 +46,25 @@ public class UserRepository {
         return null;
     }
 
+    // Returnér alle users fra specefikt projekt
+    public ResultSet getUsersFromProject(int projectID) {
+        try {
+            String sql = "SELECT username FROM user_project WHERE projectID = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, projectID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return resultSet;
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+
+    }
+
 
     //----- Returns the password for the specific user -----\\
     public String getPasswordForUsername(String username) {
@@ -58,7 +77,7 @@ public class UserRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getString(1);
             }
 

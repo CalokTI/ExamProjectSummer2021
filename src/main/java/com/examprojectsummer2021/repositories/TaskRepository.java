@@ -53,7 +53,6 @@ public class TaskRepository {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return -1;
     }
 }

@@ -17,6 +17,30 @@ public class ProjectService {
 
     private ProjectRepository projectRepository = new ProjectRepository();
 
+
+    public void createNewProject(String projectTitle, String projectDescription, String owner){
+        projectRepository.createNewProject(projectTitle,projectDescription,owner);
+    }
+
+
+    public Project getSpecificProject(int projectID){
+        ResultSet resultSet = projectRepository.getSpecificProjectFromDatabase(projectID);
+        Project project = null;
+        try {
+            while (resultSet.next()) {
+            String title = resultSet.getString(1);
+            String description = resultSet.getString(2);
+            int id = resultSet.getInt(3);
+            project = new Project(title,description,id);
+            }
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return project;
+    }
+
+
+
     public List getAllProjects() {
 
         List allProjects = new ArrayList();
@@ -36,4 +60,6 @@ public class ProjectService {
         }
         return allProjects;
     }
+
+
 }

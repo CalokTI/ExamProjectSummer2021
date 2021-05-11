@@ -16,13 +16,13 @@ public class ProjectRepository {
 
     private Connection conn;
 
-    public ProjectRepository(){
+    public ProjectRepository() {
         DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
         conn = dbConnect.getConn();
     }
 
 
-    public void createNewProject(String projectTitle, String projectDescription,String owner) {
+    public void createNewProject(String projectTitle, String projectDescription, String owner) {
         String sql = "INSERT INTO project (projectTitle, projectDescription, owner) VALUES(?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -36,35 +36,31 @@ public class ProjectRepository {
         }
     }
 
-    public ResultSet getAllProjects(){
+    public ResultSet getAllProjects() {
         String sql = "SELECT * FROM project";
         ResultSet resultSet = null;
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
-             resultSet = statement.executeQuery();
-        }
-        catch (SQLException throwables) {
+            resultSet = statement.executeQuery();
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.println("ProjectRepository - getAllProjects");
         }
         return resultSet;
     }
 
-    private int getSpecificProjectFromDatabase(int projectID) {
+
+    public ResultSet getSpecificProjectFromDatabase(int projectID) {
+        String sql = "SELECT project FROM project WHERE id = ?";
+        ResultSet resultSet = null;
         try {
-            String sql = "SELECT project FROM project WHERE id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, projectID);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet != null){
-                return resultSet.getInt(projectID);
-            }
+            preparedStatement.setInt(1,projectID);
+            resultSet = preparedStatement.executeQuery();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return -1;
+       return resultSet;
     }
 }

@@ -27,12 +27,10 @@ public class ProjectService {
         ResultSet resultSet = projectRepository.getSpecificProjectFromDatabase(projectID);
         Project project = null;
         try {
-            while (resultSet.next()) {
             String title = resultSet.getString(1);
             String description = resultSet.getString(2);
             int id = resultSet.getInt(3);
             project = new Project(title,description,id);
-            }
         }catch (SQLException throwables){
             throwables.printStackTrace();
         }

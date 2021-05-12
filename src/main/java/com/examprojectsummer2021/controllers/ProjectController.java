@@ -28,10 +28,12 @@ public class ProjectController {
         return "project/dashboard.html";
     }
 
+
     @GetMapping("/createproject")
     public String renderNewProject(){
         return "project/createproject.html";
     }
+
 
     @PostMapping("/createproject")
     public String createNewProject(){
@@ -40,6 +42,7 @@ public class ProjectController {
 
         return "redirect/updateproject/list.getID";
     }
+
 
     @GetMapping("/updateproject/{id}")
     public String renderUpdateProject(@PathVariable("id") int projectID, Model model){

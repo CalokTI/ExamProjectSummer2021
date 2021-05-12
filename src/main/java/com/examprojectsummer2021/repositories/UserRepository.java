@@ -34,17 +34,15 @@ public class UserRepository {
     //---- Returns a specific user from database, based on username ---- \\
     //todo test om det fungere optimalt
     public ResultSet getUserFromDatabase(String username) {
-        try {
-            String sql = "SELECT username FROM user WHERE username = ?";
+        String sql = "SELECT * FROM user WHERE username = ?";
 
+        try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, username);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet != null) {
-                return resultSet;
-            }
+           return resultSet;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

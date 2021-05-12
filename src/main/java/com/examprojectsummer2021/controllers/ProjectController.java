@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,6 +32,8 @@ public class ProjectController {
 
     @GetMapping("/createproject")
     public String renderNewProject(){
+        //model med alle users
+        //model med users i session -> se holdUsersInSession
         return "project/createproject.html";
     }
 
@@ -39,10 +42,17 @@ public class ProjectController {
     public String createNewProject(){
 
         projectService.createNewProject("","","");
-
-        return "redirect/updateproject/list.getID";
+        //fix link id
+        return "redirect:/updateproject/{id}";
     }
 
+
+    @PostMapping("/createprojectusers")
+    public String holdUsersInSession(){
+        //intet project at tilknytte udvalgte users til, så de gemmes i session??
+        //kig på get og post mapping af /createproject
+        return "redirect:/createproject";
+    }
 
     @GetMapping("/updateproject/{id}")
     public String renderUpdateProject(@PathVariable("id") int projectID, Model model){

@@ -26,7 +26,7 @@ public class UserRepository {
 
     //---- Returns a specific user from database, based on username ---- \\
     //todo test om det fungere optimalt
-    private String getUserFromDatabase(String username) {
+    public ResultSet getUserFromDatabase(String username) {
         try {
             String sql = "SELECT username FROM user WHERE username = ?";
 
@@ -36,7 +36,7 @@ public class UserRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet != null) {
-                return resultSet.getString(username);
+                return resultSet;
             }
 
         } catch (SQLException throwables) {

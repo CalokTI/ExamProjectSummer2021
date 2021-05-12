@@ -9,7 +9,7 @@ import java.util.Date;
 //todo add owner
 public class Project {
 
-    private int projectID; // unique ID for SQL
+    private int ID; // unique ID for SQL
     private String title;
     private String description;
 
@@ -21,7 +21,7 @@ public class Project {
     public Project(String title, String description, int projectID) {
         this.title = title;
         this.description = description;
-        this.projectID = projectID;
+        this.ID = projectID;
     }
 
     public String getTitle() {
@@ -32,8 +32,8 @@ public class Project {
         return description;
     }
 
-    public int getProjectID() {
-        return projectID;
+    public int getID() {
+        return ID;
     }
 
     public ArrayList<User> getUsers() {

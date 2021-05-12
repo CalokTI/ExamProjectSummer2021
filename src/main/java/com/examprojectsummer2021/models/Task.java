@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Task {
 
-    private int taskID; // unique ID for SQL
+    private int ID; // unique ID for SQL
     private String title;
     private String description;
 
@@ -22,7 +22,7 @@ public class Task {
     public Task(String title, String description, int taskID) {
         this.title = title;
         this.description = description;
-        this.taskID = taskID;
+        this.ID = taskID;
     }
 
     public String getTitle() {
@@ -33,7 +33,7 @@ public class Task {
         return description;
     }
 
-    public int getTaskID() {
-        return taskID;
+    public int getID() {
+        return ID;
     }
 }

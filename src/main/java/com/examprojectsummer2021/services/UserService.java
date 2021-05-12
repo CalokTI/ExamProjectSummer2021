@@ -13,6 +13,10 @@ public class UserService {
 
     private UserRepository userRepository = new UserRepository();
 
+    // ------ SETTERS ------ //
+
+    // ------ GETTERS ------ //
+
     public User getUserFromDatabase(String username) {
         ResultSet resultSet = userRepository.getUserFromDatabase(username);
         User user = null;

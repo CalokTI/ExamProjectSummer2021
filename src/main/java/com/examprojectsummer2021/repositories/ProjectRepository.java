@@ -16,11 +16,13 @@ public class ProjectRepository {
 
     private Connection conn;
 
+    // Constructor
     public ProjectRepository() {
         DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
         conn = dbConnect.getConn();
     }
 
+    // ------ SETTERS ------ //
 
     public void createNewProject(String projectTitle, String projectDescription, String owner) {
         String sql = "INSERT INTO project (projectTitle, projectDescription, owner) VALUES(?,?,?)";
@@ -36,6 +38,8 @@ public class ProjectRepository {
         }
     }
 
+    // ------ GETTERS ------ //
+
     public ResultSet getAllProjects() {
         String sql = "SELECT * FROM project";
         ResultSet resultSet = null;
@@ -48,7 +52,6 @@ public class ProjectRepository {
         }
         return resultSet;
     }
-
 
     public ResultSet getSpecificProjectFromDatabase(int projectID) {
         String sql = "SELECT * FROM project WHERE id = ?";

@@ -11,7 +11,12 @@ public class TaskService {
 
     UserRepository userRepository = new UserRepository();
 
-    public ArrayList<User> usersFromProject(int projectID) {
+    // ------ SETTERS ------ //
+
+
+    // ------ GETTERS ------ //
+
+    public ArrayList<User> getUsersFromProject(int projectID) {
 
         ResultSet test = userRepository.getUsersFromProject(projectID);
 
@@ -29,6 +34,5 @@ public class TaskService {
 
 
     }
-
 
 }

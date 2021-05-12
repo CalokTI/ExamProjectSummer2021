@@ -16,11 +16,14 @@ public class TaskRepository {
 
     private Connection conn;
 
+    // Constructor
     public TaskRepository() {
         DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
         conn = dbConnect.getConn();
     }
 
+
+    // ------ SETTERS ------ //
 
     public void createNewTask(String taskTitle, String taskDescription, String owner, int projectID) {
         String sql = "INSERT INTO task (taskTitle, taskDescription, owner, projectID) VALUES(?,?,?,?)";
@@ -37,6 +40,7 @@ public class TaskRepository {
         }
     }
 
+    // ------ GETTERS ------ //
 
     private int getSpecificTaskFromDatabase(int taskID) {
         try {

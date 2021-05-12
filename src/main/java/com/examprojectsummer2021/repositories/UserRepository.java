@@ -17,12 +17,19 @@ public class UserRepository {
 
     private Connection conn;
 
+    // Constructor
     public UserRepository() {
         DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
         conn = dbConnect.getConn();
     }
 
     //NOTE. WE HAVE PREDEFINED USERS -> WE DONT CREATE NEW USERS ATM, MAYBE WITH A ADMIN SITE IN THE FUTURE..
+
+    // ------ SETTERS ------ //
+
+    // none
+
+    // ------ GETTERS ------ //
 
     //---- Returns a specific user from database, based on username ---- \\
     //todo test om det fungere optimalt

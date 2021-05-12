@@ -10,18 +10,19 @@ import java.util.List;
 
 /**
  * @author Julius
- * Time: 14.05
- * Date: 10/05/2021
  */
+
 public class ProjectService {
 
     private ProjectRepository projectRepository = new ProjectRepository();
 
+    // ------ SETTERS ------ //
 
     public void createNewProject(String projectTitle, String projectDescription, String owner){
         projectRepository.createNewProject(projectTitle,projectDescription,owner);
     }
 
+    // ------ GETTERS ------ //
 
     public Project getSpecificProject(int projectID){
         ResultSet resultSet = projectRepository.getSpecificProjectFromDatabase(projectID);
@@ -38,8 +39,6 @@ public class ProjectService {
         }
         return project;
     }
-
-
 
     public List getAllProjects() {
 

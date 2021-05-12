@@ -29,6 +29,10 @@ public class Project {
         users.add(user3);
         return users;
     }
+
+    public ArrayList<User> getList(){
+        return this.users;
+    }
     //</editor-fold>
 
     public Project(String title, String description, int projectID) {

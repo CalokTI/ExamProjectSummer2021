@@ -12,21 +12,25 @@ public class TaskService {
     UserRepository userRepository = new UserRepository();
 
     // ------ SETTERS ------ //
-
-
+        //return userList;
     // ------ GETTERS ------ //
 
     public ArrayList<User> getUsersFromProject(int projectID) {
 
-        ResultSet test = userRepository.getUsersFromProject(projectID);
+        ResultSet resultSet = userRepository.getUsersFromProject(projectID);
 
-        ArrayList<User> listofthemguys;
+        ArrayList<User> userList = null;
 
         try {
-            while (test.next()){
+            while (resultSet.next()){
+                String username = resultSet.getString(1);    // username
+                String firstname = resultSet.getString(2);   // first_name
+                String lastname = resultSet.getString(3);    // last_name
+                String role = resultSet.getString(5);        // role
 
+                User tmpUser = new User(username,firstname,lastname,role);
+                userList.add(tmpUser);
             }
-
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

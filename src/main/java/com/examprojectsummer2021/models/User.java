@@ -8,9 +8,9 @@ package com.examprojectsummer2021.models;
 
 public class User {
 
+    private String username; // unique ID for SQL
     private String firstname;
     private String lastname;
-    private String username; // unique ID for SQL
     private String role;
 
     public User(String firstname, String lastname, String username, String role) {

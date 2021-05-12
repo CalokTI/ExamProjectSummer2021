@@ -6,7 +6,25 @@
 <body>
 <main>
 
+
+    <section class="project">
+        <h1 th:text="${project.getTitle}"></h1>
+
+        <p th:text="${project.getDescription}"></p>
+
+
+            <ul th:each="project.getList : ${project.getList}">
+                        <li th:text="${User.getFirstName}"></li>
+                        <li th:text="${User.getLastName}"></li>
+            </ul>
+
+
+
+
+
+    </section>
     <p>edit</p>
+
 
 </main>
 <footer th:replace="fragments/footer.html"></footer>

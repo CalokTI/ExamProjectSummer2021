@@ -30,7 +30,7 @@ public class ProjectController {
 
     @GetMapping("/createproject")
     public String renderNewProject(){
-        return "createproject.html";
+        return "project/createproject.html";
     }
 
     @PostMapping("/createproject")

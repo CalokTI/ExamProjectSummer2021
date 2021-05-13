@@ -54,7 +54,7 @@ public class UserRepository {
     // Returnér alle users fra specefikt projekt
     public ResultSet getUsersFromProject(int projectID) {
         try {
-            String sql = "SELECT username FROM user_project WHERE projectID = ?";
+            String sql = "SELECT * FROM user INNER JOIN  user_project ON user.username = user_project.username WHERE user_project.projectID = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, projectID);
 

@@ -25,7 +25,7 @@ public class ProjectRepository {
     // ------ SETTERS ------ //
 
     public void createNewProject(String projectTitle, String projectDescription, String owner) {
-        String sql = "INSERT INTO project (projectTitle, projectDescription, owner) VALUES(?,?,?)";
+        String sql = "INSERT INTO project (title, description, owner) VALUES(?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, projectTitle);
@@ -39,6 +39,28 @@ public class ProjectRepository {
     }
 
     // ------ GETTERS ------ //
+
+    public int getProjectID(String projectTitle, String projectOwner){
+        int projectID = -1;
+
+        String sql = "SELECT id FROM project WHERE title = ? AND owner = ?";
+
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1,projectTitle);
+            statement.setString(2,projectOwner);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                projectID = resultSet.getInt(1);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("ProjectRepository - getProjectID");
+        }
+
+        return projectID;
+    }
 
     public ResultSet getAllProjects() {
         String sql = "SELECT * FROM project";

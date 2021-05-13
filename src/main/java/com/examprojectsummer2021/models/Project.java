@@ -17,6 +17,7 @@ public class Project {
     private Date deadline;
 
     private ArrayList<User> users;
+    private ArrayList<Task> tasks;
 
     public Project(String title, String description, int projectID) {
         this.title = title;
@@ -38,5 +39,9 @@ public class Project {
 
     public ArrayList<User> getUsers() {
         return users;
+    }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
     }
 }

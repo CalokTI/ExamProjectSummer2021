@@ -14,7 +14,7 @@
 
     <section class="projects">
         <ul th:each="list : ${list}">
-            <a th:href = "@{'updateproject/{id}' (id = ${list.getProjectID})}">
+            <a th:href = "@{'updateproject/{id}' (id = ${list.getID})}">
                 <article class="project-card">
                     <li th:text="${list.getTitle}"></li>
                     <li th:text="${list.getDescription}"></li>

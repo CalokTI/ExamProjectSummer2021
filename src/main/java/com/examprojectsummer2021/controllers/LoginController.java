@@ -21,6 +21,14 @@ public class LoginController {
 
     ValidateLoginService loginService = new ValidateLoginService();
 
+
+    @GetMapping("/")
+    public String renderIndex(){
+
+        return "index/index.html";
+    }
+
+
     @GetMapping("/login")
     public String renderLogin(HttpServletRequest request, Model model){
 

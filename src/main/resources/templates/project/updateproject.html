@@ -13,24 +13,24 @@
         <p th:text="${project.getDescription}"></p>
 
 
-        <ul th:each="users : ${project.getUsers}">
+        <ul th:each="users : ${users}">
             <li th:text="${users.getUsername}"></li>
             <li th:text="${users.getFirstname}"></li>
             <li th:text="${users.getLastname}"></li>
         </ul>
 
-        <ul th:each="tasks : ${project.getTasks}">
-            <li th:text="${tasks.getID}"></li>
-            <li th:text="${tasks.getTitle}"></li>
-            <li th:text="${tasks.getDescription}"></li>
-        </ul>
+        <!--   <ul th:each="tasks : ${project.getTasks}">
+               <li th:text="${tasks.getID}"></li>
+               <li th:text="${tasks.getTitle}"></li>
+               <li th:text="${tasks.getDescription}"></li>
+           </ul> !-->
 
 
-    </section>
-    <p>edit</p>
+       </section>
+       <p>edit</p>
 
 
-</main>
-<footer th:replace="fragments/footer.html"></footer>
-</body>
-</html>
+   </main>
+   <footer th:replace="fragments/footer.html"></footer>
+   </body>
+   </html>

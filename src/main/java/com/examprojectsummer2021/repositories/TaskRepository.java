@@ -42,6 +42,25 @@ public class TaskRepository {
 
     // ------ GETTERS ------ //
 
+    public ResultSet getTasksFromProject(int projectID) {
+        try {
+            String sql = "SELECT * FROM task where project = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, projectID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return resultSet;
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+
+    }
+
+    //todo wat is dis ;__;
     private int getSpecificTaskFromDatabase(int taskID) {
         try {
             String sql = "SELECT task FROM task WHERE id = ?";

@@ -16,13 +16,10 @@ public class Task {
     private Date inceptionDate;
     private Date deadline;
 
-    //private ArrayList
-
-
-    public Task(String title, String description, int taskID) {
+    public Task(int taskID, String title, String description) {
+        this.ID = taskID;
         this.title = title;
         this.description = description;
-        this.ID = taskID;
     }
 
     public String getTitle() {

@@ -22,7 +22,7 @@ public class UserService {
 
         ResultSet resultSet = userRepository.getUsersFromProject(projectID);
 
-        ArrayList<User> userList = null;
+        ArrayList<User> userList = new ArrayList<>();
 
         try {
             while (resultSet.next()){
@@ -35,11 +35,12 @@ public class UserService {
                 userList.add(tmpUser);
             }
 
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return null;
+        return userList;
     }
 
     public User getUserFromDatabase(String username) {

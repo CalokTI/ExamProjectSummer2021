@@ -22,6 +22,7 @@
         <ul th:each="tasks : ${project.getTasks}">
             <li th:text="${tasks.getID}"></li>
             <li th:text="${tasks.getTitle}"></li>
+            <li th:text="${tasks.getDescription}"></li>
         </ul>
 
 

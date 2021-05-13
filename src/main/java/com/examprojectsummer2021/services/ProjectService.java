@@ -5,7 +5,10 @@ import com.examprojectsummer2021.repositories.ProjectRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,11 +21,24 @@ public class ProjectService {
 
     // ------ SETTERS ------ //
 
-    public void createNewProject(String projectTitle, String projectDescription, String owner){
+    public void createNewProject(String projectTitle, String projectDescription, String owner, String deadline){
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date projectDeadline = format.parse(deadline);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         projectRepository.createNewProject(projectTitle,projectDescription,owner);
     }
 
     // ------ GETTERS ------ //
+
+    public int getProjectID(String projectTitle, String projectOwner){
+        int projectID = projectRepository.getProjectID(projectTitle, projectOwner);
+        return projectID;
+    }
 
     public Project getSpecificProject(int projectID){
         ResultSet resultSet = projectRepository.getSpecificProjectFromDatabase(projectID);

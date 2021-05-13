@@ -8,6 +8,21 @@
 
     <p>new project</p>
 
+    <section>
+        <form action="/createproject" method="post">
+            <label for="title">Title: </label>
+            <input required type="text" name="title" id="title" placeholder="Titel goes here">
+            <br>
+            <label for="description">Description: </label>
+            <input required type="text" name="description" id="description" placeholder="Description">
+            <br>
+            <label for="deadline">Deadline: </label>
+            <input required type="date" name="deadline" id="deadline">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
 </main>
 <footer th:replace="fragments/footer.html"></footer>
 </body>

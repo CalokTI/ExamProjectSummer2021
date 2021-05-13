@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,11 +39,16 @@ public class ProjectController {
 
 
     @PostMapping("/createproject")
-    public String createNewProject(){
+    public String createNewProject(@RequestParam(name = "title") String projectTitle,
+                                   @RequestParam(name = "description") String projectDescription,
+                                   @RequestParam(name = "deadline") String projectDeadline){
 
-        projectService.createNewProject("","","");
+        String projectOwner = "jowa69";
+
+        projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectDeadline);
         //fix link id
-        return "redirect:/updateproject/{id}";
+        int projectID = projectService.getProjectID(projectTitle, projectOwner);
+        return "redirect:/updateproject/" + projectID;
     }
 
 

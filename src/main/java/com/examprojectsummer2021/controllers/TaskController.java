@@ -1,8 +1,10 @@
 package com.examprojectsummer2021.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author Carsten
@@ -13,12 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class TaskController {
 
-    @GetMapping("/task")
-    public String renderNewTask(){
+    @GetMapping("/createtask")
+    public String renderNewTask(Model model, @RequestParam(name = "projectID") int projectID){
 
+        model.addAttribute("projectID", projectID);
 
-
-        return "createtask.html";
+        return "task/createtask.html";
     }
 
     @PostMapping("/createtask")
@@ -33,6 +35,6 @@ public class TaskController {
     @GetMapping("/updatetask")
     public String renderUpdateTask(){
 
-        return "updateproject.html";
+        return "task/updateproject.html";
     }
 }

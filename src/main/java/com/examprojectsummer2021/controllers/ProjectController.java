@@ -35,7 +35,7 @@ public class ProjectController {
 
 
     @GetMapping("/createproject")
-    public String renderNewProject(){
+    public String renderNewProject(Model model){
         //model med alle users
         //model med users i session -> se holdUsersInSession
         return "project/createproject.html";

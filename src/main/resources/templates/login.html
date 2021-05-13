@@ -11,6 +11,7 @@
         <input required type="text" name="username" id="username" placeholder="Username">
         <input required type="password" name="password" id="password" placeholder="Password">
         <button type="submit">Login</button>
+        <p th:if="${loginFailed}">Username or password incorrect</p>
 
     </form>
 

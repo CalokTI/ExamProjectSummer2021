@@ -1,6 +1,7 @@
 package com.examprojectsummer2021.controllers;
 
 import com.examprojectsummer2021.services.ProjectService;
+import com.examprojectsummer2021.services.TaskService;
 import com.examprojectsummer2021.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ import java.util.List;
 public class ProjectController {
 
     private ProjectService projectService = new ProjectService();
+    private TaskService taskService = new TaskService();
     private UserService userService = new UserService();
 
     @GetMapping("/dashboard")
@@ -66,6 +68,7 @@ public class ProjectController {
 
         model.addAttribute("project", projectService.getSpecificProject(projectID));
         model.addAttribute("users", userService.getUsersFromProject(projectID));
+        model.addAttribute("tasks", taskService.getTasksFromProject(projectID));
         return "project/updateproject.html";
     }
 }

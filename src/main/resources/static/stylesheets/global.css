@@ -88,7 +88,7 @@ label #btn, label #cancel {
 
 label #btn {
     left: 40px;
-    top: 7%;
+    top: 53px;
     font-size: 35px;
     color: black;
     padding:4px 6px;
@@ -98,7 +98,7 @@ label #btn {
 label #cancel {
     z-index: 1111;
     left: -195px;
-    top: 9%;
+    top: 60px;
     font-size: 25px;
     color: black;
     padding: 1px 2px;

@@ -18,38 +18,22 @@
     <!-- <main class="cell cell-3">Description</main>-->
 
 
-    <section class="projects">
-
-        <div class="container">
-            <ul th:each="list : ${list}">
-                <li>
-                    <ul>
-                        <article class="project-card">
-                            <aside class="cell cell-2">
-                                <a th:href="@{'updateproject/{id}' (id = ${list.getID})}">
-                                <li th:text="${list.getTitle}"></li>
-                                </a>
-                            </aside>
-                            <!--  <li th:text="${list.getTitle}"></li> ORIGINAL -->
-
-                            <main class="cell cell-3">
-                                <li th:text="${list.getDescription}"></li>
-                            </main>
-
-                            <aside class="cell cell-4">Health Status</aside>
-
-                            <!--<li th:text="${list.getDescription}"></li> ORIGINAL -->
-
-                            <!--<li th:text="${list.getOwner}"></li>  //todo ingen owners i project-->
-                        </article>
-                    </ul>
-                    </a>
-                </li>
-            </ul>
+    <ul th:each="list : ${list}">
+        <div class="projects">
+            <section class="content">
+                <div class="columns">
+                    <main class="project-info">
+                        <a th:href="@{'updateproject/{id}' (id = ${list.getID})}">
+                            <li th:text="${list.getTitle}"></li>
+                        </a>
+                        <li class="desc" th:text="${list.getDescription}"></li>
+                    </main>
+                    <aside class="project-picture">PICTURE FOR PROJECT</aside>
+                    <aside class="table-health">Health Status</aside>
+                </div>
+            </section>
         </div>
-
-
-    </section>
+    </ul>
 
 </main>
 <footer th:replace="fragments/footer.html"></footer>

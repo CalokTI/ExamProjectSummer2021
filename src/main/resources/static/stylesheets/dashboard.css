@@ -1,37 +1,41 @@
-main{
+.create-project{
+    text-align: center;
+
+}
+
+.projects{
+    border-style: solid;
+    border-top-style: inset;
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    display: flex;
+    flex: 1;
+    color: #17f817;
+}
+.columns{
+    display: flex;
+    flex:1;
+}
+.project-info{
+    flex: 1;
+    order: 2;
+    color: red;
     text-align: center;
 }
-.container {
-    height: 90vh;
-    width: 90vw;
-    margin: 2rem auto;
-    display: grid;
-    grid-template-areas: "left main right";
-    grid-template-rows: 1fr 4fr 1fr;
-    grid-template-columns: 1fr 3fr 1fr;
+.project-picture{
+    width: 20%;
+    color: yellow;
+    order: 1;
 }
-
-.cell-2 {
-    background: orangered;
-    grid-area: left;
+.table-health{
+    width: 20%;
+    order: 3;
+    color: aqua;
 }
-
-.cell-3 {
-    background: #fcdc1d;
-    grid-area: main;
-    height: auto;
-}
-
-.cell-4 {
-    background: #32cd32;
-    grid-area: right;
-}
-
-.cell {
-    color: white;
-    font-size: 15px;
-    text-align: center;
-    padding: 20px;
-    width: 200px;
-    overflow-wrap: break-word;
+.projects li{
+    display: inline-block;
+    word-break: break-word;
+    width: 500px;
 }

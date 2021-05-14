@@ -1,5 +1,6 @@
 package com.examprojectsummer2021.controllers;
 
+import com.examprojectsummer2021.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class TaskController {
 
+    private UserService userService = new UserService();
+
     @GetMapping("/createtask")
     public String renderNewTask(Model model, @RequestParam(name = "projectID") int projectID){
-
+        model.addAttribute("projectUsers", userService.getUsersFromProject(projectID));
+        //model.addAttribute("taskUsers", userService.)
         model.addAttribute("projectID", projectID);
 
         return "task/createtask.html";

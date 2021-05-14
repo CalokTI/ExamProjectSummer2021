@@ -20,28 +20,33 @@
 
     <section class="projects">
 
-                <div class="container">
-                    <ul th:each="list : ${list}">
-                        <a th:href="@{'updateproject/{id}' (id = ${list.getID})}">
-                            <article class="project-card">
-                                <aside class="cell cell-2">
-                                    <li th:text="${list.getTitle}"></li>
-                                </aside>
-                                <!--  <li th:text="${list.getTitle}"></li> ORIGINAL -->
+        <div class="container">
+            <ul th:each="list : ${list}">
+                <li>
+                    <ul>
+                        <article class="project-card">
+                            <aside class="cell cell-2">
+                                <a th:href="@{'updateproject/{id}' (id = ${list.getID})}">
+                                <li th:text="${list.getTitle}"></li>
+                                </a>
+                            </aside>
+                            <!--  <li th:text="${list.getTitle}"></li> ORIGINAL -->
 
-                                <main class="cell cell-3">
-                                    <li th:text="${list.getDescription}"></li>
-                                </main>
+                            <main class="cell cell-3">
+                                <li th:text="${list.getDescription}"></li>
+                            </main>
 
-                                <aside class="cell cell-4">Health Status</aside>
+                            <aside class="cell cell-4">Health Status</aside>
 
-                                <!--<li th:text="${list.getDescription}"></li> ORIGINAL -->
+                            <!--<li th:text="${list.getDescription}"></li> ORIGINAL -->
 
-                                <!--<li th:text="${list.getOwner}"></li>  //todo ingen owners i project-->
-                            </article>
-                        </a>
+                            <!--<li th:text="${list.getOwner}"></li>  //todo ingen owners i project-->
+                        </article>
                     </ul>
-                </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
 
     </section>

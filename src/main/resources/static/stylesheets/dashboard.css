@@ -4,6 +4,8 @@
 }
 
 .projects{
+    margin-left: 50px;
+    margin-right: 50px;
     border-style: solid;
     border-top-style: inset;
     display: flex;
@@ -25,6 +27,7 @@
     text-align: center;
 }
 .project-picture{
+    left: 30px;
     width: 20%;
     color: yellow;
     order: 1;

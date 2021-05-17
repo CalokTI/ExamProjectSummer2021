@@ -22,12 +22,12 @@
         <div class="projects">
             <section class="content">
                 <div class="columns">
-                    <main class="project-info">
+                    <div class="project-info">
                         <a th:href="@{'updateproject/{id}' (id = ${list.getID})}">
                             <li th:text="${list.getTitle}"></li>
                         </a>
                         <li class="desc" th:text="${list.getDescription}"></li>
-                    </main>
+                    </div>
                     <aside class="project-picture">PICTURE FOR PROJECT</aside>
                     <aside class="table-health">Health Status</aside>
                 </div>

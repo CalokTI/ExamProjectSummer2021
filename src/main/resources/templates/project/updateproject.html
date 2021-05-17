@@ -8,7 +8,7 @@
 
     <section class="project-container">
         <section class="img">
-            <img src="../../images/placeholder.png" width="350" height="150">
+            <img src="../../images/placeholder.png" width="250" height="150">
 
         </section>
         <section class="title">
@@ -23,6 +23,7 @@
         </section>
 
         <section class="users">
+            <p>Assigned users to project:</p>
             <ul th:each="users : ${users}">
                 <li th:text="${users.getUsername}"></li>
                 <li th:text="${users.getFirstname}"></li>
@@ -31,6 +32,8 @@
         </section>
 
         <section class="tasks">
+            <p>Tasks for our project:</p>
+
             <form action="/createtask" method="get">
                 <button type="submit" name="projectID" th:value="${project.getID}">Create task</button>
             </form>

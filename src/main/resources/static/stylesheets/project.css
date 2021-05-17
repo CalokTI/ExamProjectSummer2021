@@ -3,6 +3,9 @@
     align-items: center;
     justify-items: center;
 
+    margin-top: 100px;
+    margin-left: 20%;
+    margin-right: 20%;
 
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;

@@ -6,20 +6,36 @@
 <body>
 <main>
 
-    <p>new project</p>
+    <p>New Project</p>
 
     <section class="new-project-form">
-        <form action="/createproject" method="post">
-            <label for="title">Title: </label>
-            <input required type="text" name="title" id="title" placeholder="Titel goes here">
-            <br>
-            <label for="description">Description: </label>
-            <input required type="text" name="description" id="description" placeholder="Description">
-            <br>
-            <label for="deadline">Deadline: </label>
-            <input required type="date" name="deadline" id="deadline">
-            <br>
-            <button type="submit">Submit</button>
+        <form class="my-form">
+            <div class="container">
+                <h1>Create New Project</h1>
+                <ul>
+                    <li>
+                        <div class="grid grid-2">
+                            <input type="text" placeholder="Project Name" required>
+                        </div>
+                    </li>
+                    <li>
+                        <textarea placeholder="Description" required></textarea>
+                    </li>
+                    <li>
+                        <label for="deadline">Deadline: </label>
+                        <br>
+                        <input type="date" name="deadline" id="deadline" required>
+                    </li>
+                    <li>
+                        <button class="btn-grid-confirm" type="submit">
+                            <span class="front">CONFIRM</span>
+                        </button>
+                        <button class="btn-grid-reset" type="reset">
+                            <span class="front">RESET</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </form>
     </section>
 

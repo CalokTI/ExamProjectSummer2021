@@ -1,0 +1,25 @@
+.project-container {
+
+    align-items: center;
+    justify-items: center;
+
+
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-rows: 0.3fr 0.9fr 1.8fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "img title"
+    "img desc"
+    "users tasks";
+}
+
+.img {
+    grid-area: img;
+
+
+}
+.title { grid-area: title; }
+.desc { grid-area: desc; }
+.users { grid-area: users; }
+.tasks { grid-area: tasks; }

@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head.html(currentPage='edit project')"></head> <!-- custom title !-->
-<head th:replace="fragments/head.html(customCSS='/stylesheets/placeholder.css')"></head> <!-- custom CSS !-->
+<head th:replace="fragments/head.html(customCSS='/stylesheets/project.css')"></head> <!-- custom CSS !-->
 <header th:replace="fragments/header.html(currentPage='edit project')"></header>
 <body>
 <main>
 
+    <section class="project-container">
+        <section class="img">
+            <img src="../../images/placeholder.png" width="350" height="150">
 
-    <section class="project">
-        <h1 th:text="${project.getTitle}"></h1>
+        </section>
+        <section class="title">
+            <h1 th:text="${project.getTitle}"></h1>
+        </section>
 
-        <p th:text="${project.getDescription}"></p>
+        <section class="description">
+            <textarea placeholder="${project.getDescription}">
 
+            </textarea>
+            <p th:text="${project.getDescription}"></p>
+        </section>
 
-        <ul th:each="users : ${users}">
-            <li th:text="${users.getUsername}"></li>
-            <li th:text="${users.getFirstname}"></li>
-            <li th:text="${users.getLastname}"></li>
-        </ul>
+        <section class="users">
+            <ul th:each="users : ${users}">
+                <li th:text="${users.getUsername}"></li>
+                <li th:text="${users.getFirstname}"></li>
+                <li th:text="${users.getLastname}"></li>
+            </ul>
+        </section>
 
-        <ul th:each="tasks : ${tasks}">
-            <li th:text="${tasks.getID}"></li>
-            <li th:text="${tasks.getTitle}"></li>
-            <li th:text="${tasks.getDescription}"></li>
-        </ul>
+        <section class="tasks">
+            <form action="/createtask" method="get">
+                <button type="submit" name="projectID" th:value="${project.getID}">Create task</button>
+            </form>
 
-
+            <ul th:each="tasks : ${tasks}">
+                <li th:text="${tasks.getID}"></li>
+                <li th:text="${tasks.getTitle}"></li>
+                <li th:text="${tasks.getDescription}"></li>
+            </ul>
+        </section>
     </section>
-
-    <form action="/createtask" method="get">
-        <button type="submit" name="projectID" th:value="${project.getID}">Create task</button>
-    </form>
-    <p>edit</p>
 
 
 </main>

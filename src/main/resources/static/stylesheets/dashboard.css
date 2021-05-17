@@ -1,43 +1,49 @@
-.create-project{
+.create-project {
     text-align: center;
 
 }
 
-.projects{
-    margin-left: 50px;
-    margin-right: 50px;
+.projects {
+    margin: auto;
+    max-width: 1000px;
     border-style: solid;
     border-top-style: inset;
     display: flex;
     flex-direction: column;
 }
+
 .content {
     display: flex;
     flex: 1;
     color: #17f817;
 }
-.columns{
+
+.columns {
     display: flex;
-    flex:1;
+    flex: 1;
 }
-.project-info{
+
+.project-info {
     flex: 1;
     order: 2;
     color: red;
     text-align: center;
 }
-.project-picture{
+
+.project-picture {
     left: 30px;
     width: 20%;
     color: yellow;
     order: 1;
 }
-.table-health{
+
+.table-health {
     width: 20%;
     order: 3;
     color: aqua;
 }
-.projects li{
+
+.projects li {
     display: inline-block;
     word-break: break-word;
     width: 500px;

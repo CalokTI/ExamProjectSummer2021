@@ -35,15 +35,14 @@ public class TaskController {
     public String createNewTask(@RequestParam(name = "title") String taskTitle,
                                 @RequestParam(name = "description") String taskDescription,
                                 @RequestParam(name = "deadline") String taskDeadline,
-                                @RequestParam(name = "username") String[] username){
+                                @RequestParam(name = "username") String[] username,
+                                @RequestParam(name = "projectID") int projectID){
 
         ArrayList<String> taskUsernames = new ArrayList<>();
         Collections.addAll(taskUsernames, username);
 
         //todo add owner
-        //todo add projectID
         String taskOwner = "jowa69";
-        int projectID = 1;
 
         taskService.createTask(taskTitle, taskDescription, taskDeadline, taskUsernames, taskOwner, projectID);
 

@@ -18,9 +18,9 @@ public class ProjectService {
 
     // ------ SETTERS ------ //
 
-    public void createNewProject(String projectTitle, String projectDescription, String owner, String deadline) {
+    public void createNewProject(String projectTitle, String projectDescription, String owner, String deadline, boolean isFinished) {
 
-        projectRepository.createNewProject(projectTitle, projectDescription, owner, deadline);
+        projectRepository.createNewProject(projectTitle, projectDescription, owner, deadline, isFinished);
     }
 
     // ------ GETTERS ------ //
@@ -39,7 +39,8 @@ public class ProjectService {
                 String title = resultSet.getString(2);
                 String description = resultSet.getString(3);
                 String date = resultSet.getString(5);
-                project = new Project(id, title, description, date);
+                boolean isFinished = resultSet.getBoolean(6);
+                project = new Project(id, title, description, date, isFinished);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -58,7 +59,8 @@ public class ProjectService {
                 String title = resultSet.getString(2);
                 String description = resultSet.getString(3);
                 String date = resultSet.getString(5);
-                project = new Project(id, title, description, date);
+                boolean isFinished = resultSet.getBoolean(6);
+                project = new Project(id, title, description, date, isFinished);
                 allProjects.add(project);
             }
         } catch (SQLException throwables) {

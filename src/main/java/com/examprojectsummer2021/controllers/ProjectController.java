@@ -53,7 +53,9 @@ public class ProjectController {
         String projectOwner = "jowa69"; //fix dette
         System.out.println(projectDeadline);
 
-        projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectDeadline);
+        boolean status = true; //todo fix dette
+
+        projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectDeadline, status);
         //fix link id
         int projectID = projectService.getProjectID(projectTitle, projectOwner);
         return "redirect:/updateproject/" + projectID;

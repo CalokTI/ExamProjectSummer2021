@@ -15,12 +15,13 @@ public class Project {
     private String title;
     private String description;
     private Date deadline;
+    private boolean isFinished;
 
     // pseudo-attributes in SQL //
     // tasks
     // users
 
-    public Project(int projectID, String title, String description, String deadline) {
+    public Project(int projectID, String title, String description, String deadline, boolean isFinished) {
         this.ID = projectID;
         this.title = title;
         this.description = description;
@@ -30,6 +31,8 @@ public class Project {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        this.isFinished = isFinished;
 
 
     }
@@ -73,4 +76,6 @@ public class Project {
         return TimeUnit.DAYS.convert(diff,TimeUnit.MILLISECONDS);
 
     }
+
+    // "Health-analyzer" of project
 }

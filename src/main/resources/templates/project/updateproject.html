@@ -8,17 +8,19 @@
 
     <section class="project-container">
         <section class="img">
-            <img src="../../images/placeholder.png" width="250" height="150">
+            <img src="../../images/placeholder.png" width="250" height="250">
         </section>
 
         <section class="title">
             <h1 th:text="${project.getTitle}"></h1>
         </section>
 
-        <section class="description">
-            <textarea placeholder="${project.getDescription}">
+        <section class="deadline">
+            <p th:text="${project.getDeadlineAsString}"></p>
+            <p th:text="${project.countdown}"></p>
+        </section>
 
-            </textarea>
+        <section class="description">
             <p th:text="${project.getDescription}"></p>
         </section>
 

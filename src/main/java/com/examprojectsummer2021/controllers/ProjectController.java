@@ -50,7 +50,7 @@ public class ProjectController {
 
         System.out.println("you got here");
 
-        String projectOwner = "jowa69";
+        String projectOwner = "jowa69"; //fix dette
         System.out.println(projectDeadline);
 
         projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectDeadline);

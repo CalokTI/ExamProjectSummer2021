@@ -5,44 +5,55 @@
 <head th:replace="fragments/head.html(customCSS='/stylesheets/placeholder.css')"></head> <!-- custom CSS !-->
 <header th:replace="fragments/header.html(currentPage='new task')"></header>
 <body>
-<script th:src="@{/scripts/createtask.js}"></script>
 <main>
 
     <p>new task</p>
     <p th:text="${projectID}"></p>
+    <section>
 
-    <section> <!-- task creation -->
         <form action="/createtask" method="post">
-            <label for="title">Title: </label>
-            <input required type="text" name="title" id="title" placeholder="Titel goes here">
-            <br>
-            <label for="description">Description: </label>
-            <input required type="text" name="description" id="description" placeholder="Description">
-            <br>
-            <label for="deadline">Deadline: </label>
-            <input required type="date" name="deadline" id="deadline">
-            <br>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
 
-    <section> <!-- userlist associated with project -->
-        <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="search for user">
-        <ul id="myUL">
-            <div th:each="projectUsers : ${projectUsers}">
-                <li>
-                    <a href="#">
-                        <div th:text="${projectUsers.getUsername}"></div>
-                        <div th:text="${projectUsers.getFirstname}"></div>
-                        <div th:text="${projectUsers.getLastname}"></div>
-                        <div th:text="${projectUsers.getRole}"></div>
-                    </a>
-                </li>
-            </div>
-        </ul>
+            <section> <!-- task input -->
+                <label for="title">Title: </label>
+                <input required type="text" name="title" id="title" placeholder="Titel goes here">
+                <br>
+                <label for="description">Description: </label>
+                <input required type="text" name="description" id="description" placeholder="Description">
+                <br>
+                <label for="deadline">Deadline: </label>
+                <input required type="date" name="deadline" id="deadline">
+                <br>
+                <button type="submit">Submit</button>
+            </section>
+
+            <section> <!-- userlist associated with project -->
+                <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="search for user">
+                <ul id="myUL">
+                    <div th:each="projectUsers : ${projectUsers}">
+                        <li>
+                            <a href="#">
+                                <div id="username" th:text="${projectUsers.getUsername}"></div>
+                                <div id="firstname" th:text="${projectUsers.getFirstname}"></div>
+                                <div id="lastname" th:text="${projectUsers.getLastname}"></div>
+                                <div id="role" th:text="${projectUsers.getRole}"></div>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <section> <!-- Selected users for task -->
+                <h2>added users</h2>
+                <ul id="currentTaskUsers"></ul>
+            </section>
+
+        </form>
+
     </section>
 
 </main>
+
 <footer th:replace="fragments/footer.html"></footer>
+<script th:src="@{/scripts/createtask.js}"></script>
 </body>
 </html>

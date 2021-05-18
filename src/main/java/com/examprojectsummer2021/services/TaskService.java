@@ -1,7 +1,6 @@
 package com.examprojectsummer2021.services;
 
 import com.examprojectsummer2021.models.Task;
-import com.examprojectsummer2021.models.User;
 import com.examprojectsummer2021.repositories.TaskRepository;
 
 import java.sql.ResultSet;
@@ -12,9 +11,28 @@ public class TaskService {
 
     TaskRepository taskRepository = new TaskRepository();
 
+    public void createTask(String taskTitle, String taskDescription, String taskDeadline, ArrayList<String> taskUsername, String taskOwner, int projectID){
+        taskRepository.createNewTask(taskTitle, taskDescription, taskOwner, projectID);
+
+        linkUserAndTask(taskUsername, taskTitle);
+    }
+
+    public void linkUserAndTask(ArrayList<String> taskUsername, String taskTitle){
+        int taskID = getTaskID(taskTitle);
+
+        for (String s : taskUsername) {
+            taskRepository.linkUserAndTask(s, taskID);
+        }
+
+    }
+
     // ------ SETTERS ------ //
 
     // ------ GETTERS ------ //
+
+    public int getTaskID(String taskTitle){
+        return taskRepository.getTaskID(taskTitle);
+    }
 
     public ArrayList<Task> getTasksFromProject(int projectID) {
 

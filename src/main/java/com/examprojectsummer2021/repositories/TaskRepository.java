@@ -26,7 +26,7 @@ public class TaskRepository {
     // ------ SETTERS ------ //
 
     public void createNewTask(String taskTitle, String taskDescription, String owner, int projectID) {
-        String sql = "INSERT INTO task (taskTitle, taskDescription, owner, projectID) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO task (title, description, owner, project) VALUES(?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, taskTitle);
@@ -38,6 +38,20 @@ public class TaskRepository {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void linkUserAndTask(String taskUsername, int taskID){
+        String sql = "INSERT INTO user_task (username, taskID) VALUES (?,?)";
+        try{
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1,taskUsername);
+            statement.setInt(2,taskID);
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("TaskRepository - linkUserAndTask");
+        }
+
     }
 
     // ------ GETTERS ------ //
@@ -58,6 +72,23 @@ public class TaskRepository {
         }
         return null;
 
+    }
+
+    public int getTaskID(String taskTitle){
+        try {
+            String sql = "Select id FROM task where title = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1,taskTitle);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("TaskRepository - getTaskID");
+        }
+        return -1;
     }
 
     //todo wat is dis ;__;

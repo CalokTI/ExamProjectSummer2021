@@ -149,5 +149,9 @@ input#deadline{
 input#deadline[type="date"]::-webkit-calendar-picker-indicator {
     margin-right: 30px;
 }
+.my-form label{
+    color: white;
+    opacity: 70%;
+}
 /*Inspiration: https://webdesign.tutsplus.com/tutorials/create-a-stylish-dark-contact-form-with-html-css-and-javascript--cms-33201
 Modified Afterwards by Julius*/

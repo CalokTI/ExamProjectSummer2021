@@ -54,7 +54,7 @@ public class ProjectController {
         System.out.println(projectDeadline);
 
         projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectDeadline);
-        //fix link id
+
         int projectID = projectService.getProjectID(projectTitle, projectOwner);
         return "redirect:/updateproject/" + projectID;
     }

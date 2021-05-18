@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * @author Carsten
@@ -35,18 +33,15 @@ public class TaskController {
     public String createNewTask(@RequestParam(name = "title") String taskTitle,
                                 @RequestParam(name = "description") String taskDescription,
                                 @RequestParam(name = "deadline") String taskDeadline,
-                                @RequestParam(name = "username") String[] username,
-                                @RequestParam(name = "projectID") int projectID){
+                                @RequestParam(name = "username") String[] taskUsernames,
+                                @RequestParam(name = "projectID")String projectIDString){
 
-        ArrayList<String> taskUsernames = new ArrayList<>();
-        Collections.addAll(taskUsernames, username);
-
+        int projectID = Integer.parseInt(projectIDString);
         //todo add owner
         String taskOwner = "jowa69";
 
         taskService.createTask(taskTitle, taskDescription, taskDeadline, taskUsernames, taskOwner, projectID);
 
-        //efter task er oprettet skal man tilbage til projectsiden
         return "redirect:/updateproject/" + projectID;
     }
 

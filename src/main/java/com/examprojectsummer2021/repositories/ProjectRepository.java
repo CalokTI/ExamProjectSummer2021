@@ -22,7 +22,7 @@ public class ProjectRepository {
     // ------ SETTERS ------ //
 
     public void createNewProject(String projectTitle, String projectDescription, String owner, String projectDeadline, boolean isFinished) {
-        String sql = "INSERT INTO project (title, description, owner, deadline, isFinished) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO project (title, description, owner, deadline, is_finished) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, projectTitle);

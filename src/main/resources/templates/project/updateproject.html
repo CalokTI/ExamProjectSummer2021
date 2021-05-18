@@ -41,7 +41,7 @@
             </form>
 
             <ul th:each="tasks : ${tasks}">
-                <li th:text="${tasks.getID}"></li>
+                <li th:text="${tasks.getID}"></li> <!-- //todo ikke nødvendig at blive vist, men skal bruges til link -->
                 <li th:text="${tasks.getTitle}"></li>
                 <li th:text="${tasks.getDescription}"></li>
             </ul>

@@ -23,6 +23,7 @@
                 <label for="deadline">Deadline: </label>
                 <input required type="date" name="deadline" id="deadline">
                 <br>
+                <input type="hidden" name="projectID" th:value="${projectID}">
                 <input type="button" id="btnsubmit" onclick="haveUsersBeenAdded()" value="Submit">
             </section>
 

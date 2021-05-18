@@ -5,10 +5,7 @@ import com.examprojectsummer2021.repositories.ProjectRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,19 +18,19 @@ public class ProjectService {
 
     // ------ SETTERS ------ //
 
-    public void createNewProject(String projectTitle, String projectDescription, String owner, String deadline){
+    public void createNewProject(String projectTitle, String projectDescription, String owner, String deadline) {
 
-        projectRepository.createNewProject(projectTitle,projectDescription,owner, deadline);
+        projectRepository.createNewProject(projectTitle, projectDescription, owner, deadline);
     }
 
     // ------ GETTERS ------ //
 
-    public int getProjectID(String projectTitle, String projectOwner){
+    public int getProjectID(String projectTitle, String projectOwner) {
         int projectID = projectRepository.getProjectID(projectTitle, projectOwner);
         return projectID;
     }
 
-    public Project getSpecificProject(int projectID){
+    public Project getSpecificProject(int projectID) {
         ResultSet resultSet = projectRepository.getSpecificProjectFromDatabase(projectID);
         Project project = null;
         try {
@@ -41,9 +38,10 @@ public class ProjectService {
                 int id = resultSet.getInt(1);
                 String title = resultSet.getString(2);
                 String description = resultSet.getString(3);
-                project = new Project(title, description, id);
+                String date = resultSet.getString(5);
+                project = new Project(id, title, description, date);
             }
-        }catch (SQLException throwables){
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return project;
@@ -53,13 +51,14 @@ public class ProjectService {
 
         List allProjects = new ArrayList();
         ResultSet resultSet = projectRepository.getAllProjects();
-
+        Project project;
         try {
             while (resultSet.next()) {
+                int id = resultSet.getInt(1);
                 String title = resultSet.getString(2);
                 String description = resultSet.getString(3);
-                int projectID = resultSet.getInt(1);
-                Project project = new Project(title, description, projectID);
+                String date = resultSet.getString(5);
+                project = new Project(id, title, description, date);
                 allProjects.add(project);
             }
         } catch (SQLException throwables) {

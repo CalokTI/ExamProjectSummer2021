@@ -10,8 +10,6 @@ public class Project {
     private int ID; // unique ID for SQL
     private String title;
     private String description;
-    private String owner;
-
     private Date inceptionDate;
     private Date deadline;
 

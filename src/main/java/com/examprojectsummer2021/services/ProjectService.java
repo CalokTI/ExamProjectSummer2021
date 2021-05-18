@@ -23,14 +23,7 @@ public class ProjectService {
 
     public void createNewProject(String projectTitle, String projectDescription, String owner, String deadline){
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date projectDeadline = format.parse(deadline);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        projectRepository.createNewProject(projectTitle,projectDescription,owner);
+        projectRepository.createNewProject(projectTitle,projectDescription,owner, deadline);
     }
 
     // ------ GETTERS ------ //

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -47,7 +48,10 @@ public class ProjectController {
                                    @RequestParam(name = "description") String projectDescription,
                                    @RequestParam(name = "deadline") String projectDeadline){
 
+        System.out.println("you got here");
+
         String projectOwner = "jowa69";
+        System.out.println(projectDeadline);
 
         projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectDeadline);
         //fix link id

@@ -2,10 +2,7 @@ package com.examprojectsummer2021.repositories;
 
 import com.examprojectsummer2021.utilities.DatabaseConnectionUtility;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * @author Julius
@@ -24,13 +21,14 @@ public class ProjectRepository {
 
     // ------ SETTERS ------ //
 
-    public void createNewProject(String projectTitle, String projectDescription, String owner) {
-        String sql = "INSERT INTO project (title, description, owner) VALUES(?,?,?)";
+    public void createNewProject(String projectTitle, String projectDescription, String owner, String projectDeadline) {
+        String sql = "INSERT INTO project (title, description, owner, deadline) VALUES(?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, projectTitle);
             preparedStatement.setString(2, projectDescription);
             preparedStatement.setString(3, owner);
+            preparedStatement.setString(4, projectDeadline);
             preparedStatement.executeUpdate();
 
         } catch (SQLException throwables) {

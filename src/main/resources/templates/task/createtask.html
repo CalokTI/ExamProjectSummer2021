@@ -11,7 +11,7 @@
     <p th:text="${projectID}"></p>
     <section>
 
-        <form action="/createtask" method="post">
+        <form action="/createtask" method="post" id="taskcreation">
 
             <section> <!-- task input -->
                 <label for="title">Title: </label>
@@ -23,7 +23,7 @@
                 <label for="deadline">Deadline: </label>
                 <input required type="date" name="deadline" id="deadline">
                 <br>
-                <button type="submit">Submit</button>
+                <input type="button" id="btnsubmit" onclick="haveUsersBeenAdded()" value="Submit">
             </section>
 
             <section> <!-- userlist associated with project -->

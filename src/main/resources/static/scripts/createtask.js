@@ -32,7 +32,7 @@ document.getElementById("myUL").addEventListener("click", function (event) {
     var input   = document.createElement("input");
     input.type  = "hidden";
     input.name  = "username";
-    input.id    = "username";
+    input.id    = "taskusername";
     input.value = username;
     user.appendChild(input);
     user.appendChild(document.createTextNode(username + " " + firstname + " " + lastname + " " + role));
@@ -41,7 +41,8 @@ document.getElementById("myUL").addEventListener("click", function (event) {
 });
 
 function haveUsersBeenAdded(){
-    if(document.getElementById("username") !== null){
+    if(document.getElementById("taskusername") !== null){
+        document.getElementById("taskcreation").submit();
         return true;
     }
     alert("Add users to task");

@@ -4,8 +4,6 @@ import com.examprojectsummer2021.repositories.UserRepository;
 
 /**
  * @author Carsten
- * Time: 09.30
- * Date: 07/05/2021
  */
 public class ValidateLoginService {
 

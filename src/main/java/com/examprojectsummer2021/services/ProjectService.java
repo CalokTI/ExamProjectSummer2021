@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Julius
+ * @author Julius & Anton
  */
 
 public class ProjectService {

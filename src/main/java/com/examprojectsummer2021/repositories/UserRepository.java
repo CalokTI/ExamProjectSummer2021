@@ -10,9 +10,8 @@ import java.sql.SQLException;
 
 /**
  * @author Carsten & Julius
- * Time: 12.37
- * Date: 06/05/2021
  */
+
 public class UserRepository {
 
     private Connection conn;

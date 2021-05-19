@@ -5,9 +5,7 @@ import com.examprojectsummer2021.utilities.DatabaseConnectionUtility;
 import java.sql.*;
 
 /**
- * @author Julius
- * Time: 10.41
- * Date: 10/05/2021
+ * @author Julius & Anton
  */
 public class ProjectRepository {
 

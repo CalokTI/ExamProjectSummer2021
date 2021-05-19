@@ -9,8 +9,6 @@ import java.sql.SQLException;
 
 /**
  * @author Julius
- * Time: 10.24
- * Date: 10/05/2021
  */
 public class TaskRepository {
 

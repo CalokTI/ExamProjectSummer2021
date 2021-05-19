@@ -16,8 +16,6 @@ import java.util.List;
 
 /**
  * @author Carsten
- * Time: 11.43
- * Date: 10/05/2021
  */
 
 @Controller

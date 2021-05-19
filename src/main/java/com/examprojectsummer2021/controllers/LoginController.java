@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author Carsten
- * Time: 12.37
- * Date: 06/05/2021
  */
 
 @Controller

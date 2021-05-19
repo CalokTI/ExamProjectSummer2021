@@ -5,6 +5,7 @@ import com.examprojectsummer2021.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -46,8 +47,8 @@ public class TaskController {
 
 
     // ------------ EDIT TASK ------------ //
-    @GetMapping("/updatetask")
-    public String renderUpdateTask() {
+    @GetMapping("/updateproject/{id}")
+    public String renderUpdateProject(@PathVariable("id") int projectID, Model model){
 
         return "task/updateproject.html";
     }

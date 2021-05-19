@@ -14,7 +14,9 @@ public class TaskService {
 
     public void createTask(String taskTitle, String taskDescription, String taskDeadline, String[] taskUsername, String taskOwner, int projectID) {
 
-        taskRepository.createNewTask(taskTitle, taskDescription, taskOwner, projectID);
+        boolean status = false; // every new task starts with a false 'isFinished'
+
+        taskRepository.createNewTask(taskTitle, taskDescription, taskOwner, projectID, status);
 
         linkUserAndTask(taskUsername, taskTitle);
     }

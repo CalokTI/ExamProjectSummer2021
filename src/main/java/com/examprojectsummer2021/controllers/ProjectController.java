@@ -50,7 +50,7 @@ public class ProjectController {
         // owner
         String projectOwner = "jowa69"; //todo fix dette
 
-        projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectDeadline);
+        projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectStartDate, projectDeadline);
 
         //todo fix link id til projectTitle
         int projectID = projectService.getProjectID(projectTitle, projectOwner);

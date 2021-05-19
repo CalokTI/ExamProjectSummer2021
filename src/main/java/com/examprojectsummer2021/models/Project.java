@@ -14,7 +14,7 @@ public class Project {
     private int ID; // unique ID for SQL
     private String title;
     private String description;
-    private Date inceptionDate;
+    private Date startDate;
     private Date deadline;
     private boolean isFinished;
 
@@ -22,13 +22,13 @@ public class Project {
     // tasks
     // users
 
-    public Project(int projectID, String title, String description, String inceptionDate, String deadline, boolean isFinished) {
+    public Project(int projectID, String title, String description, String startDate, String deadline, boolean isFinished) {
         this.ID = projectID;
         this.title = title;
         this.description = description;
 
         try {
-            this.inceptionDate = new SimpleDateFormat("yy-MM-dd").parse(inceptionDate);
+            this.startDate = new SimpleDateFormat("yy-MM-dd").parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -72,13 +72,13 @@ public class Project {
         return deadlineString;
     }
 
-    public String getInceptionDateAsString(){
+    public String getStartDateAsString(){
 
         String deadlineString;
         String pattern = "dd-MM-yy";
         DateFormat df = new SimpleDateFormat(pattern);
 
-        deadlineString = df.format(inceptionDate.getTime());
+        deadlineString = df.format(startDate.getTime());
 
         return deadlineString;
     }

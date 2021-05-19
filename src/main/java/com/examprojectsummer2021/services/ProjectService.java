@@ -21,7 +21,7 @@ public class ProjectService {
 
     // ------ SETTERS ------ //
 
-    public void createNewProject(String projectTitle, String projectDescription, String projectOwner, String deadline) {
+    public void createNewProject(String projectTitle, String projectDescription, String projectOwner, String startDate, String deadline) {
 
 
         // owner
@@ -30,15 +30,15 @@ public class ProjectService {
         // isFinished
         boolean status = true; //todo fix dette
 
-        // inception //todo fix dette (gør det pænere somehow)
+        /*// inception //todo fix dette (gør det pænere somehow)
         String inceptionDate;
         String pattern = "dd-MM-yy";
         DateFormat df = new SimpleDateFormat(pattern);
 
-        inceptionDate = df.format(new Date().getTime());
+        inceptionDate = df.format(new Date().getTime());*/
 
 
-        projectRepository.createNewProject(projectTitle, projectDescription, projectOwner, inceptionDate, deadline, status);
+        projectRepository.createNewProject(projectTitle, projectDescription, projectOwner, startDate, deadline, status);
     }
 
     // ------ GETTERS ------ //

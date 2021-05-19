@@ -1,9 +1,7 @@
 package com.examprojectsummer2021.models;
 
 /**
- * @author Julius Panduro
- * Time: 09.25
- * Date: 07/05/2021
+ * @author Julius
  */
 
 public class User {

@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author Carsten
- * Time: 11.44
- * Date: 10/05/2021
  */
 
 @Controller

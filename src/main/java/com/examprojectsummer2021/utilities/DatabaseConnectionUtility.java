@@ -10,8 +10,6 @@ import java.util.Properties;
 
 /**
  * @author Carsten
- * Time: 12.36
- * Date: 06/05/2021
  */
 
 public class DatabaseConnectionUtility {

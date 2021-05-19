@@ -47,10 +47,10 @@ public class TaskController {
 
 
     // ------------ EDIT TASK ------------ //
-    @GetMapping("/updateproject/{id}")
-    public String renderUpdateProject(@PathVariable("id") int projectID, Model model){
+    @GetMapping("/updateproject/updatetask/{id}")
+    public String renderUpdatePTask(@PathVariable("id") int projectID, Model model){
 
-        return "task/updateproject.html";
+        return "task/updatetask.html";
     }
 
     @PostMapping("/change_finished_status")

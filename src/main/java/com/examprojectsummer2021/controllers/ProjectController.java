@@ -37,8 +37,7 @@ public class ProjectController {
 
     @GetMapping("/createproject")
     public String renderNewProject(Model model){
-        //model med alle users
-        //model med users i session -> se holdUsersInSession
+        model.addAttribute("allUsers", userService.getAllUsers());
         return "project/createproject.html";
     }
 
@@ -46,6 +45,7 @@ public class ProjectController {
     @PostMapping("/createproject")
     public String createNewProject(@RequestParam(name = "title") String projectTitle,
                                    @RequestParam(name = "description") String projectDescription,
+                                   @RequestParam(name = "startdate") String projectStartDate,
                                    @RequestParam(name = "deadline") String projectDeadline){
 
 
@@ -59,13 +59,6 @@ public class ProjectController {
         return "redirect:/updateproject/" + projectID;
     }
 
-
-    @PostMapping("/createprojectusers")
-    public String holdUsersInSession(){
-        //intet project at tilknytte udvalgte users til, så de gemmes i session??
-        //kig på get og post mapping af /createproject
-        return "redirect:/createproject";
-    }
 
     @GetMapping("/updateproject/{id}")
     public String renderUpdateProject(@PathVariable("id") int projectID, Model model){

@@ -6,37 +6,67 @@
 <body>
 <main>
 
-    <section class="new-project-form">
-        <form class="my-form" action="/createproject" method="post" >
-            <div class="container">
-                <h1>Create New Project</h1>
-                <ul>
-                    <li>
-                        <div class="grid grid-2">
-                            <input type="text" name="title" id="title" placeholder="Project Name" required>
+    <section>
+        <form class="my-form" action="/createproject" method="post">
+            <section class="new-project-form">
+                <div class="container">
+                    <h1>Create New Project</h1>
+                    <ul>
+                        <li>
+                            <div class="grid grid-2">
+                                <input type="text" name="title" id="title" placeholder="Project Name" required>
+                            </div>
+                        </li>
+                        <li>
+                            <textarea name="description" id="description" placeholder="Description" required></textarea>
+                        </li>
+                        <li>
+                            <label class="startdate-label" for="startdate">Startdate: </label>
+                            <br>
+                            <input type="date" name="startdate" id="startdate" required>
+                        </li>
+                        <li>
+                            <label class="deadline-label" for="deadline">Deadline: </label>
+                            <br>
+                            <input type="date" name="deadline" id="deadline" required>
+                        </li>
+                        <li>
+                            <button class="btn-grid-confirm" type="submit">
+                                <span class="front">CONFIRM</span>
+                            </button>
+                            <button class="btn-grid-reset" type="reset">
+                                <span class="front">RESET</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section> <!-- users -->
+                <section> <!-- userlist associated with project -->
+                    <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="search for user">
+                    <ul id="myUL">
+                        <div th:each="allUsers : ${allUsers}">
+                            <li>
+                                <a href="#">
+                                    <div id="username" th:text="${allUsers.getUsername}"></div>
+                                    <div id="firstname" th:text="${allUsers.getFirstname}"></div>
+                                    <div id="lastname" th:text="${allUsers.getLastname}"></div>
+                                    <div id="role" th:text="${allUsers.getRole}"></div>
+                                </a>
+                            </li>
                         </div>
-                    </li>
-                    <li>
-                        <textarea name="description" id="description" placeholder="Description" required></textarea>
-                    </li>
-                    <li>
-                        <label class="deadline-label" for="deadline">Deadline: </label>
-                        <br>
-                        <input type="date" name="deadline" id="deadline" required>
-                    </li>
-                    <li>
-                        <button class="btn-grid-confirm" type="submit">
-                            <span class="front">CONFIRM</span>
-                        </button>
-                        <button class="btn-grid-reset" type="reset">
-                            <span class="front">RESET</span>
-                        </button>
-                    </li>
-                </ul>
-            </div>
+                    </ul>
+                </section>
+
+                <section> <!-- Selected users for task -->
+                    <h2>added users</h2>
+                    <ul id="currentTaskUsers"></ul>
+                </section>
+            </section>
         </form>
     </section>
-
+    <script th:src="@{/scripts/filtersearch.js}"></script>
+    <script th:src="@{/scripts/addusers.js}"></script>
 </main>
 <footer th:replace="fragments/footer.html"></footer>
 </body>

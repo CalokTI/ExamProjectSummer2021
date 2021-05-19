@@ -70,6 +70,19 @@ public class UserRepository {
 
     }
 
+    public ResultSet getAllUsers(){
+        String sql = "SELECT username, first_name, last_name, role FROM user";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            return preparedStatement.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("UserRepository - getAllUsers");
+        }
+        return null;
+    }
+
 
     //----- Returns the password for the specific user -----\\
     public String getPasswordForUsername(String username) {

@@ -43,6 +43,27 @@ public class UserService {
         return userList;
     }
 
+    public ArrayList<User> getAllUsers(){
+        ArrayList<User> allUsers = new ArrayList<>();
+        ResultSet resultSet = userRepository.getAllUsers();
+
+        try {
+            while(resultSet.next()){
+                User user;
+                String tempFirstname = resultSet.getString(1);
+                String tempLastname = resultSet.getString(2);
+                String tempUsername = resultSet.getString(3);
+                String tempRole = resultSet.getString(4);
+                user = new User(tempFirstname, tempLastname, tempUsername, tempRole);
+                allUsers.add(user);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("UserService - getAllUsers");
+        }
+        return allUsers;
+    }
+
     public User getUserFromDatabase(String username) {
         ResultSet resultSet = userRepository.getUserFromDatabase(username);
         User user = null;

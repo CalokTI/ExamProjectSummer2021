@@ -16,8 +16,9 @@
         </section>
 
         <section class="deadline">
-            <p th:text="${project.getDeadlineAsString}"></p>
-            <p th:text="${project.countdown}"></p>
+            <p th:text="${'created on: ' + project.getInceptionDateAsString}"></p>
+            <p th:text="${'deadline: ' + project.getDeadlineAsString}"></p>
+            <p th:text="${'days remaining: ' + project.countdown}"></p>
         </section>
 
         <section class="description">

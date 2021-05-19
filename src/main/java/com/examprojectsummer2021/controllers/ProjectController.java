@@ -48,15 +48,13 @@ public class ProjectController {
                                    @RequestParam(name = "description") String projectDescription,
                                    @RequestParam(name = "deadline") String projectDeadline){
 
-        System.out.println("you got here");
 
-        String projectOwner = "jowa69"; //fix dette
-        System.out.println(projectDeadline);
+        // owner
+        String projectOwner = "jowa69"; //todo fix dette
 
-        boolean status = true; //todo fix dette
+        projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectDeadline);
 
-        projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectDeadline, status);
-        //fix link id
+        //todo fix link id til projectTitle
         int projectID = projectService.getProjectID(projectTitle, projectOwner);
         return "redirect:/updateproject/" + projectID;
     }

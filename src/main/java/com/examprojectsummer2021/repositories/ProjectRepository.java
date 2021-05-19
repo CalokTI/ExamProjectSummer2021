@@ -21,15 +21,17 @@ public class ProjectRepository {
 
     // ------ SETTERS ------ //
 
-    public void createNewProject(String projectTitle, String projectDescription, String owner, String projectDeadline, boolean isFinished) {
-        String sql = "INSERT INTO project (title, description, owner, deadline, is_finished) VALUES(?,?,?,?,?)";
+    public void createNewProject(String projectTitle, String projectDescription, String owner,
+                                 String inceptionDate, String projectDeadline, boolean isFinished) {
+        String sql = "INSERT INTO project (title, description, owner, inception_date, deadline, is_finished) VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, projectTitle);
             preparedStatement.setString(2, projectDescription);
             preparedStatement.setString(3, owner);
-            preparedStatement.setString(4, projectDeadline);
-            preparedStatement.setBoolean(5, isFinished);
+            preparedStatement.setString(4, inceptionDate);
+            preparedStatement.setString(5, projectDeadline);
+            preparedStatement.setBoolean(6, isFinished);
             preparedStatement.executeUpdate();
 
         } catch (SQLException throwables) {

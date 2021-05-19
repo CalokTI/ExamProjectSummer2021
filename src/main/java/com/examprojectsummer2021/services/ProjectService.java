@@ -5,7 +5,10 @@ import com.examprojectsummer2021.repositories.ProjectRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,9 +21,24 @@ public class ProjectService {
 
     // ------ SETTERS ------ //
 
-    public void createNewProject(String projectTitle, String projectDescription, String owner, String deadline, boolean isFinished) {
+    public void createNewProject(String projectTitle, String projectDescription, String projectOwner, String deadline) {
 
-        projectRepository.createNewProject(projectTitle, projectDescription, owner, deadline, isFinished);
+
+        // owner
+        //String projectOwner = "jowa69"; //todo fix dette
+
+        // isFinished
+        boolean status = true; //todo fix dette
+
+        // inception //todo fix dette (gør det pænere somehow)
+        String inceptionDate;
+        String pattern = "dd-MM-yy";
+        DateFormat df = new SimpleDateFormat(pattern);
+
+        inceptionDate = df.format(new Date().getTime());
+
+
+        projectRepository.createNewProject(projectTitle, projectDescription, projectOwner, inceptionDate, deadline, status);
     }
 
     // ------ GETTERS ------ //
@@ -38,9 +56,10 @@ public class ProjectService {
                 int id = resultSet.getInt(1);
                 String title = resultSet.getString(2);
                 String description = resultSet.getString(3);
-                String date = resultSet.getString(5);
-                boolean isFinished = resultSet.getBoolean(6);
-                project = new Project(id, title, description, date, isFinished);
+                String inceptionDate = resultSet.getString(5);
+                String deadline = resultSet.getString(6);
+                boolean isFinished = resultSet.getBoolean(7);
+                project = new Project(id, title, description, inceptionDate, deadline, isFinished);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -58,9 +77,10 @@ public class ProjectService {
                 int id = resultSet.getInt(1);
                 String title = resultSet.getString(2);
                 String description = resultSet.getString(3);
-                String date = resultSet.getString(5);
-                boolean isFinished = resultSet.getBoolean(6);
-                project = new Project(id, title, description, date, isFinished);
+                String inceptionDate = resultSet.getString(5);
+                String deadline = resultSet.getString(6);
+                boolean isFinished = resultSet.getBoolean(7);
+                project = new Project(id, title, description, inceptionDate, deadline, isFinished);
                 allProjects.add(project);
             }
         } catch (SQLException throwables) {

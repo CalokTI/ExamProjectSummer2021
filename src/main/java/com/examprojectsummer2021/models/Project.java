@@ -14,6 +14,7 @@ public class Project {
     private int ID; // unique ID for SQL
     private String title;
     private String description;
+    private Date inceptionDate;
     private Date deadline;
     private boolean isFinished;
 
@@ -21,11 +22,16 @@ public class Project {
     // tasks
     // users
 
-    public Project(int projectID, String title, String description, String deadline, boolean isFinished) {
+    public Project(int projectID, String title, String description, String inceptionDate, String deadline, boolean isFinished) {
         this.ID = projectID;
         this.title = title;
         this.description = description;
 
+        try {
+            this.inceptionDate = new SimpleDateFormat("yy-MM-dd").parse(inceptionDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         try {
             this.deadline = new SimpleDateFormat("yy-MM-dd").parse(deadline);
         } catch (ParseException e) {
@@ -38,6 +44,7 @@ public class Project {
     }
 
     // -- GETTERS -- //
+
     public int getID() {
         return ID;
     }
@@ -56,11 +63,22 @@ public class Project {
 
     public String getDeadlineAsString() {
 
-       String deadlineString;
-       String pattern = "dd-MM-yy";
-       DateFormat df = new SimpleDateFormat(pattern);
+        String deadlineString;
+        String pattern = "dd-MM-yy";
+        DateFormat df = new SimpleDateFormat(pattern);
 
-       deadlineString = df.format(deadline.getTime());
+        deadlineString = df.format(deadline.getTime());
+
+        return deadlineString;
+    }
+
+    public String getInceptionDateAsString(){
+
+        String deadlineString;
+        String pattern = "dd-MM-yy";
+        DateFormat df = new SimpleDateFormat(pattern);
+
+        deadlineString = df.format(inceptionDate.getTime());
 
         return deadlineString;
     }
@@ -68,12 +86,12 @@ public class Project {
     // -- UTILITY -- //
 
     // Days till the deadline from current date
-    public long countdown(){
+    public long countdown() {
 
         Date today = new Date();
 
         long diff = deadline.getTime() - today.getTime();
-        return TimeUnit.DAYS.convert(diff,TimeUnit.MILLISECONDS);
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
     }
 

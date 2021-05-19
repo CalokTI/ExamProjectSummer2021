@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * @author Carsten
  */
@@ -25,6 +24,7 @@ public class ProjectController {
     private TaskService taskService = new TaskService();
     private UserService userService = new UserService();
 
+    // ------------ DASHBOARD ------------ //
     @GetMapping("/dashboard")
     public String renderDashboard(Model model){
         List projectList = projectService.getAllProjects();
@@ -33,6 +33,7 @@ public class ProjectController {
     }
 
 
+    // ------------ CREATE PROJECT ------------ //
     @GetMapping("/createproject")
     public String renderNewProject(Model model){
         model.addAttribute("allUsers", userService.getAllUsers());
@@ -57,7 +58,7 @@ public class ProjectController {
         return "redirect:/updateproject/" + projectID;
     }
 
-
+    // ------------ EDIT PROJECT ------------ //
     @GetMapping("/updateproject/{id}")
     public String renderUpdateProject(@PathVariable("id") int projectID, Model model){
 

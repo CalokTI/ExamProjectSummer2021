@@ -19,8 +19,9 @@ public class TaskController {
     private UserService userService = new UserService();
     private TaskService taskService = new TaskService();
 
+    // ------------ CREATE TASK ------------ //
     @GetMapping("/createtask")
-    public String renderNewTask(Model model, @RequestParam(name = "projectID") int projectID){
+    public String renderNewTask(Model model, @RequestParam(name = "projectID") int projectID) {
         model.addAttribute("projectUsers", userService.getUsersFromProject(projectID));
         model.addAttribute("projectID", projectID);
 
@@ -32,7 +33,7 @@ public class TaskController {
                                 @RequestParam(name = "description") String taskDescription,
                                 @RequestParam(name = "deadline") String taskDeadline,
                                 @RequestParam(name = "username") String[] taskUsernames,
-                                @RequestParam(name = "projectID")String projectIDString){
+                                @RequestParam(name = "projectID") String projectIDString) {
 
         int projectID = Integer.parseInt(projectIDString);
         //todo add owner
@@ -44,9 +45,20 @@ public class TaskController {
     }
 
 
+    // ------------ EDIT TASK ------------ //
     @GetMapping("/updatetask")
-    public String renderUpdateTask(){
+    public String renderUpdateTask() {
 
         return "task/updateproject.html";
     }
+
+    @PostMapping("/change_finished_status")
+    public String renderChangeStatus(@RequestParam(name = "projectID") int projectID,
+                                     @RequestParam(name = "taskID") int taskID) {
+
+        taskService.changeTaskFinished(taskID);
+
+        return "redirect:/updateproject/" + projectID;
+    }
 }
+

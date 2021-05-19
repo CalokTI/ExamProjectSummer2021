@@ -12,14 +12,14 @@ public class Task {
     private int ID; // unique ID for SQL
     private String title;
     private String description;
+    private boolean isFinished;
 
-    private Date inceptionDate;
-    private Date deadline;
 
-    public Task(int taskID, String title, String description) {
+    public Task(int taskID, String title, String description, boolean isFinished) {
         this.ID = taskID;
         this.title = title;
         this.description = description;
+        this.isFinished = isFinished;
     }
 
     public String getTitle() {
@@ -32,5 +32,18 @@ public class Task {
 
     public int getID() {
         return ID;
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public String printIsFinished() {
+        if (isFinished) {
+            return "finished ✔️";
+        }
+        else {
+            return "N҉̟̬O͈͘T͖͕̩ ❌";
+        }
     }
 }

@@ -41,10 +41,16 @@
                 <button type="submit" name="projectID" th:value="${project.getID}">Create task</button>
             </form>
 
-            <ul th:each="tasks : ${tasks}">
-                <li th:text="${tasks.getID}"></li> <!-- //todo ikke nødvendig at blive vist, men skal bruges til link -->
-                <li th:text="${tasks.getTitle}"></li>
-                <li th:text="${tasks.getDescription}"></li>
+            <ul th:each="task : ${tasks}">
+                <li th:text="${task.getID}"></li> <!-- //todo ikke nødvendig at blive vist, men skal bruges til link -->
+                <li th:text="${task.getTitle}"></li>
+                <li th:text="${task.getDescription}"></li>
+                <li>
+                    <form action="/change_finished_status" method="post">
+                        <input type="hidden" name="projectID" th:value="${project.getID}">
+                        <button type="submit" name="taskID" th:value="${task.getID}"><p th:text="${task.printIsFinished()}"></p></button>
+                    </form>
+                </li>
             </ul>
         </section>
     </section>

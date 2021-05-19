@@ -10,6 +10,7 @@ import java.sql.SQLException;
 /**
  * @author Julius
  */
+
 public class TaskRepository {
 
     private Connection conn;
@@ -38,6 +39,18 @@ public class TaskRepository {
         }
     }
 
+    public void changeTaskFinished(boolean state, int taskID){
+        String sql = "UPDATE task SET is_finished = ? WHERE id = ?";
+                try {
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setBoolean(1, state);
+                    preparedStatement.setInt(2, taskID);
+                    preparedStatement.executeUpdate();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+    }
+
     public void linkUserAndTask(String taskUsername, int taskID){
         String sql = "INSERT INTO user_task (username, taskID) VALUES (?,?)";
         try{
@@ -53,6 +66,19 @@ public class TaskRepository {
     }
 
     // ------ GETTERS ------ //
+
+    public ResultSet getTask(int taskID){
+        String sql = "SELECT * FROM task WHERE id = ?";
+        ResultSet resultSet = null;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1,taskID);
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return resultSet;
+    }
 
     public ResultSet getTasksFromProject(int projectID) {
         try {

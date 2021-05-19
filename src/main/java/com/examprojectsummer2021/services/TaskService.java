@@ -10,15 +10,32 @@ import java.util.ArrayList;
 public class TaskService {
 
     TaskRepository taskRepository = new TaskRepository();
+    // ------ SETTERS ------ //
 
-    public void createTask(String taskTitle, String taskDescription, String taskDeadline, String[] taskUsername, String taskOwner, int projectID){
+    public void createTask(String taskTitle, String taskDescription, String taskDeadline, String[] taskUsername, String taskOwner, int projectID) {
 
         taskRepository.createNewTask(taskTitle, taskDescription, taskOwner, projectID);
 
         linkUserAndTask(taskUsername, taskTitle);
     }
 
-    public void linkUserAndTask(String[] taskUsername, String taskTitle){
+    public void changeTaskFinished(int taskID) {
+
+        Task task = getTask(taskID);
+
+        boolean state;
+
+        if (task.isFinished()){
+            state = false;
+        } else {
+            state = true;
+        }
+
+        taskRepository.changeTaskFinished(state, taskID);
+
+    }
+
+    public void linkUserAndTask(String[] taskUsername, String taskTitle) {
         int taskID = getTaskID(taskTitle);
 
         for (String s : taskUsername) {
@@ -26,11 +43,27 @@ public class TaskService {
         }
     }
 
-    // ------ SETTERS ------ //
-
     // ------ GETTERS ------ //
 
-    public int getTaskID(String taskTitle){
+    public Task getTask(int taskID) {
+
+        ResultSet resultSet = taskRepository.getTask(taskID);
+        Task task = null;
+        try {
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String title = resultSet.getString(2);
+                String description = resultSet.getString(3);
+                boolean status = resultSet.getBoolean(4);
+                task = new Task(id, title, description, status);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return task;
+    }
+
+    public int getTaskID(String taskTitle) {
         return taskRepository.getTaskID(taskTitle);
     }
 
@@ -41,13 +74,13 @@ public class TaskService {
         ArrayList<Task> taskList = new ArrayList<>();
 
         try {
-            while (resultSet.next()){
-                int id = resultSet.getInt(1);    // id
-                String title = resultSet.getString(2);   // title
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);                   // id
+                String title = resultSet.getString(2);          // title
                 String description = resultSet.getString(3);    // description
-                //String role = resultSet.getString(4);        //todo owner - maybe?
+                boolean isFinished = resultSet.getBoolean(4);   // isFinished
 
-                Task tmpTask = new Task(id,title,description);
+                Task tmpTask = new Task(id, title, description, isFinished);
 
                 taskList.add(tmpTask);
             }
@@ -59,7 +92,6 @@ public class TaskService {
 
         return taskList;
     }
-
 
 
 }

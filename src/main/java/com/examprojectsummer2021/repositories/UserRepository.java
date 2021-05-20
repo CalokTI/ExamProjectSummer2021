@@ -50,6 +50,24 @@ public class UserRepository {
         return null;
     }
 
+    public ResultSet getUsersFromTask(int taskID) {
+        try {
+            String sql = "SELECT * FROM user INNER JOIN  user_task ON user.username = user_task.username WHERE user_task.taskID = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, taskID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return resultSet;
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+
+    }
+
     // Returnér alle users fra specefikt projekt
     public ResultSet getUsersFromProject(int projectID) {
         try {

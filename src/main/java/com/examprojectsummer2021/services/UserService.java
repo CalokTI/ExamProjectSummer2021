@@ -43,6 +43,32 @@ public class UserService {
         return userList;
     }
 
+    public ArrayList<User> getUsersFromTask(int taskID){
+
+        ResultSet resultSet = userRepository.getUsersFromTask(taskID);
+
+        ArrayList<User> userList = new ArrayList<>();
+
+        try {
+            while (resultSet.next()){
+                String username = resultSet.getString(1);    // username
+                String firstname = resultSet.getString(2);   // first_name
+                String lastname = resultSet.getString(3);    // last_name
+                String role = resultSet.getString(5);        // role
+
+                User tmpUser = new User(username,firstname,lastname,role);
+                userList.add(tmpUser);
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return userList;
+
+    }
+
     public ArrayList<User> getAllUsers(){
         ArrayList<User> allUsers = new ArrayList<>();
         ResultSet resultSet = userRepository.getAllUsers();

@@ -6,7 +6,26 @@
 <body>
 <main>
 
-    <p>edit task</p>
+    <section class="title">
+        <h1 th:text="${task.getTitle}"></h1>
+    </section>
+
+    <section class="description">
+        <p th:text="${task.getDescription}"></p>
+    </section>
+
+    <section class="status">
+        <p th:text="${'Task status: ' + task.isFinished}"></p>
+    </section>
+
+    <section class="users">
+        <p>Assigned users to task:</p>
+        <ul th:each="user : ${users}">
+            <li th:text="${user.getUsername}"></li>
+            <li th:text="${user.getFirstname}"></li>
+            <li th:text="${user.getLastname}"></li>
+        </ul>
+    </section>
 
 </main>
 <footer th:replace="fragments/footer.html"></footer>

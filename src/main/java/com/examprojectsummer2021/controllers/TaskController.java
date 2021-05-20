@@ -48,7 +48,10 @@ public class TaskController {
 
     // ------------ EDIT TASK ------------ //
     @GetMapping("/updateproject/updatetask/{id}")
-    public String renderUpdatePTask(@PathVariable("id") int projectID, Model model){
+    public String renderUpdatePTask(@PathVariable("id") int taskID, Model model){
+
+        model.addAttribute("task",taskService.getTask(taskID));
+        model.addAttribute("users",userService.getUsersFromTask(taskID));
 
         return "task/updatetask.html";
     }

@@ -33,14 +33,14 @@ public class TaskController {
     public String createNewTask(@RequestParam(name = "title") String taskTitle,
                                 @RequestParam(name = "description") String taskDescription,
                                 @RequestParam(name = "deadline") String taskDeadline,
-                                @RequestParam(name = "username") String[] taskUsernames,
+                                @RequestParam(name = "username") String[] taskUsers,
                                 @RequestParam(name = "projectID") String projectIDString) {
 
         int projectID = Integer.parseInt(projectIDString);
         //todo add owner
         String taskOwner = "jowa69";
 
-        taskService.createTask(taskTitle, taskDescription, taskDeadline, taskUsernames, taskOwner, projectID);
+        taskService.createTask(taskTitle, taskDescription, taskDeadline, taskUsers, taskOwner, projectID);
 
         return "redirect:/updateproject/" + projectID;
     }
@@ -48,7 +48,7 @@ public class TaskController {
 
     // ------------ EDIT TASK ------------ //
     @GetMapping("/updateproject/updatetask/{id}")
-    public String renderUpdatePTask(@PathVariable("id") int taskID, Model model){
+    public String renderUpdateTask(@PathVariable("id") int taskID, Model model){
 
         model.addAttribute("task",taskService.getTask(taskID));
         model.addAttribute("users",userService.getUsersFromTask(taskID));

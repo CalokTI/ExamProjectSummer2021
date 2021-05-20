@@ -16,13 +16,13 @@ public class TaskService {
     TaskRepository taskRepository = new TaskRepository();
     // ------ SETTERS ------ //
 
-    public void createTask(String taskTitle, String taskDescription, String taskDeadline, String[] taskUsername, String taskOwner, int projectID) {
+    public void createTask(String taskTitle, String taskDescription, String taskDeadline, String[] taskUsers, String taskOwner, int projectID) {
 
         boolean status = false; // every new task starts with a false 'isFinished'
 
         taskRepository.createNewTask(taskTitle, taskDescription, taskOwner, projectID, status);
 
-        linkUserAndTask(taskUsername, taskTitle);
+        linkUserAndTask(taskUsers, taskTitle);
     }
 
     public void changeTaskFinished(int taskID) {
@@ -41,10 +41,10 @@ public class TaskService {
 
     }
 
-    public void linkUserAndTask(String[] taskUsername, String taskTitle) {
+    public void linkUserAndTask(String[] taskUsers, String taskTitle) {
         int taskID = getTaskID(taskTitle);
 
-        for (String s : taskUsername) {
+        for (String s : taskUsers) {
             taskRepository.linkUserAndTask(s, taskID);
         }
     }

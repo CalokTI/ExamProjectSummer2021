@@ -27,8 +27,8 @@ public class ProjectController {
     // ------------ DASHBOARD ------------ //
     @GetMapping("/dashboard")
     public String renderDashboard(Model model){
-
         model.addAttribute("list", projectService.getAllProjects());
+
 
         return "project/dashboard.html";
     }
@@ -48,13 +48,14 @@ public class ProjectController {
     public String createNewProject(@RequestParam(name = "title") String projectTitle,
                                    @RequestParam(name = "description") String projectDescription,
                                    @RequestParam(name = "startdate") String projectStartDate,
-                                   @RequestParam(name = "deadline") String projectDeadline){
+                                   @RequestParam(name = "deadline") String projectDeadline,
+                                   @RequestParam(name ="username") String[] projectUsers){
 
 
         // owner
         String projectOwner = "jowa69"; //todo fix dette
 
-        projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectStartDate, projectDeadline);
+        projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectStartDate, projectDeadline, projectUsers);
 
         //todo fix link id til projectTitle
         int projectID = projectService.getProjectID(projectTitle, projectOwner);

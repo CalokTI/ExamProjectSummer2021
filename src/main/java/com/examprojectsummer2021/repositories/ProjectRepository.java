@@ -37,6 +37,19 @@ public class ProjectRepository {
         }
     }
 
+    public void linkUserAndProject(String projectUsername, int projectID){
+        String sql = "INSERT INTO user_project (username, projectID) VALUES (?,?)";
+        try{
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1,projectUsername);
+            statement.setInt(2,projectID);
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("projectRepository - linkUserAndProject");
+        }
+    }
+
     public void changeProjectFinished(boolean state, int taskID){
         String sql = "UPDATE project SET is_finished = ? WHERE id = ?";
         try {

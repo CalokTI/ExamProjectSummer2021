@@ -6,10 +6,7 @@ import com.examprojectsummer2021.repositories.ProjectRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,7 +19,7 @@ public class ProjectService {
 
     // ------ SETTERS ------ //
 
-    public void createNewProject(String projectTitle, String projectDescription, String projectOwner, String startDate, String deadline) {
+    public void createNewProject(String projectTitle, String projectDescription, String projectOwner, String startDate, String deadline, String[] projectUsers) {
 
 
         // owner
@@ -40,6 +37,15 @@ public class ProjectService {
 
 
         projectRepository.createNewProject(projectTitle, projectDescription, projectOwner, startDate, deadline, status);
+        linkUserAndProject(projectUsers, projectTitle, projectOwner);
+    }
+
+    private void linkUserAndProject(String[] projectUsers, String projectTitle, String projectOwner){
+        int projectID = getProjectID(projectTitle, projectOwner);
+
+        for (String s : projectUsers) {
+            projectRepository.linkUserAndProject(s, projectID);
+        }
     }
 
     public void changeProjectStatus(int projectID) {

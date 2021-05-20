@@ -39,7 +39,7 @@
                                 <div id="firstname" th:text="${projectUsers.getFirstname}"></div>
                                 <div id="lastname" th:text="${projectUsers.getLastname}"></div>
                                 <div id="role" th:text="${projectUsers.getRole}"></div>
-                                <div id="salary" th:text="${projectUsers.getSalary}"></div>
+                                <div id="salary" th:text="${projectUsers.getSalary + ',-/Hour'}"></div>
                             </a>
                         </li>
                     </div>

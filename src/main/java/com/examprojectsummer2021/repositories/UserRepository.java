@@ -87,19 +87,6 @@ public class UserRepository {
 
     }
 
-    public ResultSet getUserHourPrice(){
-        try{
-            String sql = "SELECT user.role, salary FROM user INNER JOIN role_salary ON user.role = role_salary.role";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            return resultSet;
-        }catch (SQLException throwables){
-            throwables.printStackTrace();
-        }
-        return null;
-    }
-
     public ResultSet getAllUsers(){
         String sql = "SELECT user.username, user.first_name, user.last_name, user.role, salary FROM user INNER JOIN role_salary ON user.role = role_salary.role";
         try {

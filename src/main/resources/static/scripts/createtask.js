@@ -1,5 +1,5 @@
 function haveUsersBeenAdded(){
-    if(document.getElementById("currentTaskUsers").children[0] !== null){
+    if(document.getElementById("assignedUsers").children[0] !== null){
         document.getElementById("taskcreation").submit();
         return true;
     }

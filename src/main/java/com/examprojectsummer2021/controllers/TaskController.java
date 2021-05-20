@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
- * @author Carsten
+ * @author Carsten & Anton
  */
 
 @Controller

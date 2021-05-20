@@ -31,9 +31,9 @@
                     </div>
                     <aside class="project-picture">PICTURE FOR PROJECT</aside>
                     <aside class="table-health">
-                        <p>4/6 projects</p>
-                        <p>125 days remaining</p>
-                        <p>this is fine <3</p>
+                        <p th:text="${list.getTasksStatus}"></p>
+                        <p th:text="${list.countdown + ' days till deadline'}"></p>
+                        <p>💚 💔 ❤</p>
 
                     </aside>
                 </div>

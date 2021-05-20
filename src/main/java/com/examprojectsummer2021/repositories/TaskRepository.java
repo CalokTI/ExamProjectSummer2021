@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * @author Julius
+ * @author Julius & Anton
  */
 
 public class TaskRepository {

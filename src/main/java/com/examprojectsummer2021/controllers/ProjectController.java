@@ -27,8 +27,9 @@ public class ProjectController {
     // ------------ DASHBOARD ------------ //
     @GetMapping("/dashboard")
     public String renderDashboard(Model model){
-        List projectList = projectService.getAllProjects();
-        model.addAttribute("list", projectList);
+
+        model.addAttribute("list", projectService.getAllProjects());
+
         return "project/dashboard.html";
     }
 
@@ -36,7 +37,9 @@ public class ProjectController {
     // ------------ CREATE PROJECT ------------ //
     @GetMapping("/createproject")
     public String renderNewProject(Model model){
+
         model.addAttribute("allUsers", userService.getAllUsers());
+
         return "project/createproject.html";
     }
 
@@ -66,5 +69,13 @@ public class ProjectController {
         model.addAttribute("users", userService.getUsersFromProject(projectID));
         model.addAttribute("tasks", taskService.getTasksFromProject(projectID));
         return "project/updateproject.html";
+    }
+
+    @PostMapping("/change_project_status")
+    public String renderChangeStatus(@RequestParam(name = "projectID") int projectID) {
+
+        projectService.changeProjectStatus(projectID);
+
+        return "redirect:/updateproject/" + projectID;
     }
 }

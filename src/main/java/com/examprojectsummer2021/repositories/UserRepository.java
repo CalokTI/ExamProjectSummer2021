@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 
 /**
- * @author Carsten & Julius
+ * @author Carsten, Julius & Anton
  */
 
 public class UserRepository {

@@ -13,6 +13,10 @@
 
         <section class="title">
             <h1 th:text="${project.getTitle}"></h1>
+            <form action="/change_project_status" method="post">
+                <button type="submit" name="projectID" th:value="${project.getID}"><p
+                        th:text="${project.isFinished()}"></p></button>
+            </form>
         </section>
 
         <section class="deadline">
@@ -56,7 +60,7 @@
 
                     <td>
                         <a th:href="@{'updatetask/{id}' (id = ${task.getID})}" th:text="${task.getID}">
-                    </a>
+                        </a>
                     </td>
 
 

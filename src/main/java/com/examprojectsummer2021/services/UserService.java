@@ -8,13 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Julius Panduro
+ * @author Julius & Anton
  */
+
 public class UserService {
 
     private UserRepository userRepository = new UserRepository();
 
     // ------ SETTERS ------ //
+
 
     // ------ GETTERS ------ //
 

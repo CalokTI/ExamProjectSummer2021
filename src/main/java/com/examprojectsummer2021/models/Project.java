@@ -1,8 +1,11 @@
 package com.examprojectsummer2021.models;
 
+import com.examprojectsummer2021.services.TaskService;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +13,11 @@ import java.util.concurrent.TimeUnit;
  * @author Anton
  */
 
+
+
 public class Project {
+
+    private TaskService taskService = new TaskService();
 
     private int ID; // unique ID for SQL
     private String title;
@@ -62,6 +69,10 @@ public class Project {
         return deadline;
     }
 
+    public boolean isFinished() {
+        return isFinished;
+    }
+
     public String getDeadlineAsString() {
 
         String deadlineString;
@@ -82,6 +93,31 @@ public class Project {
         deadlineString = df.format(startDate.getTime());
 
         return deadlineString;
+    }
+
+    public ArrayList<Task> getTasks(){
+
+        return taskService.getTasksFromProject(ID);
+
+    }
+
+    // todo this is bad but fuck it
+    public String getTasksStatus(){
+
+        ArrayList<Task> tmpTasks = taskService.getTasksFromProject(ID);
+        int total = tmpTasks.size();
+
+        int positive = 0;
+
+        for (int i = 0; i < tmpTasks.size(); i++) {
+            if (tmpTasks.get(i).isFinished()) {
+                positive++;
+            }
+        }
+
+        String result = positive + "/" + total;
+
+        return result;
     }
 
     // -- UTILITY -- //

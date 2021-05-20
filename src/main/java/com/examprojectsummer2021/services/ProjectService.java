@@ -1,6 +1,7 @@
 package com.examprojectsummer2021.services;
 
 import com.examprojectsummer2021.models.Project;
+import com.examprojectsummer2021.models.Task;
 import com.examprojectsummer2021.repositories.ProjectRepository;
 
 import java.sql.ResultSet;
@@ -39,6 +40,22 @@ public class ProjectService {
 
 
         projectRepository.createNewProject(projectTitle, projectDescription, projectOwner, startDate, deadline, status);
+    }
+
+    public void changeProjectStatus(int projectID) {
+
+        Project project = getSpecificProject(projectID);
+
+        boolean state;
+
+        if (project.isFinished()){
+            state = false;
+        } else {
+            state = true;
+        }
+
+        projectRepository.changeProjectFinished(state, projectID);
+
     }
 
     // ------ GETTERS ------ //

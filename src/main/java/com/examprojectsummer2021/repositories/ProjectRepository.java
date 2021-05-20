@@ -37,6 +37,18 @@ public class ProjectRepository {
         }
     }
 
+    public void changeProjectFinished(boolean state, int taskID){
+        String sql = "UPDATE project SET is_finished = ? WHERE id = ?";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setBoolean(1, state);
+            preparedStatement.setInt(2, taskID);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     // ------ GETTERS ------ //
 
     public int getProjectID(String projectTitle, String projectOwner){

@@ -33,7 +33,7 @@ public class UserRepository {
     //---- Returns a specific user from database, based on username ---- \\
     //todo test om det fungere optimalt
     public ResultSet getUserFromDatabase(String username) {
-        String sql = "SELECT * FROM user WHERE username = ?";
+        String sql = "SELECT user.username, user.first_name, user.last_name, user.role, salary FROM user INNER JOIN role_salary ON user.role = role_salary.role WHERE username = ?";
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -52,7 +52,7 @@ public class UserRepository {
 
     public ResultSet getUsersFromTask(int taskID) {
         try {
-            String sql = "SELECT * FROM user INNER JOIN  user_task ON user.username = user_task.username WHERE user_task.taskID = ?";
+            String sql = "SELECT user.username, user.first_name, user.last_name, user.role, user_task.taskID, role_salary.salary FROM user INNER JOIN  user_task ON user.username = user_task.username INNER JOIN role_salary ON user.role = role_salary.role WHERE user_task.taskID = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, taskID);
 
@@ -71,7 +71,7 @@ public class UserRepository {
     // Returnér alle users fra specefikt projekt
     public ResultSet getUsersFromProject(int projectID) {
         try {
-            String sql = "SELECT * FROM user INNER JOIN  user_project ON user.username = user_project.username WHERE user_project.projectID = ?";
+            String sql = "SELECT user.username, user.first_name, user.last_name, user.role, user_project.projectID, role_salary.salary FROM user INNER JOIN  user_project ON user.username = user_project.username INNER JOIN role_salary ON user.role = role_salary.role WHERE user_project.projectID = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, projectID);
 
@@ -87,8 +87,21 @@ public class UserRepository {
 
     }
 
+    public ResultSet getUserHourPrice(){
+        try{
+            String sql = "SELECT user.role, salary FROM user INNER JOIN role_salary ON user.role = role_salary.role";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return resultSet;
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
     public ResultSet getAllUsers(){
-        String sql = "SELECT username, first_name, last_name, role FROM user";
+        String sql = "SELECT user.username, user.first_name, user.last_name, user.role, salary FROM user INNER JOIN role_salary ON user.role = role_salary.role";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             return preparedStatement.executeQuery();
@@ -124,3 +137,4 @@ public class UserRepository {
 
 
 }
+

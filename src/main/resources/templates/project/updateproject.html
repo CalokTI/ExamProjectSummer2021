@@ -13,10 +13,6 @@
 
         <section class="title">
             <h1 th:text="${project.getTitle}"></h1>
-            <form action="/change_project_status" method="post">
-                <button type="submit" name="projectID" th:value="${project.getID}"><p
-                        th:text="${project.isFinished()}"></p></button>
-            </form>
         </section>
 
         <section class="deadline">
@@ -28,34 +24,17 @@
         <section class="description">
             <p th:text="${project.getDescription}"></p>
         </section>
+
         <section class="users">
-            <section> <!-- all users -->
-                <ul id="myUL">
-                    <div th:each="allusers : ${allUsers}">
-                        <li class="moveWorker">
-                            <a href="#">
-                                <input type="hidden" name="username" th:value="${allusers.getUsername}" disabled>
-                                <div id="username" th:text="${allusers.getUsername}"></div>
-                                <div id="firstname" th:text="${allusers.getFirstname}"></div>
-                                <div id="lastname" th:text="${allusers.getLastname}"></div>
-                                <div id="role" th:text="${allusers.getRole}"></div>
-                            </a>
-                        </li>
-                    </div>
-                </ul>
+            <p>Assigned users to project:</p>
+            <ul th:each="users : ${users}">
+                <li th:text="${users.getUsername}"></li>
+                <li th:text="${users.getFirstname}"></li>
+                <li th:text="${users.getLastname}"></li>
+                <li th:text="${users.getRole}"></li>
+                <li th:text="${users.getSalary}"></li>
 
-            </section>
-
-            <section> <!-- selected users for project -->
-                <p>Assigned users to project:</p>
-                <ul id="assignedUsers" th:each="users : ${users}">
-                    <li th:text="${users.getUsername}"></li>
-                    <li th:text="${users.getFirstname}"></li>
-                    <li th:text="${users.getLastname}"></li>
-                    <li th:text="${users.getRole}"></li>
-                </ul>
-            </section>
-
+            </ul>
         </section>
 
         <section class="tasks">
@@ -78,7 +57,7 @@
 
                     <td>
                         <a th:href="@{'updatetask/{id}' (id = ${task.getID})}" th:text="${task.getID}">
-                        </a>
+                    </a>
                     </td>
 
 
@@ -101,9 +80,5 @@
 
 </main>
 <footer th:replace="fragments/footer.html"></footer>
-
-<script th:src="@{/scripts/filtersearch.js}"></script>
-<script th:src="@{/scripts/moveitem.js}"></script>
-
 </body>
 </html>

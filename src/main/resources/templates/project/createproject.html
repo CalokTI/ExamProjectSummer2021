@@ -42,12 +42,14 @@
                 </div>
             </section>
             <section> <!-- users -->
-                <section> <!-- userlist associated with project -->
+                <section> <!-- list of all users -->
                     <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="search for user">
                     <ul id="myUL">
                         <div th:each="allUsers : ${allUsers}">
-                            <li>
+                            <li class="moveWorker">
                                 <a href="#">
+                                    <input type="hidden" name="username" th:value="${allUsers.getUsername}"
+                                           disabled>
                                     <div id="username" th:text="${allUsers.getUsername}"></div>
                                     <div id="firstname" th:text="${allUsers.getFirstname}"></div>
                                     <div id="lastname" th:text="${allUsers.getLastname}"></div>
@@ -58,16 +60,16 @@
                     </ul>
                 </section>
 
-                <section> <!-- Selected users for task -->
+                <section> <!-- Selected users for project -->
                     <h2>added users</h2>
-                    <ul id="currentTaskUsers"></ul>
+                    <ul id="assignedUsers"></ul>
                 </section>
             </section>
         </form>
     </section>
-    <script th:src="@{/scripts/filtersearch.js}"></script>
-    <script th:src="@{/scripts/addusers.js}"></script>
 </main>
 <footer th:replace="fragments/footer.html"></footer>
+<script th:src="@{/scripts/filtersearch.js}"></script>
+<script th:src="@{/scripts/moveitem.js}"></script>
 </body>
 </html>

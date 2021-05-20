@@ -27,12 +27,14 @@
                 <input type="button" id="btnsubmit" onclick="haveUsersBeenAdded()" value="Submit">
             </section>
 
-            <section> <!-- userlist associated with project -->
+            <section> <!-- list of users associated with project -->
                 <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="search for user">
+                <h2>Users available for task</h2>
                 <ul id="myUL">
                     <div th:each="projectUsers : ${projectUsers}">
-                        <li>
+                        <li class="moveWorker">
                             <a href="#">
+                                <input type="hidden" name="username" th:value="${projectUsers.getUsername}" disabled>
                                 <div id="username" th:text="${projectUsers.getUsername}"></div>
                                 <div id="firstname" th:text="${projectUsers.getFirstname}"></div>
                                 <div id="lastname" th:text="${projectUsers.getLastname}"></div>
@@ -44,8 +46,8 @@
             </section>
 
             <section> <!-- Selected users for task -->
-                <h2>added users</h2>
-                <ul id="currentTaskUsers"></ul>
+                <h2>Users added to task</h2>
+                <ul id="assignedUsers"></ul>
             </section>
 
         </form>
@@ -56,7 +58,7 @@
 
 <footer th:replace="fragments/footer.html"></footer>
 <script th:src="@{/scripts/filtersearch.js}"></script>
-<script th:src="@{/scripts/addusers.js}"></script>
+<script th:src="@{/scripts/moveitem.js}"></script>
 <script th:src="@{/scripts/createtask.js}"></script>
 </body>
 </html>

@@ -28,16 +28,34 @@
         <section class="description">
             <p th:text="${project.getDescription}"></p>
         </section>
-
         <section class="users">
-            <p>Assigned users to project:</p>
-            <ul th:each="users : ${users}">
-                <li th:text="${users.getUsername}"></li>
-                <li th:text="${users.getFirstname}"></li>
-                <li th:text="${users.getLastname}"></li>
-                <li th:text="${users.getRole}"></li>
+            <section> <!-- all users -->
+                <ul id="myUL">
+                    <div th:each="allusers : ${allUsers}">
+                        <li class="moveWorker">
+                            <a href="#">
+                                <input type="hidden" name="username" th:value="${allusers.getUsername}" disabled>
+                                <div id="username" th:text="${allusers.getUsername}"></div>
+                                <div id="firstname" th:text="${allusers.getFirstname}"></div>
+                                <div id="lastname" th:text="${allusers.getLastname}"></div>
+                                <div id="role" th:text="${allusers.getRole}"></div>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
 
-            </ul>
+            </section>
+
+            <section> <!-- selected users for project -->
+                <p>Assigned users to project:</p>
+                <ul id="assignedUsers" th:each="users : ${users}">
+                    <li th:text="${users.getUsername}"></li>
+                    <li th:text="${users.getFirstname}"></li>
+                    <li th:text="${users.getLastname}"></li>
+                    <li th:text="${users.getRole}"></li>
+                </ul>
+            </section>
+
         </section>
 
         <section class="tasks">
@@ -83,5 +101,9 @@
 
 </main>
 <footer th:replace="fragments/footer.html"></footer>
+
+<script th:src="@{/scripts/filtersearch.js}"></script>
+<script th:src="@{/scripts/moveitem.js}"></script>
+
 </body>
 </html>

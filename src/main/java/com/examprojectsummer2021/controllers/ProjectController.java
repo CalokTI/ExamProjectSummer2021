@@ -49,7 +49,7 @@ public class ProjectController {
                                    @RequestParam(name = "description") String projectDescription,
                                    @RequestParam(name = "startdate") String projectStartDate,
                                    @RequestParam(name = "deadline") String projectDeadline,
-                                   @RequestParam(name ="username") String[] projectUsers){
+                                   @RequestParam(name ="username", required = false) String[] projectUsers){
 
 
         // owner
@@ -67,6 +67,7 @@ public class ProjectController {
     public String renderUpdateProject(@PathVariable("id") int projectID, Model model){
 
         model.addAttribute("project", projectService.getSpecificProject(projectID));
+        model.addAttribute("allUsers", userService.getAllUsers());
         model.addAttribute("users", userService.getUsersFromProject(projectID));
         model.addAttribute("tasks", taskService.getTasksFromProject(projectID));
         return "project/updateproject.html";

@@ -6,7 +6,3 @@ function haveUsersBeenAdded(){
     alert("Add users to task");
     return false;
 }
-
-function navn(){
-    //check om inputs er tomme
-}

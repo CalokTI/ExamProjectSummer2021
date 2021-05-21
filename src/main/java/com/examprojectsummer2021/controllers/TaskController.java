@@ -32,15 +32,16 @@ public class TaskController {
     @PostMapping("/createtask")
     public String createNewTask(@RequestParam(name = "title") String taskTitle,
                                 @RequestParam(name = "description") String taskDescription,
-                                @RequestParam(name = "deadline") String taskDeadline,
+                                @RequestParam(name = "time") int taskTime,
                                 @RequestParam(name = "username") String[] taskUsers,
+                                @RequestParam(name = "price", defaultValue = "0") int taskPrice,
                                 @RequestParam(name = "projectID") String projectIDString) {
 
         int projectID = Integer.parseInt(projectIDString);
         //todo add owner
         String taskOwner = "jowa69";
 
-        taskService.createTask(taskTitle, taskDescription, taskDeadline, taskUsers, taskOwner, projectID);
+        taskService.createTask(taskTitle, taskDescription, taskUsers, taskOwner, taskPrice, taskTime, projectID);
 
         return "redirect:/updateproject/" + projectID;
     }

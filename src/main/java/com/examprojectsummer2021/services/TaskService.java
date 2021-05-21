@@ -16,11 +16,10 @@ public class TaskService {
     TaskRepository taskRepository = new TaskRepository();
     // ------ SETTERS ------ //
 
-    public void createTask(String taskTitle, String taskDescription, String taskDeadline, String[] taskUsers, String taskOwner, int projectID) {
+    public void createTask(String taskTitle, String taskDescription, String[] taskUsers, String taskOwner, int taskPrice, int taskTime, int projectID) {
 
-        boolean status = false; // every new task starts with a false 'isFinished'
 
-        taskRepository.createNewTask(taskTitle, taskDescription, taskOwner, projectID, status);
+        taskRepository.createNewTask(taskTitle, taskDescription, taskPrice, taskTime, taskOwner, projectID);
 
         linkUserAndTask(taskUsers, taskTitle);
     }
@@ -57,11 +56,14 @@ public class TaskService {
         Task task = null;
         try {
             while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String title = resultSet.getString(2);
-                String description = resultSet.getString(3);
-                boolean status = resultSet.getBoolean(4);
-                task = new Task(id, title, description, status);
+                int id = resultSet.getInt(1);                   // id
+                String title = resultSet.getString(2);          // title
+                String description = resultSet.getString(3);    // description
+                int price = resultSet.getInt(4);                // price
+                boolean isFinished = resultSet.getBoolean(5);   // isFinished
+                int time = resultSet.getInt(6);                 // time
+
+                task = new Task(id, title, description, price, isFinished, time);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -84,9 +86,11 @@ public class TaskService {
                 int id = resultSet.getInt(1);                   // id
                 String title = resultSet.getString(2);          // title
                 String description = resultSet.getString(3);    // description
-                boolean isFinished = resultSet.getBoolean(4);   // isFinished
+                int price = resultSet.getInt(4);                // price
+                boolean isFinished = resultSet.getBoolean(5);   // isFinished
+                int time = resultSet.getInt(6);                 // time
 
-                Task tmpTask = new Task(id, title, description, isFinished);
+                Task tmpTask = new Task(id, title, description, price, isFinished, time);
 
                 taskList.add(tmpTask);
             }

@@ -122,7 +122,7 @@ public class Project {
 
     // -- UTILITY -- //
 
-    // Days till the deadline from current date
+    // Days till the deadline from current date todo change name
     public long countdown() {
 
         Date today = new Date();

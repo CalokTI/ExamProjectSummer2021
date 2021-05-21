@@ -20,8 +20,11 @@
                 <label for="description">Description: </label>
                 <input required type="text" name="description" id="description" placeholder="Description">
                 <br>
-                <label for="deadline">Deadline: </label>
-                <input required type="date" name="deadline" id="deadline">
+                <label for="time">time: </label>
+                <input required type="number" name="time" id="time">
+                <br>
+                <label for="price">Price: </label>
+                <input required type="number" name="price" id="price">
                 <br>
                 <input type="hidden" name="projectID" th:value="${projectID}">
                 <input type="button" id="btnsubmit" onclick="haveUsersBeenAdded()" value="Submit">

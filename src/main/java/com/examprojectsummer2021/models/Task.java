@@ -9,14 +9,21 @@ public class Task {
     private int ID; // unique ID for SQL
     private String title;
     private String description;
+    private int price;
     private boolean isFinished;
+    private int time;
 
-
-    public Task(int taskID, String title, String description, boolean isFinished) {
-        this.ID = taskID;
+    public Task(int ID, String title, String description, int price, boolean isFinished, int time) {
+        this.ID = ID;
         this.title = title;
         this.description = description;
+        this.price = price;
         this.isFinished = isFinished;
+        this.time = time;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public String getTitle() {
@@ -27,12 +34,16 @@ public class Task {
         return description;
     }
 
-    public int getID() {
-        return ID;
+    public int getPrice() {
+        return price;
     }
 
     public boolean isFinished() {
         return isFinished;
+    }
+
+    public int getTime() {
+        return time;
     }
 
     public String printIsFinished() {

@@ -3,6 +3,7 @@ package com.examprojectsummer2021.controllers;
 import com.examprojectsummer2021.services.ProjectService;
 import com.examprojectsummer2021.services.TaskService;
 import com.examprojectsummer2021.services.UserService;
+import com.examprojectsummer2021.utilities.TimeCalculationUtility;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
-import java.util.List;
+
 
 /**
  * @author Carsten
@@ -23,6 +23,7 @@ public class ProjectController {
     private ProjectService projectService = new ProjectService();
     private TaskService taskService = new TaskService();
     private UserService userService = new UserService();
+    private TimeCalculationUtility timeCalculationUtility = new TimeCalculationUtility();
 
     // ------------ DASHBOARD ------------ //
     @GetMapping("/dashboard")
@@ -70,6 +71,7 @@ public class ProjectController {
         model.addAttribute("allUsers", userService.getAllUsers());
         model.addAttribute("users", userService.getUsersFromProject(projectID));
         model.addAttribute("tasks", taskService.getTasksFromProject(projectID));
+        model.addAttribute("time", timeCalculationUtility.workingHoursPerDay(projectID));
         return "project/updateproject.html";
     }
 

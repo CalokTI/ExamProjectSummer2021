@@ -20,8 +20,8 @@ public class ProjectRepository {
     // ------ SETTERS ------ //
 
     public void createNewProject(String projectTitle, String projectDescription, String owner,
-                                 String inceptionDate, String projectDeadline, boolean isFinished) {
-        String sql = "INSERT INTO project (title, description, owner, inception_date, deadline, is_finished) VALUES(?,?,?,?,?,?)";
+                                 String inceptionDate, String projectDeadline) {
+        String sql = "INSERT INTO project (title, description, owner, inception_date, deadline) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, projectTitle);
@@ -29,7 +29,6 @@ public class ProjectRepository {
             preparedStatement.setString(3, owner);
             preparedStatement.setString(4, inceptionDate);
             preparedStatement.setString(5, projectDeadline);
-            preparedStatement.setBoolean(6, isFinished);
             preparedStatement.executeUpdate();
 
         } catch (SQLException throwables) {

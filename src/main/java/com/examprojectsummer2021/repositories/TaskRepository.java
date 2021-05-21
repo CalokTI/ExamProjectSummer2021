@@ -117,22 +117,4 @@ public class TaskRepository {
         return -1;
     }
 
-    //todo wat is dis ;__;
-    private int getSpecificTaskFromDatabase(int taskID) {
-        try {
-            String sql = "SELECT task FROM task WHERE id = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, taskID);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet != null) {
-                return resultSet.getInt(taskID);
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return -1;
-    }
 }

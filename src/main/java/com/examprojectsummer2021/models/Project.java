@@ -13,8 +13,6 @@ import java.util.concurrent.TimeUnit;
  * @author Anton
  */
 
-
-
 public class Project {
 
     private TaskService taskService = new TaskService();
@@ -22,6 +20,7 @@ public class Project {
     private int ID; // unique ID for SQL
     private String title;
     private String description;
+    private String owner;
     private Date startDate;
     private Date deadline;
     private boolean isFinished;
@@ -30,20 +29,18 @@ public class Project {
     // tasks
     // users
 
-    public Project(int projectID, String title, String description, String startDate, String deadline, boolean isFinished) {
+    public Project(int projectID, String title, String description, String owner, String startDate, String deadline, boolean isFinished) {
         this.ID = projectID;
         this.title = title;
         this.description = description;
+        this.owner = owner;
 
         try {
             this.startDate = new SimpleDateFormat("yy-MM-dd").parse(startDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        try {
             this.deadline = new SimpleDateFormat("yy-MM-dd").parse(deadline);
         } catch (ParseException e) {
             e.printStackTrace();
+            System.out.println("Project - Constructor");
         }
 
         this.isFinished = isFinished;
@@ -63,6 +60,10 @@ public class Project {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getOwner() {
+        return owner;
     }
 
     public Date getDeadline() {

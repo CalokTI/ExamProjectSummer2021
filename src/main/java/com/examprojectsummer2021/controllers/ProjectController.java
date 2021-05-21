@@ -34,6 +34,16 @@ public class ProjectController {
         return "project/dashboard.html";
     }
 
+    //test dashboard
+    @GetMapping("/dashboard2")
+    public String renderDashboard2(Model model){
+        model.addAttribute("list", projectService.getAllProjects());
+        model.addAttribute("users",userService.getAllUsers());
+
+
+        return "project/dashboard2.html";
+    }
+
 
     // ------------ CREATE PROJECT ------------ //
     @GetMapping("/createproject")

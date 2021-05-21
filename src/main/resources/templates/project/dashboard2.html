@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='dashboard 2')"></head> <!-- custom title !-->
+<head th:replace="fragments/head.html(customCSS='/stylesheets/dashboard.css')"></head> <!-- custom CSS !-->
+<body>
+<header th:replace="fragments/header.html(currentPage='dashboard')"></header>
+
+<main>
+
+
+    <section class="create-project">
+        <a href="/createproject">
+            <button>create a project</button>
+        </a>
+    </section>
+
+
+    <section class="overview">
+
+        <section class="users-overview">
+            <p>total users:</p>
+            <p th:text="${users.size}"></p>
+        </section>
+
+        <section class="projects-overview">
+
+        </section>
+
+        <section class=""
+
+
+
+
+    </section>
+
+
+    <ul th:each="list : ${list}">
+        <div class="projects">
+            <section class="content">
+                <div class="columns">
+                    <div class="project-info">
+                        <a th:href="@{'updateproject/{id}' (id = ${list.getID})}">
+                            <li th:text="${list.getTitle}"></li>
+                        </a>
+                        <li class="desc" th:text="${list.getDescription}"></li>
+
+                    </div>
+                    <aside class="project-picture">PICTURE FOR PROJECT</aside>
+                    <aside class="table-health">
+                        <p th:text="${list.getTasksStatus + ' tasks done'}"></p>
+                        <p th:text="${list.countdown + ' days till deadline'}"></p>
+                        <p>💚 💔 ❤</p>
+
+                    </aside>
+                </div>
+            </section>
+        </div>
+    </ul>
+
+</main>
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>

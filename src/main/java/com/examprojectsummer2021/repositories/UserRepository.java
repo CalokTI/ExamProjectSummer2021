@@ -31,7 +31,6 @@ public class UserRepository {
     // ------ GETTERS ------ //
 
     //---- Returns a specific user from database, based on username ---- \\
-    //todo test om det fungere optimalt
     public ResultSet getUserFromDatabase(String username) {
         String sql = "SELECT user.username, user.first_name, user.last_name, user.role, salary FROM user INNER JOIN role_salary ON user.role = role_salary.role WHERE username = ?";
 

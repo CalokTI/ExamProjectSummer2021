@@ -25,8 +25,9 @@
             <p th:text="${'start date: ' + project.getStartDateAsString}"></p>
             <p th:text="${'deadline: ' + project.getDeadlineAsString}"></p>
             <p th:text="${'days remaining: ' + project.countdown}"></p>
-            <p th:if="${time <= 7}" th:text="${'working hours per day: ' + time}"></p>
-            <p id="time-issue" th:if="${time > 7}" th:text="|working hours per day: ${time} can't be done in time|"></p>
+            <p th:if="${time <= 7 and time >= 0}" th:text="${'working hours per day: ' + time}"></p>
+            <p th:if="${time > 7}" id="time-issue" th:text="|working hours per day: ${time} can't be done in time|"></p>
+            <p th:if="${time < 0}" id="time-deadline">Deadline passed</p>
         </section>
 
         <section class="description">

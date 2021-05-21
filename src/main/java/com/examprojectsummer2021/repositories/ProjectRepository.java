@@ -3,6 +3,7 @@ package com.examprojectsummer2021.repositories;
 import com.examprojectsummer2021.utilities.DatabaseConnectionUtility;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * @author Julius & Anton
@@ -110,5 +111,20 @@ public class ProjectRepository {
             throwables.printStackTrace();
         }
        return resultSet;
+    }
+
+    public ArrayList<String> getAllProjectTitles(){
+        String sql = "SELECT title FROM project";
+        ArrayList<String> allProjectTitles = new ArrayList<>();
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                allProjectTitles.add(resultSet.getString(1));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return allProjectTitles;
     }
 }

@@ -98,5 +98,9 @@ public class ProjectService {
         return allProjects;
     }
 
+    public ArrayList<String> getAllProjectTitles(){
+        return projectRepository.getAllProjectTitles();
+    }
+
 
 }

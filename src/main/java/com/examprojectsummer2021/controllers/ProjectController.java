@@ -50,6 +50,7 @@ public class ProjectController {
     public String renderNewProject(Model model){
 
         model.addAttribute("allUsers", userService.getAllUsers());
+        model.addAttribute("projectTitles", projectService.getAllProjectTitles());
 
         return "project/createproject.html";
     }

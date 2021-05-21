@@ -14,7 +14,7 @@
                     <ul>
                         <li>
                             <div class="grid grid-2">
-                                <input type="text" name="title" id="title" placeholder="Project Name" required>
+                                <input type="text" name="title" id="title" onkeyup="titleCheck()" placeholder="Project Name" required>
                             </div>
                         </li>
                         <li>
@@ -70,7 +70,9 @@
     </section>
 </main>
 <footer th:replace="fragments/footer.html"></footer>
+<script th:src="@{/scripts/createproject.js}"></script>
 <script th:src="@{/scripts/filtersearch.js}"></script>
 <script th:src="@{/scripts/moveitem.js}"></script>
+<script th:inline="javascript">let list =[[${projectTitles}]];</script> <!-- title list -->
 </body>
 </html>

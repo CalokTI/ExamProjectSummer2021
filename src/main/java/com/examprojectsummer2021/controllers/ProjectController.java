@@ -29,19 +29,19 @@ public class ProjectController {
     @GetMapping("/view/dashboard")
     public String renderDashboard(Model model){
         model.addAttribute("list", projectService.getAllProjects());
-
+        model.addAttribute("users",userService.getAllUsers());
 
         return "project/dashboard.html";
     }
 
     //test dashboard
-    @GetMapping("/dashboard2")
+    @GetMapping("/view/dashboard2")
     public String renderDashboard2(Model model){
         model.addAttribute("list", projectService.getAllProjects());
         model.addAttribute("users",userService.getAllUsers());
 
 
-        return "project/dashboard2.html";
+        return "project/dashboard.html";
     }
 
 

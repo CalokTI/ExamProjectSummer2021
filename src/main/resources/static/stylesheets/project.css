@@ -21,7 +21,7 @@
 
 .project-container > * {
     /* box & border for all classes */
-    border-radius: 10px;
+    border-radius: 5px;
     border: silver solid 1px;
     background-color: white;
     box-shadow: 5px 5px 15px -10px #000000;
@@ -31,6 +31,23 @@
 
 }
 
+/* --- all h1 in boxes --- */
+.project-container > * h1 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    color: #292a32;
+}
+
+p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* --- top-left box --- */
 .info {
     grid-area: info;
 
@@ -46,28 +63,21 @@
 .title {
     grid-area: title;
 }
+
 .owner {
     grid-area: owner;
 }
+
 .status {
     grid-area: status;
 }
 
-/* maybe global? */
-h1 {
-    margin-top: 0px;
-    margin-bottom: 5px;
-
-    text-transform: uppercase;
-    font-weight: bold;
-    color: goldenrod;
+.status p, .status form {
+    display: inline-block;
 }
+/* ----------------------- */
 
-p {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
+/* top middle and right box */
 .description {
     grid-area: desc;
 }
@@ -76,8 +86,13 @@ p {
     grid-area: deadline;
 }
 
+/* bottom 2 boxes */
 .users {
     grid-area: users;
+}
+
+.users ul {
+    list-style-type: none;
 }
 
 .tasks {

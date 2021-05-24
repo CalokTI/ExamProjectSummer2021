@@ -10,7 +10,7 @@
         <section class="info">
 
             <section class="title">
-                <h1>Project name</h1>
+                <h1>project name</h1>
                 <p th:text="${project.getTitle}"></p>
             </section>
             <section class="owner">
@@ -19,13 +19,14 @@
             </section>
 
             <section class="status">
+                <h1>project status</h1>
                 <form action="/change_project_status" method="post">
                     <button type="submit" name="projectTitle" th:value="${project.getTitle}">
                         <p th:text="${project.isFinished()}"></p></button>
                 </form>
 
-                <p th:if="${project.isFinished() == true}">🟢</p>
-                <p th:if="${project.isFinished() == false}">🔴</p>
+                <p th:if="${project.isFinished() == true}">[project open]🟢</p>
+                <p th:if="${project.isFinished() == false}">[project closed]🔴</p>
             </section>
 
         </section>
@@ -37,22 +38,19 @@
 
         <section class="deadline">
             <h1>Project dates</h1>
-            <p th:text="${project.getStartDateAsString + ' - ' + project.getDeadlineAsString}"></p>
-            <p th:text="${'days remaining: ' + project.countdown}"></p>
-            <p th:if="${time <= 7 and time >= 0}" th:text="${'working hours per day: ' + time}"></p>
-            <p th:if="${time > 7}" id="time-issue" th:text="|working hours per day: ${time} can't be done in time|"></p>
+            <p th:text="${project.getStartDateAsString + ' ➝ ' + project.getDeadlineAsString}"></p>
+            <hr>
+            <p th:text="${'Days remaining: ' + project.countdown}"></p>
+            <p th:if="${time <= 7 and time >= 0}" th:text="${'Working hours per day: ' + time}"></p>
+            <p th:if="${time > 7}" id="time-issue" th:text="|Working hours per day: ${time} can't be done in time|"></p>
             <p th:if="${time < 0}" id="time-deadline">Deadline passed</p>
         </section>
 
         <section class="users">
             <h1>Assigned users</h1>
             <ul th:each="users : ${users}">
-                <li th:text="${users.getUsername}"></li>
-                <li th:text="${users.getFirstname}"></li>
-                <li th:text="${users.getLastname}"></li>
+                <li th:text="${users.getFirstname + ' ' + users.getLastname}"></li>
                 <li th:text="${users.getRole}"></li>
-                <li th:text="${users.getSalary + ',-/Hour'}">DKK/h</li>
-
             </ul>
         </section>
 

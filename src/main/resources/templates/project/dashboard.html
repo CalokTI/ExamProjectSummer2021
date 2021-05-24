@@ -31,7 +31,8 @@
                     <aside class="project-picture">PICTURE FOR PROJECT</aside>
                     <aside class="table-health">
                         <p th:text="${list.getTasksStatus + ' tasks done'}"></p>
-                        <p th:text="${list.countdown + ' days till deadline'}"></p>
+                        <p th:if="${list.countdown < 0}">deadline passed</p>
+                        <p th:if="${list.countdown >= 0}" th:text="${list.countdown + ' days till deadline'}"></p>
                         <p>💚 💔 ❤</p>
 
                     </aside>

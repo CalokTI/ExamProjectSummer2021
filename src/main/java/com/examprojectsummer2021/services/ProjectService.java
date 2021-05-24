@@ -20,28 +20,25 @@ public class ProjectService {
 
     public void createNewProject(String projectTitle, String projectDescription, String projectOwner, String startDate, String deadline, String[] projectUsers) {
         projectRepository.createNewProject(projectTitle, projectDescription, projectOwner, startDate, deadline);
-        linkUserAndProject(projectUsers, projectTitle, projectOwner);
+        linkUserAndProject(projectUsers, projectTitle);
     }
 
-    private void linkUserAndProject(String[] projectUsers, String projectTitle, String projectOwner){
-        int projectID = getProjectID(projectTitle, projectOwner);
+    private void linkUserAndProject(String[] projectUsers, String projectTitle){
+        int projectID = getProjectID(projectTitle);
 
         for (String s : projectUsers) {
             projectRepository.linkUserAndProject(s, projectID);
         }
     }
 
-    public void changeProjectStatus(int projectID) {
+    public void changeProjectStatus(String projectTitle) {
 
+        int projectID = getProjectID(projectTitle);
         Project project = getSpecificProject(projectID);
 
         boolean state;
 
-        if (project.isFinished()){
-            state = false;
-        } else {
-            state = true;
-        }
+        state = !project.isFinished();
 
         projectRepository.changeProjectFinished(state, projectID);
 
@@ -49,8 +46,8 @@ public class ProjectService {
 
     // ------ GETTERS ------ //
 
-    public int getProjectID(String projectTitle, String projectOwner) {
-        int projectID = projectRepository.getProjectID(projectTitle, projectOwner);
+    public int getProjectID(String projectTitle) {
+        int projectID = projectRepository.getProjectID(projectTitle);
         return projectID;
     }
 

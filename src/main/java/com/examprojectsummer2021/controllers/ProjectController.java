@@ -26,7 +26,7 @@ public class ProjectController {
     private TimeCalculationUtility timeCalculationUtility = new TimeCalculationUtility();
 
     // ------------ DASHBOARD ------------ //
-    @GetMapping("/dashboard")
+    @GetMapping("/view/dashboard")
     public String renderDashboard(Model model){
         model.addAttribute("list", projectService.getAllProjects());
 
@@ -46,7 +46,7 @@ public class ProjectController {
 
 
     // ------------ CREATE PROJECT ------------ //
-    @GetMapping("/createproject")
+    @GetMapping("/view/createproject")
     public String renderNewProject(Model model){
 
         model.addAttribute("allUsers", userService.getAllUsers());
@@ -69,14 +69,13 @@ public class ProjectController {
 
         projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectStartDate, projectDeadline, projectUsers);
 
-        //todo fix link id til projectTitle
-        int projectID = projectService.getProjectID(projectTitle, projectOwner);
-        return "redirect:/updateproject/" + projectID;
+        return "redirect:/view/" + projectTitle;
     }
 
     // ------------ EDIT PROJECT ------------ //
-    @GetMapping("/updateproject/{id}")
-    public String renderUpdateProject(@PathVariable("id") int projectID, Model model){
+    @GetMapping("/view/{title}")
+    public String renderUpdateProject(@PathVariable("title") String projectTitle, Model model){
+        int projectID = projectService.getProjectID(projectTitle);
 
         model.addAttribute("project", projectService.getSpecificProject(projectID));
         model.addAttribute("allUsers", userService.getAllUsers());
@@ -87,10 +86,10 @@ public class ProjectController {
     }
 
     @PostMapping("/change_project_status")
-    public String renderChangeStatus(@RequestParam(name = "projectID") int projectID) {
+    public String renderChangeStatus(@RequestParam(name = "projectTitle") String projectTitle) {
 
-        projectService.changeProjectStatus(projectID);
+        projectService.changeProjectStatus(projectTitle);
 
-        return "redirect:/updateproject/" + projectID;
+        return "redirect:/view/" + projectTitle;
     }
 }

@@ -64,15 +64,14 @@ public class ProjectRepository {
 
     // ------ GETTERS ------ //
 
-    public int getProjectID(String projectTitle, String projectOwner){
+    public int getProjectID(String projectTitle){
         int projectID = -1;
 
-        String sql = "SELECT id FROM project WHERE title = ? AND owner = ?";
+        String sql = "SELECT id FROM project WHERE title = ?";
 
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1,projectTitle);
-            statement.setString(2,projectOwner);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
                 projectID = resultSet.getInt(1);

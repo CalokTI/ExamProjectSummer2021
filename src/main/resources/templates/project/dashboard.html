@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/head.html(currentPage='dashboard')"></head> <!-- custom title !-->
-<head th:replace="fragments/head.html(customCSS='/stylesheets/dashboard.css')"></head> <!-- custom CSS !-->
+<head th:replace="fragments/head.html(currentPage='Dashboard', customCSS='dashboard.css')"></head> <!-- custom title + bonus css-->
 <body>
 <header th:replace="fragments/header.html(currentPage='dashboard')"></header>
 
@@ -9,7 +8,7 @@
 
 
     <section class="create-project">
-        <a href="/createproject">
+        <a href="/view/createproject">
             <button>create a project</button>
         </a>
     </section>
@@ -23,7 +22,7 @@
             <section class="content">
                 <div class="columns">
                     <div class="project-info">
-                        <a th:href="@{'updateproject/{id}' (id = ${list.getID})}">
+                        <a th:href="@{'/view/{projectTitle}' (projectTitle = ${list.getTitle})}">
                             <li th:text="${list.getTitle}"></li>
                         </a>
                         <li class="desc" th:text="${list.getDescription}"></li>

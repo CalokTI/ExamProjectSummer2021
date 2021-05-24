@@ -1,5 +1,6 @@
 package com.examprojectsummer2021.controllers;
 
+import com.examprojectsummer2021.services.ProjectService;
 import com.examprojectsummer2021.services.TaskService;
 import com.examprojectsummer2021.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -17,14 +18,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class TaskController {
 
+    private ProjectService projectService = new ProjectService();
     private UserService userService = new UserService();
     private TaskService taskService = new TaskService();
 
     // ------------ CREATE TASK ------------ //
-    @GetMapping("/createtask")
-    public String renderNewTask(Model model, @RequestParam(name = "projectID") int projectID) {
+    @GetMapping("/view/{projectTitle}/createtask")
+    public String renderNewTask(Model model, @PathVariable("projectTitle") String projectTitle) {
+        int projectID = projectService.getProjectID(projectTitle);
         model.addAttribute("projectUsers", userService.getUsersFromProject(projectID));
-        model.addAttribute("projectID", projectID);
+        model.addAttribute("projectTitle", projectTitle);
 
         return "task/createtask.html";
     }
@@ -35,22 +38,21 @@ public class TaskController {
                                 @RequestParam(name = "time") int taskTime,
                                 @RequestParam(name = "username") String[] taskUsers,
                                 @RequestParam(name = "price", defaultValue = "0") int taskPrice,
-                                @RequestParam(name = "projectID") String projectIDString) {
+                                @RequestParam(name = "projectTitle") String projectTitle) {
 
-        int projectID = Integer.parseInt(projectIDString);
         //todo add owner
         String taskOwner = "jowa69";
-
+        int projectID = projectService.getProjectID(projectTitle);
         taskService.createTask(taskTitle, taskDescription, taskUsers, taskOwner, taskPrice, taskTime, projectID);
 
-        return "redirect:/updateproject/" + projectID;
+        return "redirect:/view/" + projectTitle;
     }
 
 
     // ------------ EDIT TASK ------------ //
-    @GetMapping("/updateproject/updatetask/{id}")
-    public String renderUpdateTask(@PathVariable("id") int taskID, Model model){
-
+    @GetMapping("/view/{projectTitle}/{taskTitle}")
+    public String renderUpdateTask(@PathVariable("projectTitle") String projectTitle, @PathVariable("taskTitle") String taskTitle, Model model){
+        int taskID = taskService.getTaskID(taskTitle);
         model.addAttribute("task",taskService.getTask(taskID));
         model.addAttribute("users",userService.getUsersFromTask(taskID));
 
@@ -58,12 +60,12 @@ public class TaskController {
     }
 
     @PostMapping("/change_finished_status")
-    public String renderChangeStatus(@RequestParam(name = "projectID") int projectID,
+    public String renderChangeStatus(@RequestParam(name = "projectTitle") String projectTitle,
                                      @RequestParam(name = "taskID") int taskID) {
 
         taskService.changeTaskFinished(taskID);
 
-        return "redirect:/updateproject/" + projectID;
+        return "redirect:/view/" + projectTitle;
     }
 }
 

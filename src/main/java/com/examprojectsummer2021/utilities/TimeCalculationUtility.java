@@ -16,7 +16,7 @@ public class TimeCalculationUtility {
 
     public double workingHoursPerDay(int projectID){
         int combinedTaskTime = combinedTaskTime(projectID);
-        int daysToProjectDeadline = daysToProjectDeadline(projectID);
+        int daysToProjectDeadline = daysToProjectDeadline(projectID); //todo nullpointer?
         if (daysToProjectDeadline == 0){
             return -1;
         }

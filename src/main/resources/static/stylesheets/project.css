@@ -16,7 +16,7 @@
 
     display: grid;
     grid-template-columns: 300px 300px 300px;
-    grid-template-rows: 150px 1fr 1fr;
+    grid-template-rows: 175px 1fr 1fr;
     gap: 15px 15px;
     grid-template-areas:
     "info desc deadline"
@@ -67,6 +67,8 @@ p {
 
 .title {
     grid-area: title;
+    overflow-wrap: anywhere;
+
 }
 
 .owner {
@@ -85,6 +87,7 @@ p {
 /* top middle and right box */
 .description {
     grid-area: desc;
+    overflow-wrap: anywhere;
 }
 
 .deadline {

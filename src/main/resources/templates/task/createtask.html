@@ -1,64 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
-<head th:replace="fragments/head.html(currentPage='New Task', customCSS='placeholder.css')"></head> <!-- custom title + bonus css-->
+<head th:replace="fragments/head.html(currentPage='New Task', customCSS='createtask.css')"></head> <!-- custom title + bonus css-->
 <header th:replace="fragments/header.html(currentPage='new task')"></header>
 <body>
 <main>
 
-    <p>new task</p>
-    <p th:text="${projectID}"></p>
-    <section>
 
-        <form action="/createtask" method="post" id="taskcreation">
+    <form class="form" action="/createtask" method="post">
 
-            <section> <!-- task input -->
-                <label for="title">Title: </label>
-                <input required type="text" name="title" id="title" placeholder="Titel goes here">
-                <br>
-                <label for="description">Description: </label>
-                <input required type="text" name="description" id="description" placeholder="Description">
-                <br>
-                <label for="time">time: </label>
-                <input required type="number" name="time" id="time">
-                <br>
-                <label for="price">Price: </label>
-                <input required type="number" name="price" id="price">
-                <br>
-                <input type="hidden" name="projectTitle" th:value="${projectTitle}">
-                <input type="button" id="btnsubmit" onclick="haveUsersBeenAdded()" value="Submit">
-            </section>
 
-            <section> <!-- list of users associated with project -->
-                <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="search for user">
-                <h2>Users available for task</h2>
-                <ul id="myUL">
-                    <div th:each="projectUsers : ${projectUsers}">
-                        <li class="moveWorker">
-                            <a href="#">
-                                <input type="hidden" name="username" th:value="${projectUsers.getUsername}" disabled>
-                                <div id="username" th:text="${projectUsers.getUsername}"></div>
-                                <div id="firstname" th:text="${projectUsers.getFirstname}"></div>
-                                <div id="lastname" th:text="${projectUsers.getLastname}"></div>
-                                <div id="role" th:text="${projectUsers.getRole}"></div>
-                                <div id="salary" th:text="${projectUsers.getSalary + ',-/Hour'}"></div>
-                            </a>
-                        </li>
-                    </div>
-                </ul>
-            </section>
+        <!-- info for form -->
+        <input type="text" class="title" name="title" id="title" onkeyup="titleCheck()"
+               placeholder="Task name" required maxlength="40">
+        <textarea class="description" name="description" id="description"
+                  placeholder="Task description" required maxlength="300"></textarea>
+        <section class="time">
+            <label class="time-label" for="time">Time: </label>
+            <input type="number" name="time" id="time" required>
+        </section>
+        <section class="price">
+            <label class="price-label" for="price">Price: </label>
+            <input type="number" name="price" id="price" required>
+        </section>
 
-            <section> <!-- Selected users for task -->
-                <h2>Users added to task</h2>
-                <ul id="assignedUsers"></ul>
-            </section>
+        <!-- list of all users -->
+        <section class="search">
+            <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search for user">
+        </section>
+        <section class="users1">
+            <ul id="myUL">
+                <div th:each="user : ${projectUsers}">
+                    <li class="moveWorker">
+                        <a href="#">
+                            <input type="hidden" name="username" th:value="${user.getUsername}" disabled>
+                            <p th:text="${user.getFirstname + ' ' + user.getLastname + ' - ' + user.getRole}"></p>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </section>
 
-        </form>
+        <!-- selected users for project -->
+        <section class="users2-p">
+            <p>Assigned users:</p>
+        </section>
+        <section class="users2">
+            <ul id="assignedUsers">
 
-    </section>
+            </ul>
+        </section>
+
+        <!-- buttons -->
+        <button class="confirm" type="submit">
+            <input type="hidden" name="projectTitle" th:value="${projectTitle}">
+            <span class="front">CONFIRM</span>
+        </button>
+        <button class="reset" type="reset">
+            <span class="front">RESET</span>
+        </button>
+
+
+    </form>
+
 
 </main>
-
 <footer th:replace="fragments/footer.html"></footer>
 
 <script th:src="@{/scripts/filtersearch.js}"></script>

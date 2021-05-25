@@ -37,12 +37,12 @@ public class ProjectRepository {
         }
     }
 
-    public void linkUserAndProject(String projectUsername, int projectID){
+    public void linkUserAndProject(String projectUsername, int projectID) {
         String sql = "INSERT INTO user_project (username, projectID) VALUES (?,?)";
-        try{
+        try {
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1,projectUsername);
-            statement.setInt(2,projectID);
+            statement.setString(1, projectUsername);
+            statement.setInt(2, projectID);
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -50,7 +50,7 @@ public class ProjectRepository {
         }
     }
 
-    public void changeProjectFinished(boolean state, int taskID){
+    public void changeProjectFinished(boolean state, int taskID) {
         String sql = "UPDATE project SET is_finished = ? WHERE id = ?";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -64,16 +64,16 @@ public class ProjectRepository {
 
     // ------ GETTERS ------ //
 
-    public int getProjectID(String projectTitle){
+    public int getProjectID(String projectTitle) {
         int projectID = -1;
 
         String sql = "SELECT id FROM project WHERE title = ?";
 
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1,projectTitle);
+            statement.setString(1, projectTitle);
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 projectID = resultSet.getInt(1);
             }
 
@@ -103,27 +103,40 @@ public class ProjectRepository {
         ResultSet resultSet = null;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1,projectID);
+            preparedStatement.setInt(1, projectID);
             resultSet = preparedStatement.executeQuery();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-       return resultSet;
+        return resultSet;
     }
 
-    public ArrayList<String> getAllProjectTitles(){
+    public ArrayList<String> getAllProjectTitles() {
         String sql = "SELECT title FROM project";
         ArrayList<String> allProjectTitles = new ArrayList<>();
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 allProjectTitles.add(resultSet.getString(1));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return allProjectTitles;
+    }
+
+    public void deleteProject(String projectTitle) {
+        String sql = "DELETE FROM project where title = ?";
+
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, projectTitle);
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Project Repository - deleteProject");
+        }
     }
 }

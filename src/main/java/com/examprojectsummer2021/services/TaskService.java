@@ -30,7 +30,7 @@ public class TaskService {
 
         boolean state;
 
-        if (task.isFinished()){
+        if (task.isFinished()) {
             state = false;
         } else {
             state = true;
@@ -104,4 +104,7 @@ public class TaskService {
     }
 
 
+    public void deleteTask(int taskID) {
+        taskRepository.deleteTask(taskID);
+    }
 }

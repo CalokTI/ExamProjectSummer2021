@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/head.html(currentPage='Edit Project', customCSS='project.css')"></head> <!-- custom title + bonus css-->
+<head th:replace="fragments/head.html(currentPage='Edit Project', customCSS='project.css')"></head>
+<!-- custom title + bonus css-->
 <header th:replace="fragments/header.html(currentPage='edit project')"></header>
 <body>
 <main>
@@ -74,7 +75,8 @@
                 <tr th:each="task : ${tasks}">
 
                     <td>
-                        <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}" th:text="${task.getID}">
+                        <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}"
+                           th:text="${task.getID}">
                         </a>
                     </td>
 
@@ -92,27 +94,27 @@
 
             </table>
 
-             <!-- new -->
+            <!-- new -->
             <ul th:each="task : ${tasks}">
-            <section class="grid-container">
+                <section class="grid-container">
 
 
-                <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}">
-                    <section class="title">
+                    <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}">
                         <section class="title">
-                            <p th:text="${task.getTitle}"></p>
+                            <section class="title">
+                                <p th:text="${task.getTitle}"></p>
+                            </section>
+
+
                         </section>
-
-
-                    </section>
-                </a>
+                    </a>
                     <section class="size">
-                     <p>52</p>
+                        <p>52</p>
                     </section>
 
                     <section class="price">
 
-                            <p th:text="${task.getPrice}"></p>
+                        <p th:text="${task.getPrice}"></p>
 
                     </section>
 
@@ -127,7 +129,7 @@
                     </section>
 
 
-            </section>
+                </section>
             </ul>
 
 
@@ -135,7 +137,11 @@
 
     </section>
 
-    <button type="button">⚠ Delete project</button>
+    <section> <!-- delete project -->
+        <form action="/deleteproject" method="post">
+            <button type="submit" name="projectTitle" th:value="${project.getTitle}">⚠ Delete project</button>
+        </form>
+    </section>
 
 
 </main>

@@ -41,24 +41,24 @@ public class TaskRepository {
         }
     }
 
-    public void changeTaskFinished(boolean state, int taskID){
+    public void changeTaskFinished(boolean state, int taskID) {
         String sql = "UPDATE task SET is_finished = ? WHERE id = ?";
-                try {
-                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                    preparedStatement.setBoolean(1, state);
-                    preparedStatement.setInt(2, taskID);
-                    preparedStatement.executeUpdate();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setBoolean(1, state);
+            preparedStatement.setInt(2, taskID);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-    public void linkUserAndTask(String taskUsername, int taskID){
+    public void linkUserAndTask(String taskUsername, int taskID) {
         String sql = "INSERT INTO user_task (username, taskID) VALUES (?,?)";
-        try{
+        try {
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1,taskUsername);
-            statement.setInt(2,taskID);
+            statement.setString(1, taskUsername);
+            statement.setInt(2, taskID);
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -69,12 +69,12 @@ public class TaskRepository {
 
     // ------ GETTERS ------ //
 
-    public ResultSet getTask(int taskID){
+    public ResultSet getTask(int taskID) {
         String sql = "SELECT * FROM task WHERE id = ?";
         ResultSet resultSet = null;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1,taskID);
+            preparedStatement.setInt(1, taskID);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -100,14 +100,14 @@ public class TaskRepository {
 
     }
 
-    public int getTaskID(String taskTitle){
+    public int getTaskID(String taskTitle) {
+        String sql = "Select id FROM task where title = ?";
         try {
-            String sql = "Select id FROM task where title = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1,taskTitle);
+            statement.setString(1, taskTitle);
 
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getInt(1);
             }
         } catch (SQLException throwables) {
@@ -115,6 +115,18 @@ public class TaskRepository {
             System.out.println("TaskRepository - getTaskID");
         }
         return -1;
+    }
+
+    public void deleteTask(int taskID) {
+        String sql = "DELETE FROM task where id = ?";
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, taskID);
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("TaskRepository - deleteTask");
+        }
     }
 
 }

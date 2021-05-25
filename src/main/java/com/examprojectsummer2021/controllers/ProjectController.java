@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-
 /**
  * @author Carsten
  */
@@ -27,18 +26,18 @@ public class ProjectController {
 
     // ------------ DASHBOARD ------------ //
     @GetMapping("/view/dashboard")
-    public String renderDashboard(Model model){
+    public String renderDashboard(Model model) {
         model.addAttribute("list", projectService.getAllProjects());
-        model.addAttribute("users",userService.getAllUsers());
+        model.addAttribute("users", userService.getAllUsers());
 
         return "project/dashboard.html";
     }
 
     //test dashboard
     @GetMapping("/view/dashboard2")
-    public String renderDashboard2(Model model){
+    public String renderDashboard2(Model model) {
         model.addAttribute("list", projectService.getAllProjects());
-        model.addAttribute("users",userService.getAllUsers());
+        model.addAttribute("users", userService.getAllUsers());
 
 
         return "project/dashboard.html";
@@ -47,7 +46,7 @@ public class ProjectController {
 
     // ------------ CREATE PROJECT ------------ //
     @GetMapping("/view/createproject")
-    public String renderNewProject(Model model){
+    public String renderNewProject(Model model) {
 
         model.addAttribute("allUsers", userService.getAllUsers());
         model.addAttribute("projectTitles", projectService.getAllProjectTitles());
@@ -61,7 +60,7 @@ public class ProjectController {
                                    @RequestParam(name = "description") String projectDescription,
                                    @RequestParam(name = "startdate") String projectStartDate,
                                    @RequestParam(name = "deadline") String projectDeadline,
-                                   @RequestParam(name ="username", required = false) String[] projectUsers){
+                                   @RequestParam(name = "username", required = false) String[] projectUsers) {
 
 
         // owner
@@ -74,7 +73,7 @@ public class ProjectController {
 
     // ------------ EDIT PROJECT ------------ //
     @GetMapping("/view/{title}")
-    public String renderUpdateProject(@PathVariable("title") String projectTitle, Model model){
+    public String renderUpdateProject(@PathVariable("title") String projectTitle, Model model) {
         int projectID = projectService.getProjectID(projectTitle);
 
         model.addAttribute("project", projectService.getSpecificProject(projectID));
@@ -91,5 +90,11 @@ public class ProjectController {
         projectService.changeProjectStatus(projectTitle);
 
         return "redirect:/view/" + projectTitle;
+    }
+
+    @PostMapping("/deleteproject")
+    public String deleteProject(@RequestParam(name = "projectTitle") String projectTitle) {
+        projectService.deleteProject(projectTitle);
+        return "redirect:/view/dashboard";
     }
 }

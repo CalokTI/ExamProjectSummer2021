@@ -23,7 +23,7 @@ public class ProjectService {
         linkUserAndProject(projectUsers, projectTitle);
     }
 
-    private void linkUserAndProject(String[] projectUsers, String projectTitle){
+    private void linkUserAndProject(String[] projectUsers, String projectTitle) {
         int projectID = getProjectID(projectTitle);
 
         for (String s : projectUsers) {
@@ -95,8 +95,12 @@ public class ProjectService {
         return allProjects;
     }
 
-    public ArrayList<String> getAllProjectTitles(){
+    public ArrayList<String> getAllProjectTitles() {
         return projectRepository.getAllProjectTitles();
+    }
+
+    public void deleteProject(String projectTitle) {
+        projectRepository.deleteProject(projectTitle);
     }
 
 

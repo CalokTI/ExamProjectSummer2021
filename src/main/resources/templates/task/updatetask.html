@@ -43,6 +43,13 @@
     </section>
 
 
+    <section> <!-- Delete task  click button -> new button(confirm) -> delete task -->
+        <form action="/deletetask" method="post">
+            <input type="hidden" name="projectTitle" th:value="${projectTitle}">
+            <button type="submit" name="taskID" th:value="${task.getID}"></button>
+        </form>
+    </section>
+
 </main>
 <footer th:replace="fragments/footer.html"></footer>
 </body>

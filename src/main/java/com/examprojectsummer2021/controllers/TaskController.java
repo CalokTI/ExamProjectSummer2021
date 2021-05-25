@@ -51,10 +51,11 @@ public class TaskController {
 
     // ------------ EDIT TASK ------------ //
     @GetMapping("/view/{projectTitle}/{taskTitle}")
-    public String renderUpdateTask(@PathVariable("projectTitle") String projectTitle, @PathVariable("taskTitle") String taskTitle, Model model){
+    public String renderUpdateTask(@PathVariable("projectTitle") String projectTitle, @PathVariable("taskTitle") String taskTitle, Model model) {
         int taskID = taskService.getTaskID(taskTitle);
-        model.addAttribute("task",taskService.getTask(taskID));
-        model.addAttribute("users",userService.getUsersFromTask(taskID));
+        model.addAttribute("projectTitle", projectTitle);
+        model.addAttribute("task", taskService.getTask(taskID));
+        model.addAttribute("users", userService.getUsersFromTask(taskID));
 
         return "task/updatetask.html";
     }
@@ -64,6 +65,15 @@ public class TaskController {
                                      @RequestParam(name = "taskID") int taskID) {
 
         taskService.changeTaskFinished(taskID);
+
+        return "redirect:/view/" + projectTitle;
+    }
+
+    @PostMapping("/deletetask")
+    public String deleteTask(@RequestParam(name = "taskID") int taskID,
+                             @RequestParam(name = "projectTitle") String projectTitle) {
+
+        taskService.deleteTask(taskID);
 
         return "redirect:/view/" + projectTitle;
     }

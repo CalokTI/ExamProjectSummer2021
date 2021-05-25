@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/head.html(currentPage='Dashboard', customCSS='dashboard.css')"></head> <!-- custom title + bonus css-->
+<head th:replace="fragments/head.html(currentPage='Dashboard', customCSS='dashboard.css')"></head>
+<!-- custom title + bonus css-->
+
 <body>
 <header th:replace="fragments/header.html(currentPage='dashboard')"></header>
 
@@ -21,13 +23,15 @@
             <p> 2 [open]</p>
             <p> 5 [closed]</p>
 
-        </section>
 
-    <section class="create-project">
-        <a href="/view/createproject">
-            <button>create a project</button>
-        </a>
+        </section>
+        <section class="create-project">
+            <a href="/view/createproject">
+                <button>create a project</button>
+            </a>
+        </section>
     </section>
+
 
     <!-- ----- projects ---- -->
 

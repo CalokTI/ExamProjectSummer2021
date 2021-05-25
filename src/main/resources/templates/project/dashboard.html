@@ -6,6 +6,22 @@
 
 <main>
 
+    <!-- ----- top ----- -->
+
+    <section class="overview">
+
+        <section class="users-overview">
+            <h1>Employees:</h1>
+            <p th:text="${users.size}"></p>
+        </section>
+
+        <section class="projects-overview">
+            <h1>Projects:</h1>
+            <p th:text="${list.size}"></p>
+            <p> 2 [open]</p>
+            <p> 5 [closed]</p>
+
+        </section>
 
     <section class="create-project">
         <a href="/view/createproject">
@@ -13,33 +29,42 @@
         </a>
     </section>
 
-    <!-- <aside class="cell cell-2">Project name</aside>-->
-    <!-- <main class="cell cell-3">Description</main>-->
+    <!-- ----- projects ---- -->
+
+    <!-- NEW -->
+    <section class="projects">
+        <ul th:each="list : ${list}">
+
+            <section class="card">
+                <section class="title">
+                    <p th:if="${list.isFinished() == true}">🟢</p>
+                    <p th:if="${list.isFinished() == false}">🔴</p>
+                    <h1 th:text="${list.getTitle}"></h1>
+                </section>
+
+                <section class="edited">
+                    <p>🕒︎ last updated on 20-04-21</p>
+                </section>
+                <section class="description">
+                    <p th:text="${list.getDescription}"></p>
+
+                </section>
+                <section class="status">
+                    <p th:text="${list.getTasksStatus}"></p>
+
+                </section>
+                <section class="time">
+                    <p th:text="${list.countdown}"></p>
+
+                </section>
 
 
-    <ul th:each="list : ${list}">
-        <div class="projects">
-            <section class="content">
-                <div class="columns">
-                    <div class="project-info">
-                        <a th:href="@{'/view/{projectTitle}' (projectTitle = ${list.getTitle})}">
-                            <li th:text="${list.getTitle}"></li>
-                        </a>
-                        <li class="desc" th:text="${list.getDescription}"></li>
+                <a class="link" th:href="@{'/view/{projectTitle}' (projectTitle = ${list.getTitle})}">details ↗</a>
 
-                    </div>
-                    <aside class="project-picture">PICTURE FOR PROJECT</aside>
-                    <aside class="table-health">
-                        <p th:text="${list.getTasksStatus + ' tasks done'}"></p>
-                        <p th:if="${list.countdown < 0}">deadline passed</p>
-                        <p th:if="${list.countdown >= 0}" th:text="${list.countdown + ' days till deadline'}"></p>
-                        <p>💚 💔 ❤</p>
-
-                    </aside>
-                </div>
             </section>
-        </div>
-    </ul>
+
+        </ul>
+    </section>
 
 </main>
 <footer th:replace="fragments/footer.html"></footer>

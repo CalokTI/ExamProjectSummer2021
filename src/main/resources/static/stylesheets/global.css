@@ -126,13 +126,15 @@ label #cancel {
 
 /* --- FOOTER --- */
 
-footer{
+footer {
+
     width: 500px;
     margin-top: 25px;
     text-align: center;
     color: black;
 
-    /* center the content */
     margin-left: auto;
     margin-right: auto;
 }
+
+

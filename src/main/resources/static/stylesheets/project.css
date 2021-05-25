@@ -4,8 +4,13 @@
     /* justify-items: center; */
 
     margin-top: 25px;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-left: 20%;
+    margin-right: 20%;*/
+
+
+    width: 900px;
     /* border: white solid 5px;
     background-color: cornsilk; */
 
@@ -95,6 +100,38 @@ p {
     list-style-type: none;
 }
 
+/* --- subgrid for tasks --- */
 .tasks {
     grid-area: tasks;
+
+
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "title size price status";
+}
+.title { grid-area: title; }
+.size { grid-area: size; }
+.price { grid-area: price; }
+.status { grid-area: status; }
+
+/* ------------------- */
+
+/* --- misc --- */
+
+.grid-container a:hover{
+    background-color: #194fa8;
+    color: white;
+    transition: background-color .2s;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+

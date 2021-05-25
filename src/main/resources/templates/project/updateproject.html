@@ -61,6 +61,7 @@
                 <button type="submit">Create task</button>
             </form>
 
+            <!-- old -->
             <table>
                 <tr>
                     <th>ID</th>
@@ -91,8 +92,50 @@
 
             </table>
 
+             <!-- new -->
+            <ul th:each="task : ${tasks}">
+            <section class="grid-container">
+
+
+                <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}">
+                    <section class="title">
+                        <section class="title">
+                            <p th:text="${task.getTitle}"></p>
+                        </section>
+
+
+                    </section>
+                </a>
+                    <section class="size">
+                     <p>52</p>
+                    </section>
+
+                    <section class="price">
+
+                            <p th:text="${task.getPrice}"></p>
+
+                    </section>
+
+                    <section class="status">
+                        <form action="/change_finished_status" method="post">
+                            <input type="hidden" name="projectTitle" th:value="${project.getTitle}">
+                            <button type="submit" name="taskID" th:value="${task.getID}">
+                                <p th:text="${task.printIsFinished()}"></p></button>
+                        </form>
+
+
+                    </section>
+
+
+            </section>
+            </ul>
+
+
         </section>
+
     </section>
+
+    <button type="button">⚠ Delete project</button>
 
 
 </main>

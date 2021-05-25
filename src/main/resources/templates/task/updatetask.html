@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/head.html(currentPage='Edit Task', customCSS='placeholder.css')"></head> <!-- custom title + bonus css-->
+<head th:replace="fragments/head.html(currentPage='Edit Task', customCSS='viewtask.css')"></head>
+<!-- custom title + bonus css-->
 <header th:replace="fragments/header.html(currentPage='edit task')"></header>
 <body>
 <main>
 
-    <section class="title">
-        <h1 th:text="${task.getTitle}"></h1>
+    <!-- NEW -->
+    <section class="task">
+
+        <section class="title">
+            <h1 th:text="${task.getTitle}"></h1>
+        </section>
+
+        <section class="edited">
+            🕒︎ created on 20-04-21
+        </section>
+
+        <section class="status">
+            <p th:if="${task.isFinished() == true}">✔️[task finished]</p>
+            <p th:if="${task.isFinished() == false}">⭕[task open]</p>
+        </section>
+
+        <section class="description">
+            <p th:text="${task.getDescription}"></p>
+        </section>
+
+        <section class="price">
+            <p th:text="${'Allotted time: ' + task.getTime + ' HOURS'}"></p>
+            <p th:text="${'Approximate price: ' + task.getPrice + ',- DKK'}"></p>
+
+        </section>
+
+        <section class="users">
+            <p>ASSIGNED USERS</p>
+            <ul th:each="user : ${users}">
+                <li th:text="${user.getFirstname + ' ' + user.getLastname + ' - ' + user.getRole}"></li>
+            </ul>
+        </section>
+
+
     </section>
 
-    <section class="description">
-        <p th:text="${task.getDescription}"></p>
-    </section>
-
-    <section class="status">
-        <p th:text="${'Task status: ' + task.isFinished}"></p>
-    </section>
-
-    <section class="users">
-        <p>Assigned users to task:</p>
-        <ul th:each="user : ${users}">
-            <li th:text="${user.getUsername}"></li>
-            <li th:text="${user.getFirstname}"></li>
-            <li th:text="${user.getLastname}"></li>
-            <li th:text="${user.getSalary + ',-/Hour'}"></li>
-        </ul>
-    </section>
 
 </main>
 <footer th:replace="fragments/footer.html"></footer>

@@ -1,54 +1,140 @@
-main{
+/* ------- OVERVIEW ------- */
+.overview {
+
     margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 900px;
+
+
+    /* internal padding */
+    padding: 10px;
+
+    place-items: center;
+
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "uo po cp";
+}
+
+.users-overview {
+    grid-area: uo;
+
+
+}
+
+.projects-overview {
+    grid-area: po;
+    border-left: black 1px solid;
+    border-right: black 1px solid;
+
+    padding-right: 125px;
+    padding-left: 125px;
+
 }
 
 .create-project {
-    text-align: center;
-
+    grid-area: cp;
 }
 
-.projects {
-    margin: auto;
-    max-width: 1000px;
-    border-style: solid;
-    border-top-style: inset;
-    display: flex;
-    flex-direction: column;
+
+/* ------ PROJECTS ------ */
+.card {
+
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: black solid 1px;
+    background: white;
+    border-radius: 5px;
+    width: 900px;
+
+    /* link overflowing thing */
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 50px 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "title title edit link"
+    "desc desc status time";
 }
 
-.content {
-    display: flex;
-    flex: 1;
-    color: #17f817;
-}
-
-.columns {
-    display: flex;
-    flex: 1;
-}
-
-.project-info {
-    flex: 1;
-    order: 2;
-    color: red;
-    text-align: center;
-}
-
-.project-picture {
-    left: 30px;
-    width: 20%;
-    color: yellow;
-    order: 1;
-}
-
-.table-health {
-    width: 20%;
-    order: 3;
-    color: black;
-}
-
-.projects li {
+.title {
+    grid-area: title;
     display: inline-block;
-    word-break: break-word;
-    width: 500px;
+
+
+    border-bottom: silver solid 1px;
+}
+
+.title h1 {
+
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+.title p {
+    margin-left: 15px;
+    display: inline-block;
+}
+
+.edited{
+    grid-area: edit;
+    text-align: right;
+    padding-right: 10px;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: #5f5f5f;
+
+    border-bottom: silver solid 1px;
+}
+
+.description {
+    grid-area: desc;
+
+    margin-left: 12px;
+}
+
+.time {
+    grid-area: time;
+}
+
+.status {
+    grid-area: status;
+}
+
+.link {
+    grid-area: link;
+    text-decoration: none;
+
+    display: grid;
+    place-items: center;
+    background: #194fa8;
+    color: white;
+
+    border-bottom: #194fa8 solid 1px;
+
+
+}
+
+/* ---- MISC ---- */
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.link:hover{
+    background-color: #3368bd;
+    color: white;
+    transition: background-color .5s;
 }

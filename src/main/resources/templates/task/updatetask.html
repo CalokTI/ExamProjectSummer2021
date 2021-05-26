@@ -19,6 +19,10 @@
         <section class="status">
             <p th:if="${task.isFinished() == true}">✔️[task finished]</p>
             <p th:if="${task.isFinished() == false}">⭕[task open]</p>
+            <form action="/deletetask" method="post">
+                <input type="hidden" name="projectTitle" th:value="${projectTitle}">
+                <button type="submit" name="taskID" th:value="${task.getID}">Delete task</button>
+            </form>
         </section>
 
         <section class="description">
@@ -27,12 +31,12 @@
 
         <section class="price">
             <p th:text="${'Allotted time: ' + task.getTime + ' HOURS'}"></p>
-            <p th:text="${'Approximate price: ' + task.getPrice + ',- DKK'}"></p>
+            <p th:text="${'Approximate price: ' + task.getPrice + ' DKK'}"></p>
 
         </section>
 
         <section class="users">
-            <p>ASSIGNED USERS</p>
+            <p>Assigned users:</p>
             <ul th:each="user : ${users}">
                 <li th:text="${user.getFirstname + ' ' + user.getLastname + ' - ' + user.getRole}"></li>
             </ul>
@@ -43,10 +47,7 @@
 
 
     <section> <!-- Delete task  click button -> new button(confirm) -> delete task -->
-        <form action="/deletetask" method="post">
-            <input type="hidden" name="projectTitle" th:value="${projectTitle}">
-            <button type="submit" name="taskID" th:value="${task.getID}"></button>
-        </form>
+
     </section>
 
 </main>

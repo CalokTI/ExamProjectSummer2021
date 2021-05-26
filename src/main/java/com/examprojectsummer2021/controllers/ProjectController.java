@@ -30,7 +30,7 @@ public class ProjectController {
         model.addAttribute("list", projectService.getAllProjects());
         model.addAttribute("users", userService.getAllUsers());
 
-        return "project/dashboard.html";
+        return "index/dashboard.html";
     }
 
     //test dashboard

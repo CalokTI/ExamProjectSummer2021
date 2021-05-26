@@ -14,7 +14,7 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr 175px 150px;
-    grid-template-rows: 50px auto 1fr;
+    grid-template-rows: 100px auto 1fr;
     gap: 0px 0px;
     grid-template-areas:
     "title title edited status"
@@ -73,7 +73,10 @@
 
 .users {
     grid-area: users;
+    text-align: center;
 }
+
+
 
 /* ---- MISC ---- */
 ul {

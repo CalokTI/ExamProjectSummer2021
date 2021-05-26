@@ -33,17 +33,6 @@ public class ProjectController {
         return "index/dashboard.html";
     }
 
-    //test dashboard
-    @GetMapping("/view/dashboard2")
-    public String renderDashboard2(Model model) {
-        model.addAttribute("list", projectService.getAllProjects());
-        model.addAttribute("users", userService.getAllUsers());
-
-
-        return "project/dashboard.html";
-    }
-
-
     // ------------ CREATE PROJECT ------------ //
     @GetMapping("/view/createproject")
     public String renderNewProject(Model model) {

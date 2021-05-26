@@ -48,10 +48,10 @@ public class Task {
 
     public String printIsFinished() {
         if (isFinished) {
-            return "finished ✔️";
+            return "✔️";
         }
         else {
-            return "N҉̟̬O͈͘T͖͕̩ ❌";
+            return "⭕";
         }
     }
 

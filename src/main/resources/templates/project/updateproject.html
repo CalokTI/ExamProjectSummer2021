@@ -82,35 +82,33 @@
                 <section class="grid-container">
 
 
-                    <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}">
-                        <section class="title">
-                            <section class="title">
-                                <p th:text="${task.getTitle}"></p>
-                            </section>
+                    <section class="title-task">
 
+                        <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}">
+                            <p th:text="${task.getTitle}"></p>
+                        </a>
 
-                        </section>
-                    </a>
-                    <section class="size">
-                        <p>52</p>
                     </section>
+
+                    <section class="time">
+                        <p th:text="${task.getTime}"></p>
+
+                    </section>
+
+                    <p class="hours">Hours</p>
 
                     <section class="price">
-
-                        <p th:text="${task.getDescription}"></p>
-
+                        <p th:text="${task.getPrice}"></p>
                     </section>
+                    <p class="currency">DKK</p>
 
-                    <section class="status">
+                    <section class="status-task">
                         <form action="/change_finished_status" method="post">
                             <input type="hidden" name="projectTitle" th:value="${project.getTitle}">
                             <button type="submit" name="taskID" th:value="${task.getID}">
                                 <p th:text="${task.printIsFinished()}"></p></button>
                         </form>
-
-
                     </section>
-
 
                 </section>
             </ul>
@@ -119,8 +117,6 @@
         </section>
 
     </section>
-
-
 
 
 </main>

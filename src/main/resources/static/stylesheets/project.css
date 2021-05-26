@@ -123,22 +123,82 @@ p {
     border-bottom: 1px solid silver;
 }
 
-.grid-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.tasks > h1 {
+    padding-left: 10px;
+}
+
+.tasks > form {
+    padding-left: 10px;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 50px 150px 50px 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "title time hours price currency status";
+}
+
+
+.title-task {
+    grid-area: title;
+    padding-left: 10px;
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+
+.title-task a {
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+
+.title-task p {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.time {
+    grid-area: time;
+    text-align: right;
+    text-overflow: ellipsis;
+}
+
+.hours {
+    padding-left: 5px;
+    grid-area: hours;
+}
+
+.currency {
+    padding-left: 5px;
+    grid-area: currency;
+}
+
+.price {
+    grid-area: price;
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+.status-task {
+    grid-area: status;
+    margin-left: auto;
+    padding-right: 10px;
 }
 
 /* ------------------- */
 
 /* --- misc --- */
-
+/*
 .grid-container a:hover {
     background-color: #194fa8;
     color: white;
     transition: background-color .2s;
 }
-
+*/
 .tasks ul:hover {
     background: #e2e2ef;
 }

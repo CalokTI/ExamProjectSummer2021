@@ -5,11 +5,11 @@ function createProject(){
     availableTitle = titleCheck();
 
     if(!usersAdded){
-        alert("Add users to task");
+        alert("Add users to Project");
         return false;
     }
     else if(availableTitle){
-        alert("Task title already in use")
+        alert("Project title already in use")
         return false;
     }
     else {

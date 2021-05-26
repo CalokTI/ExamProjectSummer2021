@@ -6,11 +6,11 @@
 <main>
 
     <!-- NEW -->
-    <form class="form" action="/createproject" method="post">
+    <form class="form" id="projectcreation" action="/createproject" method="post">
 
 
         <!-- info for form -->
-        <input type="text" class="title" name="title" id="title" onkeyup="titleCheck()"
+        <input type="text" class="title" name="title" id="title"
                placeholder="Project name" required maxlength="40">
         <textarea class="description" name="description" id="description"
                   placeholder="Project description" maxlength="150" required></textarea>
@@ -50,16 +50,14 @@
             </ul>
         </section>
 
-        <!-- buttons -->
-        <button class="confirm" type="submit">
-            <span class="front">CONFIRM</span>
-        </button>
-        <button class="reset" type="reset">
-            <span class="front">RESET</span>
-        </button>
-
-
     </form>
+    <!-- buttons -->
+    <button class="confirm" onclick="createProject()">
+        <span class="front">CONFIRM</span>
+    </button>
+    <button class="reset" type="reset">
+        <span class="front">RESET</span>
+    </button>
 
 
 </main>

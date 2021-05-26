@@ -103,6 +103,10 @@ public class TaskService {
         return taskList;
     }
 
+    public ArrayList<String> getAllTaskTitles(){
+        return taskRepository.getAllTaskTitles();
+    }
+
 
     public void deleteTask(int taskID) {
         taskRepository.deleteTask(taskID);

@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/head.html(currentPage='New Task', customCSS='createtask.css')"></head> <!-- custom title + bonus css-->
+<head th:replace="fragments/head.html(currentPage='New Task', customCSS='createtask.css')"></head>
+<!-- custom title + bonus css-->
 <header th:replace="fragments/header.html(currentPage1=${projectTitle}, currentPage2='createtask')"></header>
 <body>
 <main>
 
 
-    <form class="form" action="/createtask" method="post">
-
+    <form class="form" id="taskcreation" action="/createtask" method="post">
 
         <!-- info for form -->
-        <input type="text" class="title" name="title" id="title" onkeyup="titleCheck()"
+        <input type="text" class="title" name="title" id="title"
                placeholder="Task name" required maxlength="20">
+
         <textarea class="description" name="description" id="description"
                   placeholder="Task description" required maxlength="300"></textarea>
+
         <section class="time">
             <label class="time-label" for="time">Time: </label>
             <input type="number" name="time" id="time" required>
         </section>
+
         <section class="price">
             <label class="price-label" for="price">Price: </label>
             <input type="number" name="price" id="price" required>
@@ -50,17 +53,16 @@
             </ul>
         </section>
 
-        <!-- buttons -->
-        <button class="confirm" type="submit">
-            <input type="hidden" name="projectTitle" th:value="${projectTitle}">
-            <span class="front">CONFIRM</span>
-        </button>
-        <button class="reset" type="reset">
-            <span class="front">RESET</span>
-        </button>
-
-
     </form>
+
+    <!-- buttons -->
+    <button class="confirm" onclick="createTask()">
+        <input type="hidden" name="projectTitle" th:value="${projectTitle}">
+        <span class="front">CONFIRM</span>
+    </button>
+    <button class="reset" type="reset">
+        <span class="front">RESET</span>
+    </button>
 
 
 </main>
@@ -70,5 +72,6 @@
 <script th:src="@{/scripts/moveitem.js}"></script>
 <script th:src="@{/scripts/createtask.js}"></script>
 
+<script th:inline="javascript">let list = [[${taskTitles}]];</script> <!-- title list -->
 </body>
 </html>

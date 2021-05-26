@@ -1,11 +1,29 @@
-function titleCheck() {
+function createProject(){
+    let usersAdded, availableTitle;
 
-    let input = document.getElementById("title").value;
-    console.log(input);
+    usersAdded = haveUsersBeenAdded();
+    availableTitle = titleCheck();
 
-    if(list.includes(input)){
-        document.querySelector(".btn-grid-confirm").disabled = true;
-    }else{
-        document.querySelector(".btn-grid-confirm").disabled = false;
+    if(!usersAdded){
+        alert("Add users to task");
+        return false;
     }
+    else if(availableTitle){
+        alert("Task title already in use")
+        return false;
+    }
+    else {
+        document.getElementById("projectcreation").submit();
+    }
+    return false;
+
+}
+
+function haveUsersBeenAdded(){
+    return document.getElementById("assignedUsers").children[0] != null;
+}
+
+function titleCheck() {
+    let input = document.getElementById("title").value;
+    return list.includes(input);
 }

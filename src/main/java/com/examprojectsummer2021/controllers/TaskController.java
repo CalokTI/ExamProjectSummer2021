@@ -27,6 +27,7 @@ public class TaskController {
     public String renderNewTask(Model model, @PathVariable("projectTitle") String projectTitle) {
         int projectID = projectService.getProjectID(projectTitle);
         model.addAttribute("projectUsers", userService.getUsersFromProject(projectID));
+        model.addAttribute("taskTitles", taskService.getAllTaskTitles());
         model.addAttribute("projectTitle", projectTitle);
 
         return "task/createtask.html";

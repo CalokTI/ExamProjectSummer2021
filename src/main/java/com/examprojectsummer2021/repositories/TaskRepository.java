@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * @author Julius & Anton
@@ -115,6 +116,21 @@ public class TaskRepository {
             System.out.println("TaskRepository - getTaskID");
         }
         return -1;
+    }
+
+    public ArrayList<String> getAllTaskTitles(){
+        String sql = "SELECT title FROM task";
+        ArrayList<String> allTaskTitles = new ArrayList<>();
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                allTaskTitles.add(resultSet.getString(1));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return allTaskTitles;
     }
 
     public void deleteTask(int taskID) {

@@ -133,7 +133,7 @@ public class Project {
         Date today = new Date();
 
         long diff = deadline.getTime() - today.getTime();
-        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + 1;
 
     }
 

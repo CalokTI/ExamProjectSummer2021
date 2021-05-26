@@ -55,7 +55,9 @@
 
                 </section>
                 <section class="time">
-                    <p th:text="${list.countdown}"></p>
+                    <p th:if="${list.countdown == 1}" th:text="${list.countdown + ' day left!'}"></p>
+                    <p th:if="${list.countdown > 1}" th:text="${list.countdown + ' days left'}"></p>
+                    <p th:if="${list.countdown <= 0}">Deadline passed</p>
 
                 </section>
 

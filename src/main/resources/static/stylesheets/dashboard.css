@@ -1,19 +1,18 @@
 /* ------- OVERVIEW ------- */
 .overview {
 
-    margin-top: 25px;
     margin-left: auto;
     margin-right: auto;
 
     width: 900px;
 
-
     /* internal padding */
     padding: 10px;
 
-    place-items: center;
     display: flex;
-    vertical-align: text-top;
+    justify-content: space-around;
+    align-items: flex-start;
+
 }
 
 

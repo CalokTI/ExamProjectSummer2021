@@ -10,59 +10,25 @@
 
     <section class="overview">
 
-        <section class="users-title">
-            <h1>Employees:</h1>
-        </section>
-        <section class="users-overview">
-            <p th:text="${users.size}"></p>
-        </section>
-        <section class="projects-title">
-            <h1>Projects:</h1>
-        </section>
         <section class="projects-overview">
+            <h1>Projects:</h1>
             <p th:text="${list.size + ' in total'}"></p>
-            <p>🟢 2 open</p>
-            <p>🔴 1 closed</p>
+            <p>🟢 3 open</p>
+            <p>🔴 9 closed</p>
         </section>
-        <section class="create-title">
 
-            <h1>Create:</h1>
+        <section class="users-overview">
+            <h1>Employees:</h1>
+            <p th:text="${users.size + ' in total'}"></p>
         </section>
+
         <section class="create-project">
+            <h1>Create:</h1>
             <a href="/view/createproject">
                 <button>New project</button>
             </a>
         </section>
     </section>
-
-<!-- old
-    <section class="overview">
-
-        <section class="users-title">
-            <h1>Employees:</h1>
-        </section>
-        <section class="users-overview">
-            <p th:text="${users.size}"></p>
-        </section>
-        <section class="projects-title">
-            <h1>Projects:</h1>
-        </section>
-        <section class="projects-overview">
-            <p th:text="${list.size + ' in total'}"></p>
-            <p>🟢 2 open</p>
-            <p>🔴 1 closed</p>
-        </section>
-        <section class="create-title">
-
-            <h1>Create:</h1>
-        </section>
-        <section class="create-project">
-            <a href="/view/createproject">
-                <button>New project</button>
-            </a>
-        </section>
-    </section>
--->
 
     <!-- ----- projects ---- -->
 

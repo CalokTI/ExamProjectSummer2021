@@ -33,7 +33,6 @@
 
     /* internal padding */
     padding: 10px;
-
 }
 
 /* --- all h1 in boxes --- */
@@ -100,6 +99,10 @@ p {
     grid-area: users;
 }
 
+.users li {
+    padding-left: 10px;
+}
+
 .users ul {
     list-style-type: none;
 }
@@ -120,34 +123,10 @@ p {
     border-bottom: 1px solid silver;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 25px;
-    gap: 0px 0px;
-    grid-template-areas:
-    "title size price status";
-}
-
-.grid-container > * {
-
-}
-
-.title {
-    grid-area: title;
-}
-
-.size {
-    grid-area: size;
-    text-overflow: ellipsis;
-}
-
-.price {
-    grid-area: price;
-}
-
-.status {
-    grid-area: status;
+.grid-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* ------------------- */

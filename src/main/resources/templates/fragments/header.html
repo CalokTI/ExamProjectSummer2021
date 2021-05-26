@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <header>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-    <h1 th:text="${currentPage}"></h1>
 
+    <!-- breadcrumb -->
+    <a href="/view/dashboard">
+        <h1>dashboard</h1>
+    </a>
+
+    <a th:href="${'/view/'+ currentPage1}" th:unless="${currentPage1 == null}">
+        <h1 th:text="${currentPage1}"></h1>
+    </a>
+
+    <a th:href="${'/view/'+ currentPage1 +'/' + currentPage2}" th:unless="${currentPage2 == null}">
+        <h1 th:text="${currentPage2}"></h1>
+    </a>
+    <!-- breadcrumb -->
+
+   <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
+
+    <!-- SIDEBAR
     <input type="checkbox" id="check">
     <label for="check">
         <i class="fas fa-bars" id="btn"></i>
@@ -19,6 +34,7 @@
             <li><a href="#"><i class="far fa-question-circle"></i>About</a></li>
         </ul>
     </div>
+    -->
 
 </header>
 </html>

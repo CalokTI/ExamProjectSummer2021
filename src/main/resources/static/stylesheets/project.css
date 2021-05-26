@@ -27,7 +27,7 @@
 .project-container > * {
     /* box & border for all classes */
     border-radius: 5px;
-    border: silver solid 1px;
+    border: black solid 1px;
     background-color: white;
     box-shadow: 5px 5px 15px -10px #000000;
 
@@ -82,6 +82,7 @@ p {
 .status p, .status form {
     display: inline-block;
 }
+
 /* ----------------------- */
 
 /* top middle and right box */
@@ -106,31 +107,61 @@ p {
 /* --- subgrid for tasks --- */
 .tasks {
     grid-area: tasks;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}
 
-
+.tasks ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid silver;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 25px;
     gap: 0px 0px;
     grid-template-areas:
     "title size price status";
 }
-.title { grid-area: title; }
-.size { grid-area: size; }
-.price { grid-area: price; }
-.status { grid-area: status; }
+
+.grid-container > * {
+
+}
+
+.title {
+    grid-area: title;
+}
+
+.size {
+    grid-area: size;
+    text-overflow: ellipsis;
+}
+
+.price {
+    grid-area: price;
+}
+
+.status {
+    grid-area: status;
+}
 
 /* ------------------- */
 
 /* --- misc --- */
 
-.grid-container a:hover{
+.grid-container a:hover {
     background-color: #194fa8;
     color: white;
     transition: background-color .2s;
+}
+
+.tasks ul:hover {
+    background: #e2e2ef;
 }
 
 ul {

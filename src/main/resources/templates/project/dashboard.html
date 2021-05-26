@@ -2,36 +2,67 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head.html(currentPage='Dashboard', customCSS='dashboard.css')"></head>
 <!-- custom title + bonus css-->
-
 <body>
-<header th:replace="fragments/header.html(currentPage='dashboard')"></header>
-
+<header th:replace="fragments/header.html"></header>
 <main>
 
     <!-- ----- top ----- -->
 
     <section class="overview">
 
-        <section class="users-overview">
+        <section class="users-title">
             <h1>Employees:</h1>
+        </section>
+        <section class="users-overview">
             <p th:text="${users.size}"></p>
         </section>
-
-        <section class="projects-overview">
+        <section class="projects-title">
             <h1>Projects:</h1>
-            <p th:text="${list.size}"></p>
-            <p> 2 [open]</p>
-            <p> 5 [closed]</p>
+        </section>
+        <section class="projects-overview">
+            <p th:text="${list.size + ' in total'}"></p>
+            <p>🟢 2 open</p>
+            <p>🔴 1 closed</p>
+        </section>
+        <section class="create-title">
 
-
+            <h1>Create:</h1>
         </section>
         <section class="create-project">
             <a href="/view/createproject">
-                <button>create a project</button>
+                <button>New project</button>
             </a>
         </section>
     </section>
 
+<!-- old
+    <section class="overview">
+
+        <section class="users-title">
+            <h1>Employees:</h1>
+        </section>
+        <section class="users-overview">
+            <p th:text="${users.size}"></p>
+        </section>
+        <section class="projects-title">
+            <h1>Projects:</h1>
+        </section>
+        <section class="projects-overview">
+            <p th:text="${list.size + ' in total'}"></p>
+            <p>🟢 2 open</p>
+            <p>🔴 1 closed</p>
+        </section>
+        <section class="create-title">
+
+            <h1>Create:</h1>
+        </section>
+        <section class="create-project">
+            <a href="/view/createproject">
+                <button>New project</button>
+            </a>
+        </section>
+    </section>
+-->
 
     <!-- ----- projects ---- -->
 
@@ -47,7 +78,7 @@
                 </section>
 
                 <section class="edited">
-                    <p>🕒︎ last updated on 20-04-21</p>
+                    <p>🕒︎ last updated on 01-01-1970</p>
                 </section>
                 <section class="description">
                     <p th:text="${list.getDescription}"></p>

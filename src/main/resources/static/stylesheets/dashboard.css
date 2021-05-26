@@ -12,33 +12,8 @@
     padding: 10px;
 
     place-items: center;
-
-    display: grid;
-    grid-template-columns: 300px 300px 300px;
-    grid-template-rows: 100px;
-    gap: 0px 0px;
-    grid-template-areas:
-    "uo po cp";
-}
-
-.users-overview {
-    grid-area: uo;
-
-
-}
-
-.projects-overview {
-    grid-area: po;
-    border-left: black 1px solid;
-    border-right: black 1px solid;
-
-    padding-right: 125px;
-    padding-left: 125px;
-
-}
-
-.create-project {
-    grid-area: cp;
+    display: flex;
+    vertical-align: text-top;
 }
 
 
@@ -87,7 +62,7 @@
     display: inline-block;
 }
 
-.edited{
+.edited {
     grid-area: edit;
     text-align: right;
     padding-right: 10px;
@@ -134,7 +109,7 @@ ul {
     list-style-type: none;
 }
 
-.link:hover{
+.link:hover {
     background-color: #3368bd;
     color: white;
     transition: background-color .5s;

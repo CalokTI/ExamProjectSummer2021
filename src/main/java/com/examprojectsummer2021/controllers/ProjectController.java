@@ -77,7 +77,6 @@ public class ProjectController {
         int projectID = projectService.getProjectID(projectTitle);
 
         model.addAttribute("project", projectService.getSpecificProject(projectID));
-        model.addAttribute("allUsers", userService.getAllUsers());
         model.addAttribute("users", userService.getUsersFromProject(projectID));
         model.addAttribute("tasks", taskService.getTasksFromProject(projectID));
         model.addAttribute("time", timeCalculationUtility.workingHoursPerDay(projectID));

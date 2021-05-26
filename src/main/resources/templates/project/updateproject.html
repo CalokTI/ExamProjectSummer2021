@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head.html(currentPage='Edit Project', customCSS='project.css')"></head>
 <!-- custom title + bonus css-->
-<header th:replace="fragments/header.html(currentPage='edit project')"></header>
+<header th:replace="fragments/header.html(currentPage1=${project.getTitle})"></header>
 <body>
 <main>
+
 
     <section class="project-container">
 
@@ -25,6 +26,10 @@
                     <button type="submit" name="projectTitle" th:value="${project.getTitle}">
                         <p th:text="${project.isFinished()}"></p></button>
                 </form>
+                <form action="/deleteproject" method="post">
+                    <button type="submit" name="projectTitle" th:value="${project.getTitle}">⚠ Delete project</button>
+                </form>
+
 
                 <p th:if="${project.isFinished() == true}">[project open]🟢</p>
                 <p th:if="${project.isFinished() == false}">[project closed]🔴</p>
@@ -62,37 +67,6 @@
                 <button type="submit">Create task</button>
             </form>
 
-            <!-- old -->
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Desc.</th>
-                    <th>Status</th>
-                </tr>
-
-
-                <tr th:each="task : ${tasks}">
-
-                    <td>
-                        <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}"
-                           th:text="${task.getID}">
-                        </a>
-                    </td>
-
-
-                    <td th:text="${task.getTitle}"></td>
-                    <td th:text="${task.getDescription}"></td>
-                    <td>
-                        <form action="/change_finished_status" method="post">
-                            <input type="hidden" name="projectTitle" th:value="${project.getTitle}">
-                            <button type="submit" name="taskID" th:value="${task.getID}">
-                                <p th:text="${task.printIsFinished()}"></p></button>
-                        </form>
-                    </td>
-                </tr>
-
-            </table>
 
             <!-- new -->
             <ul th:each="task : ${tasks}">
@@ -114,7 +88,7 @@
 
                     <section class="price">
 
-                        <p th:text="${task.getPrice}"></p>
+                        <p th:text="${task.getDescription}"></p>
 
                     </section>
 
@@ -137,11 +111,7 @@
 
     </section>
 
-    <section> <!-- delete project -->
-        <form action="/deleteproject" method="post">
-            <button type="submit" name="projectTitle" th:value="${project.getTitle}">⚠ Delete project</button>
-        </form>
-    </section>
+
 
 
 </main>

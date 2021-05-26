@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head.html(currentPage='New Task', customCSS='createtask.css')"></head> <!-- custom title + bonus css-->
-<header th:replace="fragments/header.html(currentPage='new task')"></header>
+<header th:replace="fragments/header.html(currentPage1=${projectTitle}, currentPage2='createtask')"></header>
 <body>
 <main>
 

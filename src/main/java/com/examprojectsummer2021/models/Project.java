@@ -66,6 +66,10 @@ public class Project {
         return owner;
     }
 
+    public Date getStartDate(){
+        return startDate;
+    }
+
     public Date getDeadline() {
         return deadline;
     }

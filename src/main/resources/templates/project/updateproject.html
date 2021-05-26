@@ -46,10 +46,18 @@
             <h1>Project dates</h1>
             <p th:text="${project.getStartDateAsString + ' ➝ ' + project.getDeadlineAsString}"></p>
             <hr>
-            <p th:text="${'Days remaining: ' + project.countdown}"></p>
-            <p th:if="${time <= 7 and time >= 0}" th:text="${'Working hours per day: ' + time}"></p>
-            <p th:if="${time > 7}" id="time-issue" th:text="|Working hours per day: ${time} can't be done in time|"></p>
-            <p th:if="${time < 0}" id="time-deadline">Deadline passed</p>
+            <span th:if="${project.countdown > 0}"> <!-- if the deadline have passed it won't show any of the following -->
+
+                <p th:text="${'Days remaining: ' + project.countdown}"></p>
+
+                <p th:if="${time <= 7 and time >= 0}" th:text="${'Working hours per day: ' + time}"></p>
+
+                <span th:if="${time > 7}">
+                    <p id="time-issue" th:text="'Working hours per day: ' + ${time}"></p>
+                    <p>▲ Warning: Can't be completed in time</p>
+                </span>
+            </span>
+            <p th:if="${project.countdown <= 0}" id="time-deadline">Deadline passed</p>
         </section>
 
         <section class="users">

@@ -6,7 +6,6 @@ import com.examprojectsummer2021.repositories.ProjectRepository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Julius & Anton
@@ -47,8 +46,7 @@ public class ProjectService {
     // ------ GETTERS ------ //
 
     public int getProjectID(String projectTitle) {
-        int projectID = projectRepository.getProjectID(projectTitle);
-        return projectID;
+        return projectRepository.getProjectID(projectTitle);
     }
 
     public Project getSpecificProject(int projectID) {
@@ -71,9 +69,9 @@ public class ProjectService {
         return project;
     }
 
-    public List getAllProjects() {
+    public ArrayList getAllProjects() {
 
-        List allProjects = new ArrayList();
+        ArrayList allProjects = new ArrayList();
         ResultSet resultSet = projectRepository.getAllProjects();
         Project project;
         try {

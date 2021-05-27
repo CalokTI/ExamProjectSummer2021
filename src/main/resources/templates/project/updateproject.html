@@ -81,18 +81,14 @@
             <ul th:each="task : ${tasks}">
                 <section class="grid-container">
 
-
                     <section class="title-task">
-
                         <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}">
                             <p th:text="${task.getTitle}"></p>
                         </a>
-
                     </section>
 
                     <section class="time">
                         <p th:text="${task.getTime}"></p>
-
                     </section>
 
                     <p class="hours">Hours</p>
@@ -100,6 +96,7 @@
                     <section class="price">
                         <p th:text="${task.getPrice}"></p>
                     </section>
+
                     <p class="currency">DKK</p>
 
                     <section class="status-task">
@@ -113,6 +110,13 @@
                 </section>
             </ul>
 
+            <section class="total-overview">
+                <p class="total">Total:</p>
+                <p class="totalPrice" th:text="${totalPrice}"></p>
+                <p class="totalCurrency"> DKK</p>
+                <p class="totalTime" th:text="${totalHours}"></p>
+                <p class="totalHours"> Hours</p>
+            </section>
 
         </section>
 

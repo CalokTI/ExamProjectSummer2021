@@ -69,6 +69,9 @@ public class ProjectController {
         model.addAttribute("users", userService.getUsersFromProject(projectID));
         model.addAttribute("tasks", taskService.getTasksFromProject(projectID));
         model.addAttribute("time", timeCalculationUtility.workingHoursPerDay(projectID));
+        model.addAttribute("totalPrice",projectService.getTotalPrice(projectID));
+        model.addAttribute("totalHours",projectService.getTotalHours(projectID));
+
         return "project/updateproject.html";
     }
 

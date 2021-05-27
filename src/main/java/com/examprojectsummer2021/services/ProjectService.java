@@ -1,6 +1,7 @@
 package com.examprojectsummer2021.services;
 
 import com.examprojectsummer2021.models.Project;
+import com.examprojectsummer2021.models.Task;
 import com.examprojectsummer2021.repositories.ProjectRepository;
 
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class ProjectService {
 
     private ProjectRepository projectRepository = new ProjectRepository();
+    private TaskService taskService = new TaskService();
 
     // ------ SETTERS ------ //
 
@@ -41,6 +43,10 @@ public class ProjectService {
 
         projectRepository.changeProjectFinished(state, projectID);
 
+    }
+
+    public void deleteProject(String projectTitle) {
+        projectRepository.deleteProject(projectTitle);
     }
 
     // ------ GETTERS ------ //
@@ -97,8 +103,24 @@ public class ProjectService {
         return projectRepository.getAllProjectTitles();
     }
 
-    public void deleteProject(String projectTitle) {
-        projectRepository.deleteProject(projectTitle);
+    public int getTotalPrice(int projectID) {
+        ArrayList<Task> tasks = taskService.getTasksFromProject(projectID);
+        int totalprice = 0;
+
+        for (int i = 0; i < tasks.size(); i++) {
+            totalprice += tasks.get(i).getPrice();
+        }
+        return totalprice;
+    }
+
+    public int getTotalHours(int projectID){
+        ArrayList<Task> tasks = taskService.getTasksFromProject(projectID);
+        int totalHours = 0;
+
+        for (int i = 0; i < tasks.size(); i++) {
+            totalHours += tasks.get(i).getTime();
+        }
+        return totalHours;
     }
 
 

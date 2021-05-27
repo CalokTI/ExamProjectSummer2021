@@ -7,7 +7,7 @@
 <main>
 
 
-    <form class="form" id="taskcreation" action="/createtask" method="post">
+    <form class="form" id="taskcreation" onsubmit="return createTask()" action="/createtask" method="post">
 
         <!-- info for form -->
         <input type="text" class="title" name="title" id="title"
@@ -54,7 +54,7 @@
         </section>
 
         <!-- buttons -->
-        <button class="confirm" onclick="createTask()">
+        <button type="submit" class="confirm">
             <input type="hidden" name="projectTitle" th:value="${projectTitle}">
             <span class="front">CONFIRM</span>
         </button>

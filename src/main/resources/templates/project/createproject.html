@@ -7,8 +7,7 @@
 <main>
 
     <!-- NEW -->
-    <form class="form" id="projectcreation" action="/createproject" method="post">
-
+    <form class="form" id="projectcreation" onsubmit="return createProject()" action="/createproject" method="post">
 
         <!-- info for form -->
         <input type="text" class="title" name="title" id="title"
@@ -52,7 +51,7 @@
         </section>
 
         <!-- buttons -->
-        <button class="confirm" onclick="createProject()">
+        <button type="submit" class="confirm">
             <span class="front">CONFIRM</span>
         </button>
         <button class="reset" type="reset">

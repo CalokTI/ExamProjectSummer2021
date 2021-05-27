@@ -1,3 +1,4 @@
+<!-- @author Anton, Julius, Carsten -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head.html(currentPage='Dashboard', customCSS='dashboard.css')"></head>
@@ -13,8 +14,8 @@
         <section class="projects-overview">
             <h1>Projects:</h1>
             <p th:text="${list.size + ' in total'}"></p>
-            <p>🟢 3 open</p>
-            <p>🔴 9 closed</p>
+            <p>🟢 3 open</p> <!-- placeholder -->
+            <p>🔴 9 closed</p> <!-- placeholder -->
         </section>
 
         <section class="users-overview">
@@ -43,9 +44,8 @@
                     <h1 th:text="${list.getTitle}"></h1>
                 </section>
 
-                <!-- placeholder -->
                 <section class="edited">
-                    <p>🕒︎ last updated on 01-01-1970</p>
+                    <p>🕒︎ last updated on 01-01-1970</p> <!-- placeholder -->
                 </section>
                 <section class="description">
                     <p th:text="${list.getDescription}"></p>

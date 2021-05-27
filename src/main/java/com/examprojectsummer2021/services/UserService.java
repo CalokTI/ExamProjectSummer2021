@@ -32,7 +32,7 @@ public class UserService {
                 String firstname = resultSet.getString(2);   // first_name
                 String lastname = resultSet.getString(3);    // last_name
                 String role = resultSet.getString(4);        // role
-                int salary = resultSet.getInt(6);           //salary
+                int salary = resultSet.getInt(6);            //salary
 
                 User tmpUser = new User(username, firstname, lastname, role,salary);
                 userList.add(tmpUser);
@@ -57,7 +57,7 @@ public class UserService {
                 String firstname = resultSet.getString(2);   // first_name
                 String lastname = resultSet.getString(3);    // last_name
                 String role = resultSet.getString(4);        // role
-                int salary = resultSet.getInt(6);           //salary
+                int salary = resultSet.getInt(6);            //salary
 
                 User tmpUser = new User(username, firstname, lastname, role,salary);
                 userList.add(tmpUser);

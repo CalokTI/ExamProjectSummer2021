@@ -1,3 +1,7 @@
+/**
+ * @author Carsten
+ */
+
 function createTask(){
     let usersAdded, availableTitle;
 

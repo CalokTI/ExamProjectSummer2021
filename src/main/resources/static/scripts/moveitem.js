@@ -1,3 +1,7 @@
+/**
+ * @author Carsten
+ */
+
 document.addEventListener("DOMContentLoaded", function (){
 
     var workers = document.querySelectorAll(".moveWorker");

@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Anton
+ * @author Anton, Carsten
  */
 
 public class Project {
@@ -25,9 +25,6 @@ public class Project {
     private Date deadline;
     private boolean isFinished;
 
-    // pseudo-attributes in SQL //
-    // tasks
-    // users
 
     public Project(int projectID, String title, String description, String owner, String startDate, String deadline, boolean isFinished) {
         this.ID = projectID;
@@ -100,13 +97,22 @@ public class Project {
         return deadlineString;
     }
 
+    public long countdown() {
+
+        Date today = new Date();
+
+        long diff = deadline.getTime() - today.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + 1;
+
+    }
+    //Following methods shouldn't be located here
+
     public ArrayList<Task> getTasks(){
 
         return taskService.getTasksFromProject(ID);
 
     }
 
-    // todo this is bad but fuck it
     public String getTasksStatus(){
 
         ArrayList<Task> tmpTasks = taskService.getTasksFromProject(ID);
@@ -125,17 +131,4 @@ public class Project {
         return result;
     }
 
-    // -- UTILITY -- //
-
-    // Days till the deadline from current date todo change name
-    public long countdown() {
-
-        Date today = new Date();
-
-        long diff = deadline.getTime() - today.getTime();
-        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + 1;
-
-    }
-
-    // "Health-analyzer" of project
 }

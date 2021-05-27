@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Anton & Julius
+ * @author Anton, Julius, Carsten
  */
 
 public class TaskService {
@@ -31,11 +31,7 @@ public class TaskService {
 
         boolean state;
 
-        if (task.isFinished()) {
-            state = false;
-        } else {
-            state = true;
-        }
+        state = !task.isFinished();
 
         taskRepository.changeTaskFinished(state, taskID);
 

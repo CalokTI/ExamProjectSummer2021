@@ -18,7 +18,7 @@ public class HolidaysCalculationUtility {
     public void easter() {
         int currentYear = calendar.get(Calendar.YEAR);          //year
 
-        //<editor-fold desc="Calculations for easter sunday - tak til wikipedia">
+        //<editor-fold desc="Calculations for easter sunday - thanks wikipedia">
         int a = currentYear % 19;
         int b = (int) Math.floor(currentYear / 100);
         int c = currentYear % 100;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
- * @author Carsten
+ * @author Carsten, Anton
  */
 
 @Controller
@@ -33,6 +33,7 @@ public class ProjectController {
         return "index/dashboard.html";
     }
 
+
     // ------------ CREATE PROJECT ------------ //
     @GetMapping("/view/createproject")
     public String renderNewProject(Model model) {
@@ -43,22 +44,20 @@ public class ProjectController {
         return "project/createproject.html";
     }
 
-
     @PostMapping("/createproject")
     public String createNewProject(@RequestParam(name = "title") String projectTitle,
                                    @RequestParam(name = "description") String projectDescription,
                                    @RequestParam(name = "startdate") String projectStartDate,
                                    @RequestParam(name = "deadline") String projectDeadline,
                                    @RequestParam(name = "username", required = false) String[] projectUsers) {
-
-
-        // owner
-        String projectOwner = "jowa69"; //todo fix dette
+        //temp user - planned for login
+        String projectOwner = "jowa69";
 
         projectService.createNewProject(projectTitle, projectDescription, projectOwner, projectStartDate, projectDeadline, projectUsers);
 
         return "redirect:/view/" + projectTitle;
     }
+
 
     // ------------ EDIT PROJECT ------------ //
     @GetMapping("/view/{title}")
@@ -83,6 +82,8 @@ public class ProjectController {
         return "redirect:/view/" + projectTitle;
     }
 
+
+    // ----------- Delete Project ------------//
     @PostMapping("/deleteproject")
     public String deleteProject(@RequestParam(name = "projectTitle") String projectTitle) {
         projectService.deleteProject(projectTitle);

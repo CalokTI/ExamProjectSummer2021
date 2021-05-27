@@ -1,3 +1,4 @@
+<!-- @author Anton, Julius, Carsten -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head.html(currentPage='Edit Task', customCSS='viewtask.css')"></head> <!-- custom title + bonus css-->
@@ -13,12 +14,12 @@
         </section>
 
         <section class="edited">
-            🕒︎ created on 20-04-21
+            🕒︎ created on 20-04-21 <!-- placeholder -->
         </section>
 
         <section class="status">
-            <p th:if="${task.isFinished() == true}">✔️[task finished]</p>
-            <p th:if="${task.isFinished() == false}">⭕[task open]</p>
+            <p th:text="${task.isFinished()} ? '✔️[task completed]' : '⭕[task open]'"></p>
+
             <form action="/deletetask" method="post">
                 <input type="hidden" name="projectTitle" th:value="${projectTitle}">
                 <button type="submit" name="taskID" th:value="${task.getID}">Delete task</button>
@@ -41,12 +42,6 @@
                 <li th:text="${user.getFirstname + ' ' + user.getLastname + ' - ' + user.getRole}"></li>
             </ul>
         </section>
-
-
-    </section>
-
-
-    <section> <!-- Delete task  click button -> new button(confirm) -> delete task -->
 
     </section>
 

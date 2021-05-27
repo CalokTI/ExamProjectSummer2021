@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Julius & Anton
+ * @author Julius, Anton, Carsten
  */
 
 public class ProjectService {
@@ -84,8 +84,8 @@ public class ProjectService {
         return project;
     }
 
-    public ArrayList getAllProjects() {
-        ArrayList allProjects = new ArrayList();
+    public ArrayList<Project> getAllProjects() {
+        ArrayList<Project> allProjects = new ArrayList<>();
         ResultSet resultSet = projectRepository.getAllProjectsResultSet();
         Project project;
 

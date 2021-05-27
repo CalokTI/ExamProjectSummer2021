@@ -22,14 +22,9 @@ public class UserRepository {
         conn = dbConnect.getConn();
     }
 
-    //NOTE. WE HAVE PREDEFINED USERS -> WE DONT CREATE NEW USERS ATM, MAYBE WITH A ADMIN SITE IN THE FUTURE..
-
     // ------ SETTERS ------ //
 
-    // none
-
     // ------ GETTERS ------ //
-
 
     //---- Returns a specific user from database, based on username ---- \\
     public ResultSet getUserFromDatabase(String username) {
@@ -68,7 +63,6 @@ public class UserRepository {
     }
 
 
-    // Returnér alle users fra specefikt projekt
     public ResultSet getUsersFromProject(int projectID) {
         ResultSet resultSet = null;
         String sql = "SELECT user.username, user.first_name, user.last_name, user.role, user_project.projectID, role_salary.salary FROM user INNER JOIN  user_project ON user.username = user_project.username INNER JOIN role_salary ON user.role = role_salary.role WHERE user_project.projectID = ?";

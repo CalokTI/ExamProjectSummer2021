@@ -41,7 +41,7 @@ public class TaskController {
                                 @RequestParam(name = "price", defaultValue = "0") int taskPrice,
                                 @RequestParam(name = "projectTitle") String projectTitle) {
 
-        //todo add owner
+        //temp user - planned for login
         String taskOwner = "jowa69";
         int projectID = projectService.getProjectID(projectTitle);
         taskService.createTask(taskTitle, taskDescription, taskUsers, taskOwner, taskPrice, taskTime, projectID);
@@ -70,6 +70,8 @@ public class TaskController {
         return "redirect:/view/" + projectTitle;
     }
 
+
+    // ------------ DELETE TASK ---------- //
     @PostMapping("/deletetask")
     public String deleteTask(@RequestParam(name = "taskID") int taskID,
                              @RequestParam(name = "projectTitle") String projectTitle) {

@@ -1,3 +1,7 @@
+/**
+ * @author Carsten
+ */
+
 function createProject(){
     let usersAdded, availableTitle;
 

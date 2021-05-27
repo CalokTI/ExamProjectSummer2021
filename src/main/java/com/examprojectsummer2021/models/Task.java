@@ -46,6 +46,7 @@ public class Task {
         return time;
     }
 
+    //Could be done in html/thymeleaf
     public String printIsFinished() {
         if (isFinished) {
             return "✔️";

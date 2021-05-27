@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 
 /**
- * @author Julius & Anton
+ * @author Julius, Anton, Carsten
  */
 
 public class TaskRepository {
@@ -96,8 +96,9 @@ public class TaskRepository {
     }
 
     public ResultSet getTasksFromProjectResultSet(int projectID) {
+        String sql = "SELECT * FROM task where project = ?";
+
         try {
-            String sql = "SELECT * FROM task where project = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, projectID);
 

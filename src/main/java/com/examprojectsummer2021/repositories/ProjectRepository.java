@@ -6,7 +6,7 @@ import java.sql.*;
 
 
 /**
- * @author Julius & Anton
+ * @author Julius, Anton, Carsten
  */
 public class ProjectRepository {
 

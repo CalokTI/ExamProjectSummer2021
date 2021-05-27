@@ -190,15 +190,56 @@ p {
 }
 
 /* ------------------- */
+/* ----- small grid for total overview -----*/
+.total-overview {
+
+    border-top: 1px solid black;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    display: grid;
+    grid-template-columns: 200px 50px 150px 50px 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "total-text total-T hours-text total-P currency-text";
+}
+
+
+.total{
+    padding-left: 10px;
+    grid-area: total-text;
+}
+.totalTime {
+    grid-area: total-T;
+    text-align: right;
+    text-decoration-line: underline;
+    text-decoration-style: double;
+}
+
+.totalHours {
+    grid-area: hours-text;
+    padding-left: 5px;
+}
+
+.totalPrice {
+    grid-area: total-P;
+    text-align: right;
+    text-decoration-line: underline;
+    text-decoration-style: double;
+
+}
+
+.totalCurrency {
+    grid-area: currency-text;
+    padding-left: 5px;
+}
+/* ------------------------- */
+
 
 /* --- misc --- */
-/*
-.grid-container a:hover {
-    background-color: #194fa8;
-    color: white;
-    transition: background-color .2s;
-}
-*/
+
 .tasks ul:hover {
     background: #e2e2ef;
 }

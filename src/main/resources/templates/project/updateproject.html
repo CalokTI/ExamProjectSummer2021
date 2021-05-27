@@ -23,15 +23,15 @@
             <section class="status">
                 <h1>project status</h1>
                 <form action="/change_project_status" method="post">
-                    <button type="submit" name="projectTitle" th:value="${project.getTitle}">
-                        <p th:text="${project.isFinished()}"></p></button>
-                </form>
-                <form action="/deleteproject" method="post">
-                    <button type="submit" name="projectTitle" th:value="${project.getTitle}">⚠ Delete project</button>
+                    <button type="submit" name="projectTitle" th:value="${project.getTitle}" th:text="${project.isFinished()} ? 'Open' : 'Closed'"></button>
                 </form>
 
                 <p th:if="${project.isFinished() == true}">🟢</p>
                 <p th:if="${project.isFinished() == false}">🔴</p>
+
+                <form action="/deleteproject" method="post">
+                    <button type="submit" name="projectTitle" th:value="${project.getTitle}">⚠ Delete project</button>
+                </form>
             </section>
 
         </section>

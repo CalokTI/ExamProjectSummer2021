@@ -20,10 +20,10 @@ public class LoginController {
     ValidateLoginService loginService = new ValidateLoginService();
 
 
-    @GetMapping("/")
+    @GetMapping(value = {"/", "/index"})
     public String renderIndex(){
 
-        return "index/index.html";
+        return "redirect:/view/dashboard";
     }
 
 

@@ -13,10 +13,8 @@ function createProject(){
         return false;
     }
     else {
-        document.getElementById("projectcreation").submit();
+        return true;
     }
-    return false;
-
 }
 
 function haveUsersBeenAdded(){

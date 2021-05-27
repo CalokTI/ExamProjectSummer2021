@@ -13,9 +13,8 @@ function createTask(){
         return false;
     }
     else {
-        document.getElementById("taskcreation").submit();
+        return true;
     }
-    return false;
 }
 
 function haveUsersBeenAdded(){

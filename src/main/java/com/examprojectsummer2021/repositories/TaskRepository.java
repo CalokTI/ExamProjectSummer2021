@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 /**
  * @author Julius & Anton
@@ -68,9 +68,21 @@ public class TaskRepository {
 
     }
 
+    public void deleteTask(int taskID) {
+        String sql = "DELETE FROM task where id = ?";
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, taskID);
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("TaskRepository - deleteTask");
+        }
+    }
+
     // ------ GETTERS ------ //
 
-    public ResultSet getTask(int taskID) {
+    public ResultSet getTaskResultSet(int taskID) {
         String sql = "SELECT * FROM task WHERE id = ?";
         ResultSet resultSet = null;
         try {
@@ -83,7 +95,7 @@ public class TaskRepository {
         return resultSet;
     }
 
-    public ResultSet getTasksFromProject(int projectID) {
+    public ResultSet getTasksFromProjectResultSet(int projectID) {
         try {
             String sql = "SELECT * FROM task where project = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -101,48 +113,33 @@ public class TaskRepository {
 
     }
 
-    public int getTaskID(String taskTitle) {
+    public ResultSet getTaskIDResultSet(String taskTitle) {
         String sql = "Select id FROM task where title = ?";
+        ResultSet resultSet = null;
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, taskTitle);
 
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getInt(1);
-            }
+            resultSet = statement.executeQuery();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.println("TaskRepository - getTaskID");
         }
-        return -1;
+        return resultSet;
     }
 
-    public ArrayList<String> getAllTaskTitles(){
+    public ResultSet getAllTaskTitlesResultSet() {
         String sql = "SELECT title FROM task";
-        ArrayList<String> allTaskTitles = new ArrayList<>();
-        try {
-            PreparedStatement statement = conn.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                allTaskTitles.add(resultSet.getString(1));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return allTaskTitles;
-    }
+        ResultSet resultSet = null;
 
-    public void deleteTask(int taskID) {
-        String sql = "DELETE FROM task where id = ?";
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, taskID);
-            statement.executeUpdate();
+            resultSet = statement.executeQuery();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.out.println("TaskRepository - deleteTask");
         }
+        return resultSet;
     }
 
 }

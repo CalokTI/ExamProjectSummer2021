@@ -8,12 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Anton
+ * @author Anton & Julius
  */
 
 public class TaskService {
 
     TaskRepository taskRepository = new TaskRepository();
+
     // ------ SETTERS ------ //
 
     public void createTask(String taskTitle, String taskDescription, String[] taskUsers, String taskOwner, int taskPrice, int taskTime, int projectID) {
@@ -48,12 +49,16 @@ public class TaskService {
         }
     }
 
+    public void deleteTask(int taskID) {
+        taskRepository.deleteTask(taskID);
+    }
+
     // ------ GETTERS ------ //
 
     public Task getTask(int taskID) {
-
-        ResultSet resultSet = taskRepository.getTask(taskID);
         Task task = null;
+        ResultSet resultSet = taskRepository.getTaskResultSet(taskID);
+
         try {
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);                   // id
@@ -72,14 +77,23 @@ public class TaskService {
     }
 
     public int getTaskID(String taskTitle) {
-        return taskRepository.getTaskID(taskTitle);
+        int taskID = -1;
+        ResultSet resultSet = taskRepository.getTaskIDResultSet(taskTitle);
+
+        try {
+            while (resultSet.next()) {
+                taskID = resultSet.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("TaskService - getTaskID");
+        }
+        return taskID;
     }
 
     public ArrayList<Task> getTasksFromProject(int projectID) {
-
-        ResultSet resultSet = taskRepository.getTasksFromProject(projectID);
-
         ArrayList<Task> taskList = new ArrayList<>();
+        ResultSet resultSet = taskRepository.getTasksFromProjectResultSet(projectID);
 
         try {
             while (resultSet.next()) {
@@ -103,12 +117,20 @@ public class TaskService {
         return taskList;
     }
 
-    public ArrayList<String> getAllTaskTitles(){
-        return taskRepository.getAllTaskTitles();
-    }
+    public ArrayList<String> getAllTaskTitles() {
+        ArrayList<String> allTaskTitles = new ArrayList<>();
+        ResultSet resultSet = taskRepository.getAllTaskTitlesResultSet();
 
-
-    public void deleteTask(int taskID) {
-        taskRepository.deleteTask(taskID);
+        try {
+            while (resultSet.next()) {
+                allTaskTitles.add(resultSet.getString(1));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("TaskService - getAllTaskTitles");
+        }
+        return allTaskTitles;
     }
 }
+
+

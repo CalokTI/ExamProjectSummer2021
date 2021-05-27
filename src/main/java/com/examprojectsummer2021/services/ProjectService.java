@@ -52,11 +52,20 @@ public class ProjectService {
     // ------ GETTERS ------ //
 
     public int getProjectID(String projectTitle) {
-        return projectRepository.getProjectID(projectTitle);
+        int projectID = -1;
+        ResultSet resultSet = projectRepository.getProjectIDResultSet(projectTitle);
+        try {
+            while (resultSet.next()) {
+                projectID = resultSet.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return projectID;
     }
 
     public Project getSpecificProject(int projectID) {
-        ResultSet resultSet = projectRepository.getSpecificProjectFromDatabase(projectID);
+        ResultSet resultSet = projectRepository.getSpecificProjectResultSet(projectID);
         Project project = null;
         try {
             while (resultSet.next()) {
@@ -76,10 +85,10 @@ public class ProjectService {
     }
 
     public ArrayList getAllProjects() {
-
         ArrayList allProjects = new ArrayList();
-        ResultSet resultSet = projectRepository.getAllProjects();
+        ResultSet resultSet = projectRepository.getAllProjectsResultSet();
         Project project;
+
         try {
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
@@ -92,15 +101,27 @@ public class ProjectService {
                 project = new Project(id, title, description, owner, inceptionDate, deadline, isFinished);
                 allProjects.add(project);
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.println("ProjectService - getAllProjects");
         }
+
         return allProjects;
     }
 
     public ArrayList<String> getAllProjectTitles() {
-        return projectRepository.getAllProjectTitles();
+        ArrayList<String> allProjectTitles = new ArrayList<>();
+        ResultSet resultSet = projectRepository.getAllProjectTitlesResultSet();
+       try {
+           while (resultSet.next()) {
+               allProjectTitles.add(resultSet.getString(1));
+           }
+        } catch (SQLException throwables) {
+           throwables.printStackTrace();
+           System.out.println("projectService - getAllProjectTitles");
+       }
+        return allProjectTitles;
     }
 
     public int getTotalPrice(int projectID) {
@@ -113,7 +134,7 @@ public class ProjectService {
         return totalprice;
     }
 
-    public int getTotalHours(int projectID){
+    public int getTotalHours(int projectID) {
         ArrayList<Task> tasks = taskService.getTasksFromProject(projectID);
         int totalHours = 0;
 
@@ -122,6 +143,5 @@ public class ProjectService {
         }
         return totalHours;
     }
-
 
 }

@@ -3,7 +3,7 @@ package com.examprojectsummer2021.repositories;
 import com.examprojectsummer2021.utilities.DatabaseConnectionUtility;
 
 import java.sql.*;
-import java.util.ArrayList;
+
 
 /**
  * @author Julius & Anton
@@ -62,30 +62,37 @@ public class ProjectRepository {
         }
     }
 
-    // ------ GETTERS ------ //
-
-    public int getProjectID(String projectTitle) {
-        int projectID = -1;
-
-        String sql = "SELECT id FROM project WHERE title = ?";
+    public void deleteProject(String projectTitle) {
+        String sql = "DELETE FROM project where title = ?";
 
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, projectTitle);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                projectID = resultSet.getInt(1);
-            }
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Project Repository - deleteProject");
+        }
+    }
+
+    // ------ GETTERS ------ //
+
+    public ResultSet getProjectIDResultSet(String projectTitle) {
+        String sql = "SELECT id FROM project WHERE title = ?";
+        ResultSet resultSet = null;
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, projectTitle);
+            resultSet = statement.executeQuery();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.println("ProjectRepository - getProjectID");
         }
-
-        return projectID;
+        return resultSet;
     }
 
-    public ResultSet getAllProjects() {
+    public ResultSet getAllProjectsResultSet() {
         String sql = "SELECT * FROM project";
         ResultSet resultSet = null;
         try {
@@ -98,7 +105,7 @@ public class ProjectRepository {
         return resultSet;
     }
 
-    public ResultSet getSpecificProjectFromDatabase(int projectID) {
+    public ResultSet getSpecificProjectResultSet(int projectID) {
         String sql = "SELECT * FROM project WHERE id = ?";
         ResultSet resultSet = null;
         try {
@@ -112,31 +119,17 @@ public class ProjectRepository {
         return resultSet;
     }
 
-    public ArrayList<String> getAllProjectTitles() {
+    public ResultSet getAllProjectTitlesResultSet() {
         String sql = "SELECT title FROM project";
-        ArrayList<String> allProjectTitles = new ArrayList<>();
+        ResultSet resultSet = null;
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                allProjectTitles.add(resultSet.getString(1));
-            }
+           resultSet = statement.executeQuery();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return allProjectTitles;
+        return resultSet;
     }
 
-    public void deleteProject(String projectTitle) {
-        String sql = "DELETE FROM project where title = ?";
-
-        try {
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, projectTitle);
-            statement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            System.out.println("Project Repository - deleteProject");
-        }
-    }
 }

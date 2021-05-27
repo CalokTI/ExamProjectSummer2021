@@ -41,16 +41,15 @@ public class UserService {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            System.out.println("UserService - getUsersFromProject");
         }
 
         return userList;
     }
 
     public ArrayList<User> getUsersFromTask(int taskID) {
-
-        ResultSet resultSet = userRepository.getUsersFromTask(taskID);
-
         ArrayList<User> userList = new ArrayList<>();
+        ResultSet resultSet = userRepository.getUsersFromTask(taskID);
 
         try {
             while (resultSet.next()) {
@@ -64,13 +63,11 @@ public class UserService {
                 userList.add(tmpUser);
             }
 
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            System.out.println("UserService - getUsersFromTask");
         }
-
         return userList;
-
     }
 
     public ArrayList<User> getAllUsers() {
@@ -111,9 +108,9 @@ public class UserService {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            System.out.println("UserService - getUserFromDatabase");
         }
         return user;
     }
-
 
 }

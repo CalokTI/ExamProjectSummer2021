@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/head.html(currentPage='Create Project', customCSS='createproject.css')"></head> <!-- custom title + bonus css-->
+<head th:replace="fragments/head.html(currentPage='Create Project', customCSS='createproject.css')"></head>
+<!-- custom title + bonus css-->
 <header th:replace="fragments/header.html(currentPage1='createproject')"></header>
 <body>
 <main>
@@ -50,14 +51,14 @@
             </ul>
         </section>
 
+        <!-- buttons -->
+        <button class="confirm" onclick="createProject()">
+            <span class="front">CONFIRM</span>
+        </button>
+        <button class="reset" type="reset">
+            <span class="front">RESET</span>
+        </button>
     </form>
-    <!-- buttons -->
-    <button class="confirm" onclick="createProject()">
-        <span class="front">CONFIRM</span>
-    </button>
-    <button class="reset" type="reset">
-        <span class="front">RESET</span>
-    </button>
 
 
 </main>

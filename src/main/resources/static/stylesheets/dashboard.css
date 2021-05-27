@@ -33,10 +33,11 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 50px 1fr;
+    grid-template-rows: 50px 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
     "title title edit link"
+    "desc desc status time"
     "desc desc status time";
 }
 
@@ -81,10 +82,12 @@
 }
 
 .time {
+    padding-left: 35px;
     grid-area: time;
 }
 
 .status {
+    padding-left: 65px;
     grid-area: status;
 }
 

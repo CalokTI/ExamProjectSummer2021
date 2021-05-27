@@ -53,16 +53,16 @@
             </ul>
         </section>
 
-    </form>
+        <!-- buttons -->
+        <button class="confirm" onclick="createTask()">
+            <input type="hidden" name="projectTitle" th:value="${projectTitle}">
+            <span class="front">CONFIRM</span>
+        </button>
+        <button class="reset" type="reset">
+            <span class="front">RESET</span>
+        </button>
 
-    <!-- buttons -->
-    <button class="confirm" onclick="createTask()">
-        <input type="hidden" name="projectTitle" th:value="${projectTitle}">
-        <span class="front">CONFIRM</span>
-    </button>
-    <button class="reset" type="reset">
-        <span class="front">RESET</span>
-    </button>
+    </form>
 
 
 </main>

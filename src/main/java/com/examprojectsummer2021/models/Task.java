@@ -6,7 +6,7 @@ package com.examprojectsummer2021.models;
 
 public class Task {
 
-    private int ID; // unique ID for SQL
+    private int ID;
     private String title;
     private String description;
     private int price;

@@ -62,7 +62,7 @@ public class TaskController {
     }
 
     @PostMapping("/change_finished_status")
-    public String renderChangeStatus(@RequestParam(name = "projectTitle") String projectTitle,
+    public String ChangeStatus(@RequestParam(name = "projectTitle") String projectTitle,
                                      @RequestParam(name = "taskID") int taskID) {
 
         taskService.changeTaskFinished(taskID);

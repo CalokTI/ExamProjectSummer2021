@@ -75,7 +75,7 @@ public class ProjectController {
     }
 
     @PostMapping("/change_project_status")
-    public String renderChangeStatus(@RequestParam(name = "projectTitle") String projectTitle) {
+    public String ChangeStatus(@RequestParam(name = "projectTitle") String projectTitle) {
 
         projectService.changeProjectStatus(projectTitle);
 

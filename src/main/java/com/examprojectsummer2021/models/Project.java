@@ -17,7 +17,7 @@ public class Project {
 
     private TaskService taskService = new TaskService();
 
-    private int ID; // unique ID for SQL
+    private int ID;
     private String title;
     private String description;
     private String owner;
@@ -105,27 +105,23 @@ public class Project {
         return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + 1;
 
     }
-    //Following methods shouldn't be located here
 
+    // Following methods shouldn't be located here
+    // in the 'Project' model
     public ArrayList<Task> getTasks(){
-
         return taskService.getTasksFromProject(ID);
-
     }
 
     public String getTasksStatus(){
-
         ArrayList<Task> tmpTasks = taskService.getTasksFromProject(ID);
         int total = tmpTasks.size();
 
         int positive = 0;
-
         for (int i = 0; i < tmpTasks.size(); i++) {
             if (tmpTasks.get(i).isFinished()) {
                 positive++;
             }
         }
-
         String result = positive + "/" + total;
 
         return result;

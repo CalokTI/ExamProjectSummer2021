@@ -6,7 +6,7 @@ package com.examprojectsummer2021.models;
 
 public class User {
 
-    private String username; // unique ID for SQL
+    private String username;
     private String firstname;
     private String lastname;
     private String role;

@@ -14,12 +14,11 @@ import java.sql.SQLException;
 
 public class UserRepository {
 
-    private Connection conn;
+    private DatabaseConnectionUtility databaseConnection;
 
     // Constructor
     public UserRepository() {
-        DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
-        conn = dbConnect.getConn();
+        databaseConnection = DatabaseConnectionUtility.getInstance();
     }
 
     // ------ SETTERS ------ //
@@ -32,6 +31,7 @@ public class UserRepository {
         ResultSet resultSet = null;
 
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, username);
 
@@ -50,6 +50,7 @@ public class UserRepository {
         String sql = "SELECT user.username, user.first_name, user.last_name, user.role, user_task.taskID, role_salary.salary FROM user INNER JOIN  user_task ON user.username = user_task.username INNER JOIN role_salary ON user.role = role_salary.role WHERE user_task.taskID = ?";
 
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, taskID);
 
@@ -68,6 +69,7 @@ public class UserRepository {
         String sql = "SELECT user.username, user.first_name, user.last_name, user.role, user_project.projectID, role_salary.salary FROM user INNER JOIN  user_project ON user.username = user_project.username INNER JOIN role_salary ON user.role = role_salary.role WHERE user_project.projectID = ?";
 
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, projectID);
 
@@ -85,6 +87,7 @@ public class UserRepository {
         ResultSet resultSet = null;
         String sql = "SELECT user.username, user.first_name, user.last_name, user.role, salary FROM user INNER JOIN role_salary ON user.role = role_salary.role";
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
 
@@ -102,6 +105,7 @@ public class UserRepository {
         String sql = "SELECT password FROM user WHERE username = ?";
 
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, username);
 

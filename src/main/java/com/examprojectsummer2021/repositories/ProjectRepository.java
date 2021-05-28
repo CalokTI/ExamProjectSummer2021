@@ -10,12 +10,11 @@ import java.sql.*;
  */
 public class ProjectRepository {
 
-    private Connection conn;
+    private DatabaseConnectionUtility databaseConnection;
 
     // Constructor
     public ProjectRepository() {
-        DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
-        conn = dbConnect.getConn();
+        databaseConnection = DatabaseConnectionUtility.getInstance();
     }
 
     // ------ SETTERS ------ //
@@ -24,6 +23,7 @@ public class ProjectRepository {
                                  String inceptionDate, String projectDeadline) {
         String sql = "INSERT INTO project (title, description, owner, inception_date, deadline) VALUES(?,?,?,?,?)";
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, projectTitle);
             preparedStatement.setString(2, projectDescription);
@@ -40,6 +40,7 @@ public class ProjectRepository {
     public void linkUserAndProject(String projectUsername, int projectID) {
         String sql = "INSERT INTO user_project (username, projectID) VALUES (?,?)";
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, projectUsername);
             statement.setInt(2, projectID);
@@ -53,6 +54,7 @@ public class ProjectRepository {
     public void changeProjectFinished(boolean state, int taskID) {
         String sql = "UPDATE project SET is_finished = ? WHERE id = ?";
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setBoolean(1, state);
             preparedStatement.setInt(2, taskID);
@@ -66,6 +68,7 @@ public class ProjectRepository {
         String sql = "DELETE FROM project where title = ?";
 
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, projectTitle);
             statement.executeUpdate();
@@ -81,6 +84,7 @@ public class ProjectRepository {
         String sql = "SELECT id FROM project WHERE title = ?";
         ResultSet resultSet = null;
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, projectTitle);
             resultSet = statement.executeQuery();
@@ -96,6 +100,7 @@ public class ProjectRepository {
         String sql = "SELECT * FROM project";
         ResultSet resultSet = null;
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(sql);
             resultSet = statement.executeQuery();
         } catch (SQLException throwables) {
@@ -109,6 +114,7 @@ public class ProjectRepository {
         String sql = "SELECT * FROM project WHERE id = ?";
         ResultSet resultSet = null;
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, projectID);
             resultSet = preparedStatement.executeQuery();
@@ -123,6 +129,7 @@ public class ProjectRepository {
         String sql = "SELECT title FROM project";
         ResultSet resultSet = null;
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(sql);
            resultSet = statement.executeQuery();
 

@@ -14,12 +14,11 @@ import java.sql.SQLException;
 
 public class TaskRepository {
 
-    private Connection conn;
+    private DatabaseConnectionUtility databaseConnection;
 
     // Constructor
     public TaskRepository() {
-        DatabaseConnectionUtility dbConnect = new DatabaseConnectionUtility();
-        conn = dbConnect.getConn();
+        databaseConnection = DatabaseConnectionUtility.getInstance();
     }
 
 
@@ -28,6 +27,7 @@ public class TaskRepository {
     public void createNewTask(String taskTitle, String taskDescription, int taskPrice, int taskTime, String owner, int projectID) {
         String sql = "INSERT INTO task (title, description, price, time, owner, project) VALUES(?,?,?,?,?,?)";
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, taskTitle);
             preparedStatement.setString(2, taskDescription);
@@ -45,6 +45,7 @@ public class TaskRepository {
     public void changeTaskFinished(boolean state, int taskID) {
         String sql = "UPDATE task SET is_finished = ? WHERE id = ?";
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setBoolean(1, state);
             preparedStatement.setInt(2, taskID);
@@ -57,6 +58,7 @@ public class TaskRepository {
     public void linkUserAndTask(String taskUsername, int taskID) {
         String sql = "INSERT INTO user_task (username, taskID) VALUES (?,?)";
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, taskUsername);
             statement.setInt(2, taskID);
@@ -71,6 +73,7 @@ public class TaskRepository {
     public void deleteTask(int taskID) {
         String sql = "DELETE FROM task where id = ?";
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, taskID);
             statement.executeUpdate();
@@ -86,6 +89,7 @@ public class TaskRepository {
         String sql = "SELECT * FROM task WHERE id = ?";
         ResultSet resultSet = null;
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, taskID);
             resultSet = preparedStatement.executeQuery();
@@ -99,6 +103,7 @@ public class TaskRepository {
         String sql = "SELECT * FROM task where project = ?";
 
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, projectID);
 
@@ -118,6 +123,7 @@ public class TaskRepository {
         String sql = "Select id FROM task where title = ?";
         ResultSet resultSet = null;
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, taskTitle);
 
@@ -134,6 +140,7 @@ public class TaskRepository {
         ResultSet resultSet = null;
 
         try {
+            Connection conn = databaseConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(sql);
             resultSet = statement.executeQuery();
 

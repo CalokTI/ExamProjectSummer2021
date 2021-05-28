@@ -17,11 +17,19 @@ public class DatabaseConnectionUtility {
     private static String url;
     private static String user;
     private static String password;
-    private static Connection conn = null;
+    private static Connection conn;
+
+    private static DatabaseConnectionUtility databaseConnectionUtilityInstance = null;
 
     //Constructor
-    public DatabaseConnectionUtility() {
-        setLogin();
+    private DatabaseConnectionUtility() {
+    }
+
+    public static DatabaseConnectionUtility getInstance(){
+        if (databaseConnectionUtilityInstance == null){
+            databaseConnectionUtilityInstance = new DatabaseConnectionUtility();
+        }
+        return databaseConnectionUtilityInstance;
     }
 
     //loads login info from file
@@ -38,9 +46,6 @@ public class DatabaseConnectionUtility {
     }
 
     public Connection getConn() {
-        if (conn != null){
-            return conn;
-        }
 
         setLogin();
 
